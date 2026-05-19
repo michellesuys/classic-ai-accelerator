@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="經典企業AI加速器 — 先買 Token，把最需要的成果換出來。資本、AI、故事三種能力，FDE 工程師直接進場交付。">
+  <meta property="og:title" content="經典企業AI加速器｜先買 Token，把最需要的成果換出來">
+  <meta property="og:description" content="不必一次買整包顧問。1 Token = NT$6,000，FDE 工程師直接進場，30 天交付可用成果。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#141414">
+  <title>經典企業AI加速器｜資本・AI・故事 企業升級引擎</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       1. DESIGN TOKENS — 決勝！未來商務 設計系統
+       ============================================================ */
+    :root {
+      --black:       #141414;
+      --gold:        #D4AF37;
+      --gold-bright: #E8C94A;
+      --gold-dim:    rgba(212,175,55,0.12);
+      --gold-line:   rgba(212,175,55,0.22);
+      --gold-glow:   rgba(212,175,55,0.18);
+      --white:       #F5F5F5;
+      --gray:        #8A8A8A;
+      --gray-deep:   #4A4A4A;
+
+      --bg-base:     #141414;
+      --bg-surface:  #1A1A1A;
+      --bg-card:     #1E1E1E;
+      --bg-raised:   #242424;
+
+      --text-h:      var(--gold);
+      --text-body:   var(--white);
+      --text-sub:    var(--gray);
+      --text-inv:    #141414;
+      --border:      rgba(255,255,255,0.07);
+      --border-gold: rgba(212,175,55,0.28);
+
+      --shadow-sm:   0 2px 16px rgba(0,0,0,0.55);
+      --shadow-md:   0 4px 32px rgba(0,0,0,0.65);
+      --shadow-gold: 0 4px 40px rgba(212,175,55,0.15);
+
+      --s1:8px; --s2:16px; --s3:24px; --s4:32px;
+      --s5:40px; --s6:48px; --s8:64px; --s10:80px; --s12:96px;
+
+      --r-sm:4px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+
+      --font-cn: 'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+      --font-en: 'Montserrat','Inter',sans-serif;
+
+      --t-fast:150ms ease; --t-base:280ms ease; --t-slow:420ms ease;
+      --nav-h:64px;
+    }
+
+    /* ============================================================
+       2. RESET & BASE
+       ============================================================ */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+    body{
+      background-color:var(--bg-base);
+      background-image:radial-gradient(circle,rgba(255,255,255,0.02) 1px,transparent 1px);
+      background-size:28px 28px;
+      color:var(--white);font-family:var(--font-cn);
+      font-size:18px;line-height:1.8;letter-spacing:0.04em;overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    ul,ol{list-style:none}
+    img{display:block;max-width:100%}
+    button{cursor:pointer;font-family:inherit;background:none;border:none}
+    .skip-link{position:absolute;top:-100px;left:var(--s2);background:var(--gold);color:var(--text-inv);padding:var(--s1) var(--s2);border-radius:var(--r-sm);font-weight:700;z-index:9999;transition:top var(--t-fast)}
+    .skip-link:focus{top:var(--s1)}
+
+    /* ============================================================
+       3. TYPOGRAPHY
+       ============================================================ */
+    h1,h2,h3,h4{font-family:var(--font-cn);line-height:1.35}
+    .t-h1{font-weight:900;font-size:clamp(2.5rem,6vw,4.5rem);color:var(--gold);letter-spacing:0.12em;line-height:1.2}
+    .t-h2{font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--white);letter-spacing:0.08em;line-height:1.3}
+    .t-h3{font-weight:700;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--white);letter-spacing:0.06em}
+    .t-label{font-family:var(--font-en);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block}
+    .t-accent{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--gray);letter-spacing:0.05em;line-height:1.75}
+    .t-note{font-size:0.85rem;font-weight:300;color:var(--gray);letter-spacing:0.04em}
+    .num{font-family:var(--font-en);font-weight:800}
+    /* 金句：頁面中「必須讓人停下來」的關鍵句 */
+    .t-punchline{font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:var(--gold);letter-spacing:0.06em;line-height:1.6}
+    .text-center{text-align:center}
+    .text-gold{color:var(--gold)}
+    .text-gray{color:var(--gray)}
+
+    /* ============================================================
+       4. LAYOUT
+       ============================================================ */
+    .container{max-width:1200px;margin:0 auto;padding:0 var(--s3)}
+    .section{padding:var(--s12) 0;border-top:1px solid var(--border)}
+    .section-alt{background:var(--bg-surface)}
+    .gold-rule{border:none;height:1px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);opacity:0.3;margin:0}
+
+    /* ============================================================
+       5. COMPONENTS
+       ============================================================ */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);font-family:var(--font-cn);font-weight:700;letter-spacing:0.08em;border-radius:var(--r-md);cursor:pointer;text-decoration:none;border:1px solid transparent;transition:all var(--t-base);white-space:nowrap}
+    .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .btn-sm{padding:10px 22px;font-size:0.85rem}
+    .btn-md{padding:14px 32px;font-size:0.95rem}
+    .btn-lg{padding:18px 44px;font-size:1.05rem}
+    .btn-gold{background:var(--gold);color:var(--text-inv);border-color:var(--gold)}
+    .btn-gold:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+    .btn-outline{background:transparent;color:var(--gold);border-color:var(--gold)}
+    .btn-outline:hover{background:var(--gold-dim);transform:translateY(-2px)}
+    .btn-subtle{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.18)}
+    .btn-subtle:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:2px;font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;border:1px solid var(--gold);background:var(--gold-dim);color:var(--gold)}
+    .token-num{font-family:var(--font-en);font-size:52px;font-weight:800;color:var(--gold);opacity:0.22;line-height:1;letter-spacing:-0.02em;margin-bottom:4px}
+
+    /* ============================================================
+       6. NAVIGATION
+       ============================================================ */
+    .nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:rgba(20,20,20,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:border-color var(--t-base)}
+    .nav--scrolled{border-bottom-color:var(--gold-line)}
+    .nav-inner{height:100%;display:flex;align-items:center;gap:var(--s4)}
+    .nav-logo{font-family:var(--font-cn);font-size:0.95rem;font-weight:900;color:var(--white);letter-spacing:0.08em;white-space:nowrap;flex-shrink:0}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;align-items:center;gap:var(--s4);flex:1}
+    .nav-link{font-size:0.8rem;font-weight:500;color:var(--gray);letter-spacing:0.06em;transition:color var(--t-fast);position:relative;padding-bottom:2px}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform var(--t-base)}
+    .nav-link:hover,.nav-link--active{color:var(--white)}
+    .nav-link:hover::after,.nav-link--active::after{transform:scaleX(1)}
+    .nav-actions{display:flex;align-items:center;gap:var(--s2);margin-left:auto}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:var(--s1);margin-left:auto}
+    .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all var(--t-base)}
+    .nav-hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .nav-hamburger.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .nav-mobile{position:fixed;inset:var(--nav-h) 0 0 0;background:var(--bg-base);padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:var(--s1);transform:translateX(100%);transition:transform var(--t-slow);z-index:99;overflow-y:auto;border-top:1px solid var(--gold-line)}
+    .nav-mobile.is-open{transform:translateX(0)}
+    .nav-mobile .nav-link{font-size:1.05rem;padding:var(--s2) 0;border-bottom:1px solid var(--border)}
+    .nav-mobile .btn{margin-top:var(--s3);align-self:flex-start}
+
+    /* ============================================================
+       7. HERO
+       ============================================================ */
+    .section-hero{min-height:100svh;display:flex;align-items:center;padding:calc(var(--nav-h) + var(--s8)) 0 var(--s10);position:relative;overflow:hidden;border-top:none}
+    .section-hero::before{content:'';position:absolute;top:-20%;right:-5%;width:55vw;height:55vw;background:radial-gradient(ellipse,rgba(212,175,55,0.055) 0%,transparent 65%);pointer-events:none}
+    .hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--s10);align-items:center}
+    .hero-content{max-width:560px}
+    .hero-content .badge{margin-bottom:var(--s3)}
+    .hero-headline{margin:var(--s2) 0 var(--s3)}
+    .hero-sub{font-size:clamp(1.15rem,2.2vw,1.5rem);font-weight:700;color:var(--gold);letter-spacing:0.08em;margin-bottom:var(--s4);line-height:1.5}
+    .hero-body{font-size:1.05rem;color:var(--gray);letter-spacing:0.04em;line-height:2;margin-bottom:var(--s5);max-width:480px}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s6)}
+    .hero-divider{height:1px;background:var(--gold-line);margin-bottom:var(--s4)}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:var(--s4)}
+    .hero-stat-value{font-family:var(--font-en);font-size:1.75rem;font-weight:800;color:var(--gold);letter-spacing:0.02em;display:block}
+    .hero-stat-label{font-size:0.75rem;color:var(--gray);letter-spacing:0.06em;display:block;margin-top:2px}
+    .hero-visual{display:flex;align-items:center;justify-content:center;position:relative;min-height:400px}
+    .token-stack{position:relative;width:280px;height:370px}
+    .token-float{position:absolute;width:240px;border-radius:var(--r-xl);padding:var(--s3);border:1px solid var(--border-gold);border-top:2px solid var(--gold);background:var(--bg-card)}
+    .token-float-capital{top:0;left:0;animation:float-a 7s ease-in-out infinite;box-shadow:var(--shadow-gold)}
+    .token-float-ai{top:65px;left:36px;animation:float-b 7s ease-in-out infinite 1.8s}
+    .token-float-story{top:130px;left:72px;animation:float-c 7s ease-in-out infinite 3.6s}
+    .token-float-num{font-family:var(--font-en);font-size:0.7rem;font-weight:700;color:var(--gold);letter-spacing:0.18em;opacity:0.6;margin-bottom:var(--s1)}
+    .token-float-name{font-size:0.95rem;font-weight:700;color:var(--white);letter-spacing:0.06em;margin-bottom:4px}
+    .token-float-desc{font-size:0.75rem;color:var(--gray);line-height:1.55;letter-spacing:0.03em}
+    @keyframes float-a{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(0deg)}}
+    @keyframes float-b{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-10px) rotate(-0.5deg)}}
+    @keyframes float-c{0%,100%{transform:translateY(0) rotate(-0.5deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+
+    /* ============================================================
+       8. PROBLEM
+       ============================================================ */
+    .problem-header{text-align:center;margin-bottom:var(--s8)}
+    .problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s3);margin-bottom:var(--s8)}
+    .problem-item{display:flex;align-items:flex-start;gap:var(--s2);padding:var(--s3);border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);transition:border-color var(--t-base)}
+    .problem-item:hover{border-color:var(--gold-line)}
+    .problem-icon{font-size:1.35rem;flex-shrink:0;margin-top:2px}
+    .problem-text{font-size:1rem;color:var(--gray);line-height:1.7;letter-spacing:0.03em}
+    .problem-solution{text-align:center;padding-top:var(--s4)}
+
+    /* ============================================================
+       9. WHAT IS TOKEN
+       ============================================================ */
+    .what-inner{max-width:680px;margin:0 auto;text-align:center}
+    .what-card{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--r-lg);padding:var(--s4);margin-top:var(--s4)}
+    .what-card p{color:var(--gray);font-size:0.95rem;line-height:1.8;letter-spacing:0.04em}
+
+    /* ============================================================
+       10. PRICING
+       ============================================================ */
+    .pricing-price{font-family:var(--font-en);font-size:clamp(3.5rem,8vw,6rem);font-weight:800;color:var(--gold);letter-spacing:-0.02em;line-height:1.1}
+
+    /* ============================================================
+       11. TOKEN CARDS
+       ============================================================ */
+    .tokens-header{text-align:center;margin-bottom:var(--s8)}
+    .tokens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+    .token-card{background:var(--bg-card);border:1px solid var(--border);border-top:2px solid var(--gold-line);border-radius:var(--r-lg);display:flex;flex-direction:column;transition:transform var(--t-base),box-shadow var(--t-base),border-color var(--t-base)}
+    .token-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-gold);border-color:var(--border-gold)}
+    .token-card-body{padding:var(--s4);flex:1}
+    .token-card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:var(--s2)}
+    .token-card-icon{font-size:1.75rem}
+    .token-card-title{font-size:1.2rem;font-weight:700;color:var(--white);letter-spacing:0.06em;margin:var(--s2) 0 var(--s1)}
+    .token-card-tagline{font-size:0.95rem;color:var(--gray);line-height:1.65;letter-spacing:0.03em;margin-bottom:var(--s3)}
+    .token-section-label{font-family:var(--font-en);font-size:0.625rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s1);padding-top:var(--s2);border-top:1px solid var(--border)}
+    .token-list{display:flex;flex-direction:column;gap:6px}
+    .token-list li{font-size:0.8rem;color:var(--gray);letter-spacing:0.03em;padding-left:var(--s2);position:relative}
+    .token-list li::before{content:'✦';font-size:0.6rem;position:absolute;left:0;top:2px;color:var(--gold);opacity:0.6}
+    .token-card-footer{padding:0 var(--s4) var(--s4)}
+
+    /* ============================================================
+       12. RECOMMENDED ORDER (ENGINE FLOW)
+       ============================================================ */
+    .engine-header{text-align:center;margin-bottom:var(--s8)}
+    .engine-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:var(--s3)}
+    .engine-step{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4);text-align:center;transition:border-color var(--t-base)}
+    .engine-step:hover{border-color:var(--border-gold)}
+    .engine-step-num{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--gold);opacity:0.22;line-height:1;margin-bottom:var(--s2)}
+    .engine-step-icon{font-size:2rem;margin-bottom:var(--s3)}
+    .engine-step-name{font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s1)}
+    .engine-step-label{font-size:1.05rem;font-weight:700;color:var(--white);letter-spacing:0.05em;margin-bottom:var(--s2)}
+    .engine-step-desc{font-size:0.9rem;color:var(--gray);line-height:1.7;letter-spacing:0.03em}
+    .engine-arrow{font-size:1.35rem;color:var(--gold);opacity:0.5;font-family:var(--font-en);align-self:center;padding-top:var(--s6)}
+
+    /* ============================================================
+       13. FDE
+       ============================================================ */
+    .fde-inner{display:grid;grid-template-columns:1fr 1fr;gap:var(--s10);align-items:start}
+    .fde-content{max-width:480px}
+    .fde-quote{border-left:2px solid var(--gold);padding:var(--s3);background:var(--gold-dim);border-radius:0 var(--r-md) var(--r-md) 0;margin:var(--s3) 0}
+    .fde-quote p{font-size:0.95rem;color:var(--white);line-height:1.7;letter-spacing:0.04em}
+    .fde-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+    .fde-item{display:flex;align-items:flex-start;gap:var(--s2);padding:var(--s2);border-radius:var(--r-md);background:var(--bg-card);border:1px solid var(--border)}
+    .fde-item-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+    .fde-item-text{font-size:0.9rem;color:var(--gray);line-height:1.55;letter-spacing:0.02em}
+    .fde-item-text strong{display:block;color:var(--white);font-size:0.95rem;margin-bottom:3px;font-weight:700}
+
+    /* ============================================================
+       14. TIMELINE
+       ============================================================ */
+    .timeline-header{text-align:center;margin-bottom:var(--s8)}
+    .timeline-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-bottom:var(--s6)}
+    .timeline-step{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--s2);padding:var(--s3);border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border)}
+    .timeline-dot{width:40px;height:40px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-line);display:flex;align-items:center;justify-content:center;font-family:var(--font-en);font-weight:800;font-size:0.8rem;color:var(--gold);flex-shrink:0}
+    .timeline-week{font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s1)}
+    .timeline-title{font-size:0.95rem;font-weight:700;color:var(--white);letter-spacing:0.06em;margin-bottom:var(--s1)}
+    .timeline-desc{font-size:0.8rem;color:var(--gray);line-height:1.65;letter-spacing:0.03em}
+    .timeline-note{text-align:center;font-size:0.875rem;color:var(--gray);letter-spacing:0.04em;line-height:1.75}
+    .timeline-note strong{color:var(--gold)}
+
+    /* ============================================================
+       15. PLANS (HOW TO START)
+       ============================================================ */
+    .plans-header{text-align:center;margin-bottom:var(--s8)}
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+    .plan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5) var(--s4);display:flex;flex-direction:column;position:relative;transition:transform var(--t-base),border-color var(--t-base)}
+    .plan-card:hover{transform:translateY(-4px);border-color:var(--gold-line)}
+    .plan-card--featured{border-color:var(--gold);background:linear-gradient(180deg,rgba(212,175,55,0.06) 0%,var(--bg-card) 40%)}
+    .plan-featured-tag{position:absolute;top:-1px;right:var(--s4);background:var(--gold);color:var(--text-inv);font-family:var(--font-en);font-size:0.625rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;border-radius:0 0 var(--r-sm) var(--r-sm)}
+    .plan-num{font-family:var(--font-en);font-size:2.25rem;font-weight:800;color:var(--gold);opacity:0.22;line-height:1;margin-bottom:var(--s2)}
+    .plan-title{font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:0.06em;margin-bottom:var(--s1)}
+    .plan-subtitle{font-size:0.85rem;color:var(--gray);letter-spacing:0.04em;margin-bottom:var(--s4);line-height:1.65}
+    .plan-rule{height:1px;background:var(--border);margin-bottom:var(--s3)}
+    .plan-list{display:flex;flex-direction:column;gap:var(--s1);flex:1;margin-bottom:var(--s4)}
+    .plan-list li{font-size:0.8rem;color:var(--gray);letter-spacing:0.03em;padding-left:var(--s2);position:relative}
+    .plan-list li::before{content:'✦';position:absolute;left:0;top:1px;color:var(--gold);font-size:0.6rem}
+    .plan-cta{margin-top:auto}
+
+    /* ============================================================
+       16. SECTION CTA
+       ============================================================ */
+    .section-cta{padding:var(--s12) 0;background:linear-gradient(180deg,var(--bg-surface) 0%,rgba(212,175,55,0.04) 100%);border-top:1px solid var(--gold-line)}
+    .cta-inner{text-align:center;max-width:600px;margin:0 auto}
+    .cta-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--s2)}
+
+    /* ============================================================
+       17. FOOTER
+       ============================================================ */
+    .footer{border-top:1px solid var(--border);padding:var(--s4) 0}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-weight:900;font-size:0.875rem;letter-spacing:0.08em}
+    .footer-logo span{color:var(--gold)}
+    .footer-copy{font-size:0.75rem;color:var(--gray-deep);letter-spacing:0.04em}
+
+    /* ============================================================
+       18. SCROLL REVEAL
+       ============================================================ */
+    [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+    [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+    [data-reveal-delay="1"]{transition-delay:0.12s}
+    [data-reveal-delay="2"]{transition-delay:0.24s}
+    [data-reveal-delay="3"]{transition-delay:0.36s}
+    [data-reveal-delay="4"]{transition-delay:0.48s}
+
+    /* ============================================================
+       19. RESPONSIVE
+       ============================================================ */
+    @media(max-width:900px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-visual{display:none}
+      .tokens-grid,.plans-grid{grid-template-columns:1fr}
+      .engine-flow{grid-template-columns:1fr;gap:var(--s2)}
+      .engine-arrow{transform:rotate(90deg);justify-self:center;padding:0}
+      .fde-inner{grid-template-columns:1fr}
+      .fde-content{max-width:100%}
+      .timeline-row{grid-template-columns:1fr}
+      .timeline-step{flex-direction:row;text-align:left;gap:var(--s3);align-items:flex-start;padding:var(--s3);border-bottom:1px solid var(--border)}
+      .timeline-step:last-child{border-bottom:none}
+      .timeline-dot{flex-shrink:0}
+      .nav-links,.nav-actions{display:none}
+      .nav-hamburger{display:flex}
+    }
+    @media(max-width:480px){
+      .container{padding:0 var(--s2)}
+      .section{padding:var(--s8) 0}
+      .t-h1{font-size:1.7rem}
+      .t-h2{font-size:1.3rem}
+      .fde-grid{grid-template-columns:1fr}
+      .cta-buttons .btn{width:100%}
+    }
+
+    /* ============================================================
+       20. ACCESSIBILITY
+       ============================================================ */
+    *:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){
+      [data-reveal]{opacity:1;transform:none;transition:none}
+      *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">跳至主要內容</a>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav class="nav" role="navigation" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">經典企業<span>AI加速器</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#what-is-token" class="nav-link">Token 方案</a></li>
+        <li><a href="#tokens" class="nav-link">三種 Token</a></li>
+        <li><a href="#fde" class="nav-link">FDE 工程師</a></li>
+        <li><a href="#how-to-start" class="nav-link">如何開始</a></li>
+        <li><a href="#timeline" class="nav-link">30 天成果</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#cta" class="btn btn-gold btn-sm">預約成長盤點</a>
+      </div>
+      <button class="nav-hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" role="dialog" aria-label="行動選單" aria-hidden="true">
+      <a href="#what-is-token" class="nav-link">Token 方案</a>
+      <a href="#tokens" class="nav-link">三種 Token</a>
+      <a href="#fde" class="nav-link">FDE 工程師</a>
+      <a href="#how-to-start" class="nav-link">如何開始</a>
+      <a href="#timeline" class="nav-link">30 天成果</a>
+      <a href="#cta" class="btn btn-gold btn-md">預約成長盤點</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ═══════════ HERO — HOOK ═══════════ -->
+    <section id="hero" class="section-hero">
+      <div class="container hero-inner">
+        <div class="hero-content" data-reveal>
+          <span class="badge">✦ 給正在準備「下一階段成長」的企業</span>
+          <p style="font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:700;color:var(--white);letter-spacing:0.08em;line-height:1.3;margin-bottom:var(--s2)">你現在卡住的<br>很可能不是不夠努力</p>
+          <h1 class="t-h1 hero-headline" style="font-size:clamp(1.8rem,4vw,2.8rem)">而是<br><span style="white-space:nowrap">沒有一套「把事情做出來」的系統</span></h1>
+          <p class="hero-body">
+            工具很多，但沒有整合<br>
+            AI 很紅，但進不了流程<br>
+            品牌不錯，但市場看不懂<br>
+            想成長，但不知道先補哪一塊
+          </p>
+          <div class="hero-ctas">
+            <a href="#cta" class="btn btn-gold btn-lg">預約 90 分鐘成長盤點</a>
+            <a href="#what-is-token" class="btn btn-outline btn-lg">了解 Token 方案</a>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-stats">
+            <div><span class="hero-stat-value">1 Token</span><span class="hero-stat-label">≈ 1 小時專業投入</span></div>
+            <div><span class="hero-stat-value">30</span><span class="hero-stat-label">天可見可用成果</span></div>
+            <div><span class="hero-stat-value">FDE</span><span class="hero-stat-label">直接進場把事做出來</span></div>
+          </div>
+        </div>
+        <div class="hero-visual" data-reveal data-reveal-delay="2" aria-hidden="true">
+          <div class="token-stack">
+            <div class="token-float token-float-capital"><div class="token-float-num">01 — CAPITAL</div><div class="token-float-name">資本 Token</div><div class="token-float-desc">決定你要去哪</div></div>
+            <div class="token-float token-float-ai"><div class="token-float-num">02 — AI</div><div class="token-float-name">AI Token</div><div class="token-float-desc">把事情做快、做大</div></div>
+            <div class="token-float token-float-story"><div class="token-float-num">03 — STORY</div><div class="token-float-name">故事 Token</div><div class="token-float-desc">讓市場看懂你</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ PROBLEM — REFRAME + REMOVE ═══════════ -->
+    <section id="problem" class="section section-alt">
+      <div class="container">
+        <div class="problem-header" data-reveal>
+          <span class="t-label">我們不是賣工具</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">企業升級，不用一次買整包顧問</h2>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-item" data-reveal data-reveal-delay="1"><span class="problem-icon">❌</span><p class="problem-text">一次花幾十萬買一個看不懂的專案</p></div>
+          <div class="problem-item" data-reveal data-reveal-delay="2"><span class="problem-icon">❌</span><p class="problem-text">先組一整個數位團隊</p></div>
+          <div class="problem-item" data-reveal data-reveal-delay="3"><span class="problem-icon">❌</span><p class="problem-text">直接導入一套很重的系統</p></div>
+          <div class="problem-item" data-reveal data-reveal-delay="4"><span class="problem-icon">✦</span><p class="problem-text">你只需要先做一件事：<strong style="color:var(--gold)">先買 Token，把最重要的成果換出來</strong></p></div>
+        </div>
+        <div class="problem-solution text-center" data-reveal>
+          <h3 class="t-h3">我們幫你做一件事</h3>
+          <p class="t-punchline" style="margin-top:var(--s3)">把企業成長，變成一個<br>可以被執行的系統</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ WHAT IS TOKEN — EDUCATE ═══════════ -->
+    <section id="what-is-token" class="section">
+      <div class="container">
+        <div class="what-inner" data-reveal>
+          <span class="t-label">🔧 什麼是 Token？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">Token 是一種<br><span class="text-gold">「企業升級的工時單位」</span></h2>
+          <div class="what-card" style="margin-top:var(--s4)">
+            <p><strong style="color:var(--gold);font-size:1.4rem">1 Token ≈ 1 小時工程師 / 顧問投入</strong></p>
+            <p style="margin-top:var(--s2)"><strong style="color:var(--gold);font-size:1.4rem">1 Token = NT$6,000</strong></p>
+            <p class="t-punchline" style="margin-top:var(--s4);color:var(--white)">你買的不是服務<br>而是「可被兌換成果的資源」</p>
+          </div>
+          <div style="margin-top:var(--s6)">
+            <span class="t-label" style="margin-bottom:var(--s3)">Token 使用方式</span>
+            <div class="problem-grid" style="margin-top:var(--s3)">
+              <div class="problem-item" data-reveal data-reveal-delay="1"><span class="problem-icon">✔</span><p class="problem-text">可用於策略、討論、開發、整合</p></div>
+              <div class="problem-item" data-reveal data-reveal-delay="2"><span class="problem-icon">✔</span><p class="problem-text">三種 Token 可互相轉換</p></div>
+              <div class="problem-item" data-reveal data-reveal-delay="3"><span class="problem-icon">✔</span><p class="problem-text">無使用期限（公司在就有效）</p></div>
+              <div class="problem-item" data-reveal data-reveal-delay="4"><span class="problem-icon">✔</span><p class="problem-text">可依需求彈性配置</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ PRICING — ANCHOR ═══════════ -->
+    <section id="pricing" class="section section-alt">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">💰 入門方案（Most Chosen）</span>
+          <p class="pricing-price" style="margin-top:var(--s3)">NTD $120,000</p>
+          <p class="t-accent" style="margin-top:var(--s1)">約 20 Token</p>
+          <div class="what-card" style="margin-top:var(--s5);max-width:480px;margin-left:auto;margin-right:auto;text-align:left">
+            <p><strong style="color:var(--white)">這個規模適合你先做到：</strong></p>
+            <p style="margin-top:var(--s2)">✦ 成長盤點<br>✦ AI 初步導入<br>✦ 核心策略釐清</p>
+            <p class="t-punchline" style="margin-top:var(--s3)">先做出第一個成果，再決定要不要加碼</p>
+          </div>
+          <div style="margin-top:var(--s5)">
+            <a href="#cta" class="btn btn-gold btn-lg">直接購買 Token 方案</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ TOKEN CARDS — DESIRE ═══════════ -->
+    <section id="tokens" class="section">
+      <div class="container">
+        <div class="tokens-header" data-reveal>
+          <span class="t-label">✦ 三種 Token，對應三種關鍵能力</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">企業要成長，本質上只需要補三件事</h2>
+        </div>
+        <div class="tokens-grid">
+
+          <!-- 01 資本 Token -->
+          <article class="token-card" data-reveal data-reveal-delay="1">
+            <div class="token-card-body">
+              <div class="token-card-header"><div class="token-num">01</div><div class="token-card-icon">📊</div></div>
+              <span class="badge">Capital Token</span>
+              <h3 class="token-card-title">資本 Token</h3>
+              <p class="token-card-tagline">決定你要去哪 — 把企業往「更有價值」的方向推進</p>
+              <div class="token-section-label">你會釐清</div>
+              <ul class="token-list">
+                <li>成長路線</li>
+                <li>財務體質</li>
+                <li>IPO / 併購 / 第二曲線</li>
+              </ul>
+              <p class="t-punchline" style="margin-top:var(--s3)">👉 避免亂投資、走錯方向</p>
+            </div>
+            <div class="token-card-footer"><a href="#cta" class="btn btn-outline btn-md">了解資本 Token →</a></div>
+          </article>
+
+          <!-- 02 AI Token -->
+          <article class="token-card" data-reveal data-reveal-delay="2">
+            <div class="token-card-body">
+              <div class="token-card-header"><div class="token-num">02</div><div class="token-card-icon">🤖</div></div>
+              <span class="badge">AI Token</span>
+              <h3 class="token-card-title">AI Token</h3>
+              <p class="token-card-tagline">把事情做快、做大 — 把 AI 變成營運能力</p>
+              <div class="token-section-label">你會得到</div>
+              <ul class="token-list">
+                <li>AI 員工（客服 / 業務 / 內訓）</li>
+                <li>流程自動化</li>
+                <li>資料結構化</li>
+                <li>決策支援系統</li>
+              </ul>
+              <p class="t-punchline" style="margin-top:var(--s3)">👉 直接降低人力成本 + 提升效率</p>
+            </div>
+            <div class="token-card-footer"><a href="#fde" class="btn btn-outline btn-md">了解 AI Token →</a></div>
+          </article>
+
+          <!-- 03 故事 Token -->
+          <article class="token-card" data-reveal data-reveal-delay="3">
+            <div class="token-card-body">
+              <div class="token-card-header"><div class="token-num">03</div><div class="token-card-icon">✍️</div></div>
+              <span class="badge">Story Token</span>
+              <h3 class="token-card-title">故事 Token</h3>
+              <p class="token-card-tagline">讓市場看懂你 — 把企業變成「值得被選擇」</p>
+              <div class="token-section-label">你會得到</div>
+              <ul class="token-list">
+                <li>品牌主敘事</li>
+                <li>創辦人故事</li>
+                <li>媒體與內容策略</li>
+              </ul>
+              <p class="t-punchline" style="margin-top:var(--s3)">👉 幫你拿客戶、人才、甚至資金</p>
+            </div>
+            <div class="token-card-footer"><a href="#cta" class="btn btn-outline btn-md">了解故事 Token →</a></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ RECOMMENDED ORDER — GUIDE ═══════════ -->
+    <section id="order" class="section section-alt">
+      <div class="container">
+        <div class="engine-header" data-reveal>
+          <span class="t-label">🧭 建議使用順序（很重要）</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">順序對了，每一塊都能加速下一塊</h2>
+        </div>
+        <div class="engine-flow">
+          <div class="engine-step" data-reveal data-reveal-delay="1">
+            <div class="engine-step-num">01</div><div class="engine-step-icon">📊</div>
+            <div class="engine-step-name">Step 1</div>
+            <div class="engine-step-label">資本 Token — 先決定方向</div>
+            <div class="engine-step-desc">搞清楚企業價值、成長路線、財務體質，避免做白工。</div>
+          </div>
+          <div class="engine-arrow" aria-hidden="true">→</div>
+          <div class="engine-step" data-reveal data-reveal-delay="2">
+            <div class="engine-step-num">02</div><div class="engine-step-icon">🤖</div>
+            <div class="engine-step-name">Step 2</div>
+            <div class="engine-step-label">AI Token — 讓流程開始變強</div>
+            <div class="engine-step-desc">把 AI 接進營運流程，降本增效，建立數位能力。</div>
+          </div>
+          <div class="engine-arrow" aria-hidden="true">→</div>
+          <div class="engine-step" data-reveal data-reveal-delay="3">
+            <div class="engine-step-num">03</div><div class="engine-step-icon">✍️</div>
+            <div class="engine-step-name">Step 3</div>
+            <div class="engine-step-label">故事 Token — 再放大價值</div>
+            <div class="engine-step-desc">有了方向和能力，再讓市場看懂你為什麼值得被選擇。</div>
+          </div>
+        </div>
+        <p class="t-punchline text-center" data-reveal style="margin-top:var(--s6);font-size:clamp(1.2rem,2.5vw,1.7rem)">👉 順序錯了，會浪費大量資源</p>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ FDE — PROOF ═══════════ -->
+    <section id="fde" class="section">
+      <div class="container">
+        <div class="fde-inner">
+          <div class="fde-content" data-reveal>
+            <span class="t-label">✦ 你真正買到的是什麼？</span>
+            <h2 class="t-h2" style="margin-top:var(--s2)">不是工具，不是報告<br>是一個會<span class="text-gold">把事情做出來</span>的人</h2>
+            <div class="fde-quote" style="margin-top:var(--s4)">
+              <p><strong style="color:var(--gold)">FDE = Forward Deployed Engineer</strong></p>
+            </div>
+            <p class="t-accent" style="margin-top:var(--s3)">FDE 能做到：</p>
+            <ul style="margin-top:var(--s2);list-style:none;padding:0">
+              <li class="t-accent" style="margin-bottom:var(--s1)">✦ 聽懂老闆目標</li>
+              <li class="t-accent" style="margin-bottom:var(--s1)">✦ 拆解流程</li>
+              <li class="t-accent" style="margin-bottom:var(--s1)">✦ 串接資料（ERP / CRM）</li>
+              <li class="t-accent" style="margin-bottom:var(--s1)">✦ 開發工具 / AI 系統</li>
+              <li class="t-accent" style="margin-bottom:var(--s1)">✦ 直接上線交付</li>
+            </ul>
+            <div style="margin-top:var(--s5)"><a href="#cta" class="btn btn-gold btn-md">直接啟動 AI 導入 →</a></div>
+          </div>
+
+          <div data-reveal data-reveal-delay="2">
+            <span class="t-label" style="margin-bottom:var(--s3);display:block">跟一般顧問差在哪？</span>
+            <div class="fde-grid">
+              <div class="fde-item"><div class="fde-item-icon">❌</div><div class="fde-item-text"><strong>顧問</strong>給建議</div></div>
+              <div class="fde-item"><div class="fde-item-icon">❌</div><div class="fde-item-text"><strong>工程師</strong>只負責寫程式</div></div>
+              <div class="fde-item" style="grid-column:span 2;border-color:var(--gold);background:var(--gold-dim);padding:var(--s3)"><div class="fde-item-icon" style="font-size:1.5rem">✔</div><div class="fde-item-text"><strong style="color:var(--gold);font-size:1.15rem">FDE — 直接把成果做出來</strong><span style="color:var(--white);font-size:0.95rem">不是建議，不是報告，是可交付的成品</span></div></div>
+            </div>
+
+            <span class="t-label" style="margin-top:var(--s5);margin-bottom:var(--s3);display:block">🔧 我們能做到的層級</span>
+            <div class="fde-grid">
+              <div class="fde-item"><div class="fde-item-icon">🔗</div><div class="fde-item-text"><strong>第三方工具整合</strong>Notion / CRM</div></div>
+              <div class="fde-item"><div class="fde-item-icon">⚙️</div><div class="fde-item-text"><strong>API 串接</strong>ERP / 內部系統</div></div>
+              <div class="fde-item"><div class="fde-item-icon">🤖</div><div class="fde-item-text"><strong>客製 AI 應用</strong>依需求打造</div></div>
+              <div class="fde-item"><div class="fde-item-icon">🔄</div><div class="fde-item-text"><strong>跨部門流程自動化</strong>端到端整合</div></div>
+            </div>
+
+            <p class="t-punchline text-center" style="margin-top:var(--s6);font-size:clamp(1.2rem,2.5vw,1.7rem)">👉 最終目標：<br>讓營收成長、成本下降、決策變快</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ TIMELINE — RESULT ═══════════ -->
+    <section id="timeline" class="section section-alt">
+      <div class="container">
+        <div class="timeline-header" data-reveal>
+          <span class="t-label">⚡ 30 天內，你會拿到什麼？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">不是 demo，而是「可用成果」</h2>
+        </div>
+        <div class="timeline-row" data-reveal>
+          <div class="timeline-step"><div class="timeline-dot">✔</div><div><div class="timeline-week">Deliverable 01</div><div class="timeline-title">AI 員工</div><div class="timeline-desc">可實際使用的 AI 客服 / 業務 / 內訓助手</div></div></div>
+          <div class="timeline-step"><div class="timeline-dot">✔</div><div><div class="timeline-week">Deliverable 02</div><div class="timeline-title">財務預測模型</div><div class="timeline-desc">AI 輔助的財務與市場預測工具</div></div></div>
+          <div class="timeline-step"><div class="timeline-dot">✔</div><div><div class="timeline-week">Deliverable 03</div><div class="timeline-title">營運流程優化系統</div><div class="timeline-desc">自動化接單、報價、分流等營運流程</div></div></div>
+          <div class="timeline-step"><div class="timeline-dot">✔</div><div><div class="timeline-week">Deliverable 04</div><div class="timeline-title">品牌與成長策略</div><div class="timeline-desc">可執行的品牌敘事與成長路線圖</div></div></div>
+        </div>
+        <p class="t-punchline text-center" data-reveal style="font-size:clamp(1.1rem,2vw,1.4rem)">重點不是做完全部<br>而是先做出「第一個有用的東西」</p>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ CASE STUDY — EVIDENCE (HIDDEN) ═══════════ -->
+    <!--
+    <section id="case" class="section">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">📊 真實案例（傳產）</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">台南製造業品牌</h2>
+          <p style="margin-top:var(--s5)"><span class="num" style="font-size:clamp(4rem,10vw,8rem);color:var(--gold);font-weight:800;letter-spacing:-0.03em;display:block;line-height:1">20<span style="font-size:0.5em;letter-spacing:0.05em"> 倍</span></span><span class="t-accent" style="display:block;margin-top:var(--s1)">4 年內營收成長</span></p>
+          <p class="t-punchline" style="margin-top:var(--s5);font-size:clamp(1.3rem,2.5vw,1.8rem)">我們做的不是工具<br>我們做的是「成長結果」</p>
+          <div style="margin-top:var(--s5)"><a href="#cta" class="btn btn-outline btn-lg">了解我們怎麼做到的 →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+    -->
+
+
+    <!-- ═══════════ HOW TO START — PATH ═══════════ -->
+    <section id="how-to-start" class="section section-alt">
+      <div class="container">
+        <div class="plans-header" data-reveal>
+          <span class="t-label">✦ 你可以怎麼開始？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">選擇最適合你的起手式</h2>
+        </div>
+        <div class="plans-grid">
+
+          <article class="plan-card" data-reveal data-reveal-delay="1">
+            <div class="plan-num">01</div>
+            <h3 class="plan-title">盈利增長計劃</h3>
+            <p class="plan-subtitle">三大支柱盤點 — 有錢 × 價值 × 高效率</p>
+            <div class="plan-rule"></div>
+            <ul class="plan-list">
+              <li><strong style="color:var(--white)">資本策略 → 有錢</strong><br><span style="font-size:0.78rem">資本路徑曲線（資本化路徑計算 1 次）</span></li>
+              <li><strong style="color:var(--white)">品牌故事 → 價值</strong><br><span style="font-size:0.78rem">品牌立信健檢、文化資產盤點、新世代溝通評估</span></li>
+              <li><strong style="color:var(--white)">AI 導入 → 高效率</strong><br><span style="font-size:0.78rem">十倍產能健檢矩陣、AI 轉型適配度與重塑度評估、AI 轉型 ROI 試算</span></li>
+            </ul>
+            <div class="plan-cta"><a href="#cta" class="btn btn-subtle btn-md">預約盈利增長計劃 →</a></div>
+          </article>
+
+          <article class="plan-card plan-card--featured" data-reveal data-reveal-delay="2">
+            <div class="plan-featured-tag">Most Chosen</div>
+            <div class="plan-num">02</div>
+            <h3 class="plan-title">直接購買 Token</h3>
+            <p class="plan-subtitle">NT$120,000 起 — 立即開始做事</p>
+            <div class="plan-rule"></div>
+            <ul class="plan-list"><li>不用等、不用準備</li><li>直接有工程師進場</li><li>先做出第一個成果</li></ul>
+            <div class="plan-cta"><a href="#cta" class="btn btn-gold btn-md">直接購買 120,000 方案 →</a></div>
+          </article>
+
+          <article class="plan-card" data-reveal data-reveal-delay="3">
+            <div class="plan-num">03</div>
+            <h3 class="plan-title">進階長期合作</h3>
+            <p class="plan-subtitle">之後再說 — 訂閱制持續優化</p>
+            <div class="plan-rule"></div>
+            <ul class="plan-list"><li>持續優化與擴張</li><li>定期工程師進場</li><li>長期策略陪跑</li></ul>
+            <div class="plan-cta"><a href="#cta" class="btn btn-outline btn-md">了解訂閱方案 →</a></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ CLOSING — CLOSE ═══════════ -->
+    <section id="closing" class="section">
+      <div class="container">
+        <div class="text-center" data-reveal style="padding:var(--s8) 0">
+          <span class="t-label">🧩 最後，你要理解一件事</span>
+          <h2 class="t-h2" style="margin-top:var(--s4)">你買的不是：</h2>
+          <p style="margin-top:var(--s3);font-size:1.3rem;color:var(--gray);letter-spacing:0.1em">一套 AI ｜ 一個顧問案 ｜ 一次性專案</p>
+          <h2 class="t-h1" style="margin-top:var(--s10);font-size:clamp(2.5rem,7vw,5rem)">你買的是<br><span class="text-gold">一個能持續幫你<br>「做出成果」的成長引擎</span></h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FINAL CTA — ACTION ═══════════ -->
+    <section id="cta" class="section-cta">
+      <div class="container">
+        <div class="cta-inner" data-reveal>
+          <span class="t-label">🚀 不確定該從哪開始？</span>
+          <h2 class="t-h1" style="margin-top:var(--s2)">從 90 分鐘<br>成長盤點開始</h2>
+          <p style="margin-top:var(--s4);margin-bottom:var(--s2);font-size:1.1rem;color:var(--white);line-height:2.2;letter-spacing:0.05em">✦ 找出優先順序<br>✦ 避免走錯方向<br>✦ 建立可執行路徑</p>
+          <div class="cta-buttons" style="margin-top:var(--s5)">
+            <a href="mailto:contact@classic-ai.com" class="btn btn-gold btn-lg">預約成長盤點</a>
+            <a href="mailto:contact@classic-ai.com" class="btn btn-outline btn-lg">直接購買 120,000 Token 方案</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">經典企業<span>AI加速器</span></span>
+      <span class="footer-copy">© 2026 Classic AI Accelerator. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    /* 1. STICKY NAV */
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    /* 2. MOBILE HAMBURGER */
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.nav-mobile');
+    hamburger.addEventListener('click', function () {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      hamburger.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* 3. SCROLL REVEAL */
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+    }
+
+    /* 4. SCROLLSPY */
+    if ('IntersectionObserver' in window) {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle('nav-link--active',
+                link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { threshold: 0.25, rootMargin: '-64px 0px -50% 0px' });
+      sections.forEach(s => spyObserver.observe(s));
+    }
+  </script>
+</body>
+</html>

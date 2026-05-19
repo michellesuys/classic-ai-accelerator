@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Token 套餐 — 報告不是終點，下一步把 AI 真正落地。30 / 90 / 180 / 360 Token 四套方案，從老闆 AI 助理到 AI 員工，逐步累積成企業資產。">
+  <meta property="og:title" content="Token 套餐方案｜把 AI 真正落地的部署額度">
+  <meta property="og:description" content="FDE Token 前線部署模式，從老闆每天會用的小 APP，到 AI Skill、企業知識庫、AI 員工，一步步把 AI 變成公司能力。">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#141414">
+  <title>Token 套餐方案｜經典企業AI加速器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       1. DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --black:#141414; --gold:#D4AF37; --gold-bright:#E8C94A;
+      --gold-dim:rgba(212,175,55,0.12); --gold-line:rgba(212,175,55,0.22); --gold-glow:rgba(212,175,55,0.18);
+      --white:#F5F5F5; --gray:#8A8A8A; --gray-deep:#4A4A4A;
+      --bg-base:#141414; --bg-surface:#1A1A1A; --bg-card:#1E1E1E; --bg-raised:#242424;
+      --text-h:var(--gold); --text-body:var(--white); --text-sub:var(--gray); --text-inv:#141414;
+      --border:rgba(255,255,255,0.07); --border-gold:rgba(212,175,55,0.28);
+      --shadow-sm:0 2px 16px rgba(0,0,0,0.55); --shadow-md:0 4px 32px rgba(0,0,0,0.65); --shadow-gold:0 4px 40px rgba(212,175,55,0.15);
+      --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:40px; --s6:48px; --s8:64px; --s10:80px; --s12:96px;
+      --r-sm:4px; --r-md:8px; --r-lg:12px; --r-xl:16px;
+      --font-cn:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+      --font-en:'Montserrat','Inter',sans-serif;
+      --t-fast:150ms ease; --t-base:280ms ease; --t-slow:420ms ease;
+      --nav-h:64px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+    body{background-color:var(--bg-base);background-image:radial-gradient(circle,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:28px 28px;color:var(--white);font-family:var(--font-cn);font-size:18px;line-height:1.8;letter-spacing:0.04em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    ul,ol{list-style:none}
+    img{display:block;max-width:100%}
+    button{cursor:pointer;font-family:inherit;background:none;border:none}
+    .skip-link{position:absolute;top:-100px;left:var(--s2);background:var(--gold);color:var(--text-inv);padding:var(--s1) var(--s2);border-radius:var(--r-sm);font-weight:700;z-index:9999;transition:top var(--t-fast)}
+    .skip-link:focus{top:var(--s1)}
+
+    /* TYPOGRAPHY */
+    h1,h2,h3,h4{font-family:var(--font-cn);line-height:1.35}
+    .t-h1{font-weight:900;font-size:clamp(2.5rem,6vw,4.5rem);color:var(--gold);letter-spacing:0.12em;line-height:1.2}
+    .t-h2{font-weight:700;font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--white);letter-spacing:0.08em;line-height:1.3}
+    .t-h3{font-weight:700;font-size:clamp(1.2rem,2.2vw,1.5rem);color:var(--white);letter-spacing:0.06em}
+    .t-label{font-family:var(--font-en);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block}
+    .t-accent{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--gray);letter-spacing:0.05em;line-height:1.75}
+    .t-note{font-size:0.85rem;font-weight:300;color:var(--gray);letter-spacing:0.04em}
+    .num{font-family:var(--font-en);font-weight:800}
+    .t-punchline{font-size:clamp(1.15rem,2vw,1.5rem);font-weight:700;color:var(--gold);letter-spacing:0.06em;line-height:1.6}
+    .text-center{text-align:center}
+    .text-gold{color:var(--gold)}
+    .text-gray{color:var(--gray)}
+
+    /* LAYOUT */
+    .container{max-width:1200px;margin:0 auto;padding:0 var(--s3)}
+    .section{padding:var(--s12) 0;border-top:1px solid var(--border)}
+    .section-alt{background:var(--bg-surface)}
+    .gold-rule{border:none;height:1px;background:linear-gradient(90deg,transparent 0%,var(--gold) 50%,transparent 100%);opacity:0.3;margin:0}
+
+    /* COMPONENTS */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);font-family:var(--font-cn);font-weight:700;letter-spacing:0.08em;border-radius:var(--r-md);cursor:pointer;text-decoration:none;border:1px solid transparent;transition:all var(--t-base);white-space:nowrap}
+    .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .btn-sm{padding:10px 22px;font-size:0.85rem}
+    .btn-md{padding:14px 32px;font-size:0.95rem}
+    .btn-lg{padding:18px 44px;font-size:1.05rem}
+    .btn-gold{background:var(--gold);color:var(--text-inv);border-color:var(--gold)}
+    .btn-gold:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+    .btn-outline{background:transparent;color:var(--gold);border-color:var(--gold)}
+    .btn-outline:hover{background:var(--gold-dim);transform:translateY(-2px)}
+    .btn-subtle{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.18)}
+    .btn-subtle:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:2px;font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;border:1px solid var(--gold);background:var(--gold-dim);color:var(--gold)}
+    .token-num{font-family:var(--font-en);font-size:52px;font-weight:800;color:var(--gold);opacity:0.22;line-height:1;letter-spacing:-0.02em;margin-bottom:4px}
+
+    /* NAVIGATION */
+    .nav{position:sticky;top:0;z-index:100;height:var(--nav-h);background:rgba(20,20,20,0.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:border-color var(--t-base)}
+    .nav--scrolled{border-bottom-color:var(--gold-line)}
+    .nav-inner{height:100%;display:flex;align-items:center;gap:var(--s4)}
+    .nav-logo{font-family:var(--font-cn);font-size:0.95rem;font-weight:900;color:var(--white);letter-spacing:0.08em;white-space:nowrap;flex-shrink:0}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{display:flex;align-items:center;gap:var(--s4);flex:1}
+    .nav-link{font-size:0.8rem;font-weight:500;color:var(--gray);letter-spacing:0.06em;transition:color var(--t-fast);position:relative;padding-bottom:2px}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform var(--t-base)}
+    .nav-link:hover,.nav-link--active{color:var(--white)}
+    .nav-link:hover::after,.nav-link--active::after{transform:scaleX(1)}
+    .nav-actions{display:flex;align-items:center;gap:var(--s2);margin-left:auto}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;padding:var(--s1);margin-left:auto}
+    .nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--white);transition:all var(--t-base)}
+    .nav-hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .nav-hamburger.is-open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .nav-hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .nav-mobile{position:fixed;inset:var(--nav-h) 0 0 0;background:var(--bg-base);padding:var(--s4) var(--s3);display:flex;flex-direction:column;gap:var(--s1);transform:translateX(100%);transition:transform var(--t-slow);z-index:99;overflow-y:auto;border-top:1px solid var(--gold-line)}
+    .nav-mobile.is-open{transform:translateX(0)}
+    .nav-mobile .nav-link{font-size:1.05rem;padding:var(--s2) 0;border-bottom:1px solid var(--border)}
+    .nav-mobile .btn{margin-top:var(--s3);align-self:flex-start}
+
+    /* HERO */
+    .section-hero{min-height:80svh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--nav-h) + var(--s8)) 0 var(--s10);position:relative;overflow:hidden;border-top:none}
+    .section-hero::before{content:'';position:absolute;top:-20%;right:-5%;width:55vw;height:55vw;background:radial-gradient(ellipse,rgba(212,175,55,0.055) 0%,transparent 65%);pointer-events:none}
+    .hero-inner{max-width:780px;margin:0 auto;text-align:center}
+    .hero-content .badge{margin-bottom:var(--s3)}
+    .hero-headline{margin:var(--s2) 0 var(--s4)}
+    .hero-body{font-size:1.05rem;color:var(--gray);letter-spacing:0.04em;line-height:2;margin-bottom:var(--s5);max-width:680px;margin-left:auto;margin-right:auto}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:var(--s2);justify-content:center;margin-bottom:var(--s6)}
+    .hero-divider{height:1px;background:var(--gold-line);margin-bottom:var(--s4);max-width:480px;margin-left:auto;margin-right:auto}
+    .hero-stats{display:flex;flex-wrap:wrap;gap:var(--s4);justify-content:center}
+    .hero-stat-value{font-family:var(--font-en);font-size:1.75rem;font-weight:800;color:var(--gold);letter-spacing:0.02em;display:block}
+    .hero-stat-label{font-size:0.75rem;color:var(--gray);letter-spacing:0.06em;display:block;margin-top:2px}
+
+    /* PROBLEM GRID */
+    .problem-header{text-align:center;margin-bottom:var(--s8)}
+    .problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s3);margin-bottom:var(--s8)}
+    .problem-item{display:flex;align-items:flex-start;gap:var(--s2);padding:var(--s3);border-radius:var(--r-lg);background:var(--bg-card);border:1px solid var(--border);transition:border-color var(--t-base)}
+    .problem-item:hover{border-color:var(--gold-line)}
+    .problem-icon{font-size:1.35rem;flex-shrink:0;margin-top:2px}
+    .problem-text{font-size:0.98rem;color:var(--gray);line-height:1.7;letter-spacing:0.03em}
+
+    /* WHAT CARD */
+    .what-inner{max-width:780px;margin:0 auto;text-align:center}
+    .what-card{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--r-lg);padding:var(--s4);margin-top:var(--s4)}
+    .what-card p{color:var(--gray);font-size:0.95rem;line-height:1.8;letter-spacing:0.04em}
+    .what-card ul li{font-size:0.95rem;color:var(--gray);line-height:1.9;letter-spacing:0.04em}
+
+    /* TABLE (generic) */
+    .data-wrap{overflow-x:auto;border-radius:var(--r-lg);border:1px solid var(--border);background:var(--bg-card)}
+    .data-table{width:100%;border-collapse:collapse;min-width:640px}
+    .data-table th,.data-table td{padding:var(--s3);text-align:left;border-bottom:1px solid var(--border);font-size:0.9rem;letter-spacing:0.03em;line-height:1.7;color:var(--gray);vertical-align:top}
+    .data-table th{background:var(--gold-dim);color:var(--gold);font-family:var(--font-en);font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;border-bottom-color:var(--gold-line)}
+    .data-table td:first-child{color:var(--white);font-weight:700;letter-spacing:0.05em}
+    .data-table tr:last-child td{border-bottom:none}
+    .data-table tr:hover td{background:rgba(212,175,55,0.03)}
+
+    /* PLAN CARDS (4 packages) */
+    .plans-header{text-align:center;margin-bottom:var(--s8)}
+    .plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3)}
+    .plan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5) var(--s4);display:flex;flex-direction:column;position:relative;transition:transform var(--t-base),border-color var(--t-base)}
+    .plan-card:hover{transform:translateY(-4px);border-color:var(--gold-line)}
+    .plan-card--featured{border-color:var(--gold);background:linear-gradient(180deg,rgba(212,175,55,0.06) 0%,var(--bg-card) 40%)}
+    .plan-featured-tag{position:absolute;top:-1px;right:var(--s4);background:var(--gold);color:var(--text-inv);font-family:var(--font-en);font-size:0.625rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 12px;border-radius:0 0 var(--r-sm) var(--r-sm)}
+    .plan-token{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-0.02em}
+    .plan-token-label{font-size:0.7rem;color:var(--gray);letter-spacing:0.18em;text-transform:uppercase;margin-top:var(--s1);margin-bottom:var(--s2)}
+    .plan-title{font-size:1.25rem;font-weight:700;color:var(--white);letter-spacing:0.06em;margin-bottom:var(--s1)}
+    .plan-subtitle{font-size:0.9rem;color:var(--gold);letter-spacing:0.04em;margin-bottom:var(--s4);line-height:1.65}
+    .plan-rule{height:1px;background:var(--border);margin-bottom:var(--s3)}
+    .plan-section-label{font-family:var(--font-en);font-size:0.625rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s2);display:block}
+    .plan-list{display:flex;flex-direction:column;gap:6px;margin-bottom:var(--s4)}
+    .plan-list li{font-size:0.85rem;color:var(--gray);letter-spacing:0.03em;padding-left:var(--s2);position:relative;line-height:1.7}
+    .plan-list li::before{content:'✦';position:absolute;left:0;top:6px;color:var(--gold);font-size:0.6rem}
+    .plan-cta{margin-top:auto}
+
+    /* UPGRADE FLOW */
+    .upgrade-flow{display:flex;flex-direction:column;align-items:center;gap:var(--s2);max-width:560px;margin:0 auto}
+    .upgrade-step{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--r-md);padding:var(--s3) var(--s4);text-align:center;width:100%;max-width:380px}
+    .upgrade-step-name{font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+    .upgrade-step-label{font-size:1.05rem;font-weight:700;color:var(--white);letter-spacing:0.05em}
+    .upgrade-arrow{font-family:var(--font-en);color:var(--gold);opacity:0.6;font-size:1.4rem;line-height:1}
+
+    /* HOW STEPS */
+    .how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+    .how-step{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s4);text-align:center;transition:border-color var(--t-base)}
+    .how-step:hover{border-color:var(--gold-line)}
+    .how-step-num{font-family:var(--font-en);font-size:2.5rem;font-weight:800;color:var(--gold);opacity:0.22;line-height:1;margin-bottom:var(--s2)}
+    .how-step-name{font-family:var(--font-en);font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--s1)}
+    .how-step-title{font-size:1.05rem;font-weight:700;color:var(--white);letter-spacing:0.05em;margin-bottom:var(--s2)}
+    .how-step-desc{font-size:0.9rem;color:var(--gray);line-height:1.75;letter-spacing:0.03em}
+
+    /* FAQ */
+    .faq-list{display:flex;flex-direction:column;gap:var(--s2);max-width:760px;margin:0 auto}
+    .faq-item{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);transition:border-color var(--t-base)}
+    .faq-item[open]{border-color:var(--gold-line)}
+    .faq-item summary{list-style:none;cursor:pointer;padding:var(--s3);display:flex;align-items:center;justify-content:space-between;gap:var(--s3);font-size:1rem;font-weight:700;color:var(--white);letter-spacing:0.04em;line-height:1.5}
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary::after{content:'+';font-family:var(--font-en);font-size:1.4rem;color:var(--gold);transition:transform var(--t-base);flex-shrink:0;font-weight:300;line-height:1}
+    .faq-item[open] summary::after{transform:rotate(45deg)}
+    .faq-item .faq-body{padding:0 var(--s3) var(--s3);font-size:0.95rem;color:var(--gray);line-height:1.9;letter-spacing:0.03em}
+    .faq-item .faq-body a{color:var(--gold);text-decoration:underline}
+
+    /* SECTION CTA */
+    .section-cta{padding:var(--s12) 0;background:linear-gradient(180deg,var(--bg-surface) 0%,rgba(212,175,55,0.04) 100%);border-top:1px solid var(--gold-line)}
+    .cta-inner{text-align:center;max-width:720px;margin:0 auto}
+    .cta-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--s2)}
+
+    /* FOOTER */
+    .footer{border-top:1px solid var(--border);padding:var(--s4) 0}
+    .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);flex-wrap:wrap}
+    .footer-logo{font-weight:900;font-size:0.875rem;letter-spacing:0.08em}
+    .footer-logo span{color:var(--gold)}
+    .footer-copy{font-size:0.75rem;color:var(--gray-deep);letter-spacing:0.04em}
+
+    /* SCROLL REVEAL */
+    [data-reveal]{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+    [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+    [data-reveal-delay="1"]{transition-delay:0.12s}
+    [data-reveal-delay="2"]{transition-delay:0.24s}
+    [data-reveal-delay="3"]{transition-delay:0.36s}
+    [data-reveal-delay="4"]{transition-delay:0.48s}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .plans-grid{grid-template-columns:1fr}
+      .how-grid{grid-template-columns:1fr}
+      .nav-links,.nav-actions{display:none}
+      .nav-hamburger{display:flex}
+    }
+    @media(max-width:480px){
+      .container{padding:0 var(--s2)}
+      .section{padding:var(--s8) 0}
+      .t-h1{font-size:1.7rem}
+      .t-h2{font-size:1.3rem}
+      .cta-buttons .btn{width:100%}
+    }
+
+    /* A11Y */
+    *:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+    @media(prefers-reduced-motion:reduce){
+      [data-reveal]{opacity:1;transform:none;transition:none}
+      *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">跳至主要內容</a>
+
+  <!-- ═══════════ NAVIGATION ═══════════ -->
+  <nav class="nav" role="navigation" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">經典企業<span>AI加速器</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#what" class="nav-link">Token 是什麼</a></li>
+        <li><a href="#roadmap" class="nav-link">AI 落地路線</a></li>
+        <li><a href="#plans" class="nav-link">套餐方案</a></li>
+        <li><a href="#exchange" class="nav-link">可兌換項目</a></li>
+        <li><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#cta" class="btn btn-gold btn-sm">開通 Token 池</a>
+      </div>
+      <button class="nav-hamburger" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" role="dialog" aria-label="行動選單" aria-hidden="true">
+      <a href="index.html" class="nav-link">← 回盈利增長計劃</a>
+      <a href="#what" class="nav-link">Token 是什麼</a>
+      <a href="#roadmap" class="nav-link">AI 落地路線</a>
+      <a href="#plans" class="nav-link">套餐方案</a>
+      <a href="#exchange" class="nav-link">可兌換項目</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#cta" class="btn btn-gold btn-md">開通 Token 池</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section id="hero" class="section-hero">
+      <div class="container hero-inner">
+        <div class="hero-content" data-reveal>
+          <span class="badge">✦ 給已完成盈利增長計劃，想真正落地的企業</span>
+          <h1 class="t-h1 hero-headline" style="font-size:clamp(1.8rem,4vw,2.6rem)">報告不是終點<br>下一步，用 <span class="text-gold">Token 把 AI 真正落地</span></h1>
+          <p class="hero-body">
+            完成盈利增長計劃後，你已經知道公司下一階段的優先順序<br>
+            現在不需要一次買大型系統，也不需要把需求全部想清楚才開始<br><br>
+            <strong style="color:var(--white)">FDE Token 前線部署模式</strong> — 你購買的是一段期間內的 AI 落地能力，不是單一交付品，也不是被固定規格綁死的工程案
+          </p>
+          <p class="t-punchline" style="color:var(--white);font-size:clamp(1.05rem,1.8vw,1.3rem);margin-bottom:var(--s5);line-height:1.7">
+            從老闆每天會用的小 APP 開始，逐步升級成<br>
+            <span class="text-gold">AI Skill 技能包 → 企業知識庫 → AI 員工</span>
+          </p>
+          <div class="hero-ctas">
+            <a href="#cta" class="btn btn-gold btn-lg">開通 Token 池</a>
+            <a href="#plans" class="btn btn-outline btn-lg">查看套餐方案</a>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-stats">
+            <div><span class="hero-stat-value">4</span><span class="hero-stat-label">套 Token 方案</span></div>
+            <div><span class="hero-stat-value">10</span><span class="hero-stat-label">個老闆高頻小 APP</span></div>
+            <div><span class="hero-stat-value">2 週</span><span class="hero-stat-label">每兩週迭代一次</span></div>
+          </div>
+          <p class="t-note" style="margin-top:var(--s6)">建議搭配 <a href="index.html#cta" style="color:var(--gold);text-decoration:underline">盈利增長計劃</a> 使用，確保 AI 落地對應企業真正的增長優先順序</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ WHY — 為什麼需要 Token ═══════════ -->
+    <section id="why" class="section section-alt">
+      <div class="container">
+        <div class="problem-header" data-reveal>
+          <span class="t-label">⚠️ 為什麼需要 Token？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">因為 AI 導入最難的<br>不是做系統，而是知道<span class="text-gold">先做哪一件事</span></h2>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-item" data-reveal data-reveal-delay="1" style="flex-direction:column;align-items:flex-start;gap:var(--s2);padding:var(--s4)">
+            <span class="t-label">01｜大系統老闆不敢買</span>
+            <p class="problem-text">需求還沒成熟，流程也還沒完全清楚。如果一開始就做大系統，很容易變成高成本、高風險、低使用率。</p>
+          </div>
+          <div class="problem-item" data-reveal data-reveal-delay="2" style="flex-direction:column;align-items:flex-start;gap:var(--s2);padding:var(--s4)">
+            <span class="t-label">02｜只買工具員工不會用</span>
+            <p class="problem-text">工具買了，但公司沒有整理資料、流程與使用情境。最後 AI 變成少數人玩過，卻沒有真正進入日常工作。</p>
+          </div>
+          <div class="problem-item" data-reveal data-reveal-delay="3" style="flex-direction:column;align-items:flex-start;gap:var(--s2);padding:var(--s4)">
+            <span class="t-label">03｜需求一直變綁死報價</span>
+            <p class="problem-text">AI 落地通常不是一次到位。前期需要探索、測試、調整優先順序。Token 模式可以讓企業保留彈性，邊做邊校準。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ WHAT — Token 是什麼 ═══════════ -->
+    <section id="what" class="section">
+      <div class="container">
+        <div class="what-inner" data-reveal>
+          <span class="t-label">🔧 Token 是什麼？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">Token 是你啟動<br><span class="text-gold">AI 落地任務的部署額度</span></h2>
+          <p class="t-accent" style="margin-top:var(--s3)">Token 不是單純工程時數，而是一種可以被用來啟動 AI 落地任務的彈性額度</p>
+
+          <div class="what-card" style="margin-top:var(--s5);text-align:left">
+            <span class="t-label" style="margin-bottom:var(--s2)">Token 可以用於</span>
+            <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px var(--s3);margin-top:var(--s2)">
+              <li>✦ 老闆 AI 助理</li>
+              <li>✦ AI Skill 技能包</li>
+              <li>✦ 資料與流程盤點</li>
+              <li>✦ 企業知識庫</li>
+              <li>✦ AI 員工 MVP</li>
+              <li>✦ 團隊使用訓練</li>
+              <li>✦ 使用回饋與迭代</li>
+              <li>✦ 後續維護與優化</li>
+            </ul>
+          </div>
+
+          <div class="what-card" style="margin-top:var(--s3);text-align:left">
+            <span class="t-label" style="margin-bottom:var(--s2)">每次使用 Token 前，我們會先一起確認</span>
+            <ul style="display:flex;flex-direction:column;gap:6px;margin-top:var(--s2)">
+              <li>1️⃣ 這件事是否對應盈利增長計劃報告中的優先順序</li>
+              <li>2️⃣ 是否能降低老闆或團隊的高頻耗時任務</li>
+              <li>3️⃣ 是否能累積成公司未來的知識資產</li>
+              <li>4️⃣ 是否值得做成可重複使用的 AI 能力</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ ROADMAP — AI 落地路線 ═══════════ -->
+    <section id="roadmap" class="section section-alt">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">🧭 AI 落地路線圖</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">從老闆先有感<br>到公司真正可複製</h2>
+        </div>
+
+        <div data-reveal style="margin-top:var(--s8)">
+          <span class="t-label" style="margin-bottom:var(--s3);display:block;text-align:center">A 軌｜AI 營運能力產品線</span>
+          <div class="data-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>階段</th><th>產品</th><th>定位</th><th>適合狀況</th><th>主要解決</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>第一層</td><td>老闆的 AI 助理</td><td>AI 落地低門檻入口，先讓老闆每天用得起來</td><td>對 AI 有興趣，不想一開始導入大系統</td><td>老闆時間被會議、溝通、整理消耗</td></tr>
+                <tr><td>第二層</td><td>AI Skill 技能包</td><td>把高頻任務做成可重複使用的 AI 工作能力</td><td>有明確高頻任務（提案、報價、客服回覆）</td><td>任務每次重做、品質不穩、靠資深員工</td></tr>
+                <tr><td>第三層</td><td>企業知識庫</td><td>把資料、流程、判斷標準整理成可訓練 AI 的資產</td><td>資料散在 Excel、Line、員工腦中</td><td>新人難交接、員工離職造成資料斷層</td></tr>
+                <tr><td>第四層</td><td>AI 員工</td><td>建立在 AI Skill 與企業知識庫之上的 AI 工作角色</td><td>已有數位資料與流程基礎</td><td>想降低人力依賴、減少漏追漏回</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div data-reveal style="margin-top:var(--s6)">
+          <span class="t-label" style="margin-bottom:var(--s3);display:block;text-align:center">B 軌｜FDE Token 前線部署模式</span>
+          <div class="data-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>模式</th><th>定位</th><th>適合狀況</th><th>主要解決</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>FDE Token<br>前線部署模式</td><td>客戶購買的是一段期間內的 AI 落地能力，不是單一交付品或工程工時</td><td>問題很多但優先順序不清楚；流程變動大；多部門都有 AI 需求；想先探索再建置</td><td>不知道從哪裡開始；固定報價綁死；需求尚未成熟</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ PLANS — Token 套餐 ═══════════ -->
+    <section id="plans" class="section">
+      <div class="container">
+        <div class="plans-header" data-reveal>
+          <span class="t-label">📦 Token 套餐建議</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">四套方案<br>從老闆有感，到 AI 員工承擔工作</h2>
+          <p class="t-note" style="margin-top:var(--s3)">下列 Token 數為頁面呈現用的建議版，正式報價前可依內部成本與服務深度調整</p>
+        </div>
+
+        <div class="plans-grid">
+
+          <article class="plan-card" data-reveal data-reveal-delay="1">
+            <div class="plan-token">30</div>
+            <div class="plan-token-label">Token</div>
+            <h3 class="plan-title">老闆 AI 助理啟動包</h3>
+            <p class="plan-subtitle">先讓老闆每天用得起來</p>
+            <div class="plan-rule"></div>
+            <span class="plan-section-label">適合</span>
+            <ul class="plan-list">
+              <li>老闆對 AI 有興趣，還沒有明確導入方向</li>
+              <li>想先用低門檻方式感受 AI 省時間</li>
+              <li>不想一次導入大系統</li>
+              <li>想先從會議、溝通、追蹤、整理開始</li>
+            </ul>
+            <span class="plan-section-label">可啟動項目</span>
+            <ul class="plan-list">
+              <li>老闆日常任務盤點</li>
+              <li>1 個老闆 AI 助理原型</li>
+              <li>1–2 個高頻小 APP</li>
+              <li>使用教學與情境演練</li>
+              <li>初次迭代調整</li>
+            </ul>
+            <div class="plan-cta"><a href="mailto:contact@classic-ai.com?subject=啟動 30 Token 老闆 AI 助理包" class="btn btn-subtle btn-md">啟動 30 Token 包 →</a></div>
+          </article>
+
+          <article class="plan-card plan-card--featured" data-reveal data-reveal-delay="2">
+            <div class="plan-featured-tag">Most Chosen</div>
+            <div class="plan-token">90</div>
+            <div class="plan-token-label">Token</div>
+            <h3 class="plan-title">AI Skill 技能包</h3>
+            <p class="plan-subtitle">把高頻任務做成可重複使用的 AI 能力</p>
+            <div class="plan-rule"></div>
+            <span class="plan-section-label">適合</span>
+            <ul class="plan-list">
+              <li>有明確高頻任務</li>
+              <li>任務每次都要重做，浪費資深人力</li>
+              <li>提案、報價、會議整理、客服品質不穩</li>
+              <li>想把老闆或主管的判斷複製給團隊</li>
+            </ul>
+            <span class="plan-section-label">可啟動項目</span>
+            <ul class="plan-list">
+              <li>高頻任務盤點與排序</li>
+              <li>2–3 個 AI Skill 技能包</li>
+              <li>任務流程重整 + Prompt 設計</li>
+              <li>使用 SOP + 團隊訓練</li>
+              <li>兩輪迭代優化</li>
+            </ul>
+            <div class="plan-cta"><a href="mailto:contact@classic-ai.com?subject=啟動 90 Token AI Skill 技能包" class="btn btn-gold btn-md">啟動 90 Token 包 →</a></div>
+          </article>
+
+          <article class="plan-card" data-reveal data-reveal-delay="3">
+            <div class="plan-token">180</div>
+            <div class="plan-token-label">Token</div>
+            <h3 class="plan-title">企業知識庫基礎包</h3>
+            <p class="plan-subtitle">把散落的資料，整理成 AI 可使用的企業資產</p>
+            <div class="plan-rule"></div>
+            <span class="plan-section-label">適合</span>
+            <ul class="plan-list">
+              <li>資料散在 Excel、Line、紙本與員工腦中</li>
+              <li>新人交接困難，老員工離職造成斷層</li>
+              <li>想讓 AI 能回答公司自己的問題</li>
+              <li>想為未來 AI 員工打基礎</li>
+            </ul>
+            <span class="plan-section-label">可啟動項目</span>
+            <ul class="plan-list">
+              <li>企業資料盤點與分類架構</li>
+              <li>核心文件整理</li>
+              <li>知識庫 MVP</li>
+              <li>常見問題與標準答案整理</li>
+              <li>權限與維護流程 + 1–2 個連接 AI Skill</li>
+            </ul>
+            <div class="plan-cta"><a href="mailto:contact@classic-ai.com?subject=啟動 180 Token 企業知識庫包" class="btn btn-outline btn-md">啟動 180 Token 包 →</a></div>
+          </article>
+
+          <article class="plan-card" data-reveal data-reveal-delay="4">
+            <div class="plan-token">360</div>
+            <div class="plan-token-label">Token</div>
+            <h3 class="plan-title">AI 員工 MVP 包</h3>
+            <p class="plan-subtitle">讓 AI 開始承擔一個明確工作角色</p>
+            <div class="plan-rule"></div>
+            <span class="plan-section-label">適合</span>
+            <ul class="plan-list">
+              <li>已有一定數位資料與流程基礎</li>
+              <li>想讓 AI 協助特定角色的日常工作</li>
+              <li>想降低漏追、漏回、重複整理</li>
+              <li>已完成至少一個 AI Skill 或知識庫階段</li>
+            </ul>
+            <span class="plan-section-label">可啟動項目</span>
+            <ul class="plan-list">
+              <li>AI 員工角色定義與工作流程拆解</li>
+              <li>知識庫串接 + 任務介面設計</li>
+              <li>AI 回覆與判斷規則</li>
+              <li>使用者測試 + 迭代優化</li>
+              <li>團隊導入訓練 + 維護擴充建議</li>
+            </ul>
+            <div class="plan-cta"><a href="mailto:contact@classic-ai.com?subject=啟動 360 Token AI 員工 MVP 包" class="btn btn-outline btn-md">啟動 360 Token 包 →</a></div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ EXCHANGE — 可兌換項目 ═══════════ -->
+    <section id="exchange" class="section section-alt">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">🎟️ 可兌換項目</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">Token 可以怎麼用？</h2>
+        </div>
+        <div class="data-wrap" data-reveal style="margin-top:var(--s6)">
+          <table class="data-table">
+            <thead>
+              <tr><th>任務單元</th><th>建議 Token</th><th>適合情境</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>老闆 AI 助理設計</td><td>20–40 Token</td><td>老闆先體驗省時間，建立使用習慣</td></tr>
+              <tr><td>單一 AI Skill 技能包</td><td>30–60 Token</td><td>把一個高頻任務做成可重複使用能力</td></tr>
+              <tr><td>高頻任務盤點</td><td>10–20 Token</td><td>還不確定從哪個任務開始</td></tr>
+              <tr><td>企業資料盤點</td><td>30–60 Token</td><td>資料散落，需要先整理入口</td></tr>
+              <tr><td>企業知識庫 MVP</td><td>100–200 Token</td><td>想讓 AI 能查詢公司內部資料</td></tr>
+              <tr><td>AI 員工 MVP</td><td>200–400 Token</td><td>想讓 AI 承擔明確工作角色</td></tr>
+              <tr><td>團隊導入訓練</td><td>10–30 Token</td><td>讓主管與員工真正開始使用</td></tr>
+              <tr><td>迭代與維護</td><td>20–80 Token / 月</td><td>已有 AI 工具，需要持續優化</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ UPGRADE — 升級邏輯 ═══════════ -->
+    <section id="upgrade" class="section section-alt">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">📈 從 Token 到 AI 員工的升級邏輯</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">每一次小導入<br>都要累積成<span class="text-gold">未來的資產</span></h2>
+          <p class="t-accent" style="margin-top:var(--s3);max-width:640px;margin-left:auto;margin-right:auto">Token 不是用完就結束。我們會把每次做出來的 AI Skill、資料整理與流程規則，逐步累積到企業知識庫中。</p>
+        </div>
+
+        <div class="upgrade-flow" data-reveal style="margin-top:var(--s8)">
+          <div class="upgrade-step"><div class="upgrade-step-name">01 — Start</div><div class="upgrade-step-label">老闆 AI 助理</div></div>
+          <div class="upgrade-arrow" aria-hidden="true">↓</div>
+          <div class="upgrade-step"><div class="upgrade-step-name">02 — Skills</div><div class="upgrade-step-label">AI Skill 技能包</div></div>
+          <div class="upgrade-arrow" aria-hidden="true">↓</div>
+          <div class="upgrade-step"><div class="upgrade-step-name">03 — Knowledge</div><div class="upgrade-step-label">企業知識庫</div></div>
+          <div class="upgrade-arrow" aria-hidden="true">↓</div>
+          <div class="upgrade-step"><div class="upgrade-step-name">04 — Agent</div><div class="upgrade-step-label">AI 員工</div></div>
+          <div class="upgrade-arrow" aria-hidden="true">↓</div>
+          <div class="upgrade-step" style="border-color:var(--gold);background:var(--gold-dim)"><div class="upgrade-step-name">05 — Scale</div><div class="upgrade-step-label">管理 AI 員工部門</div></div>
+        </div>
+
+        <div data-reveal style="margin-top:var(--s8);max-width:560px;margin-left:auto;margin-right:auto">
+          <span class="t-label" style="margin-bottom:var(--s2);display:block;text-align:center">這樣做的好處</span>
+          <ul style="display:flex;flex-direction:column;gap:6px;color:var(--gray);font-size:0.95rem;line-height:1.85">
+            <li>✦ 一開始老闆就有感</li>
+            <li>✦ 團隊可以逐步接受</li>
+            <li>✦ 不會一次投入過大</li>
+            <li>✦ 每個小 APP 都能變成未來知識庫素材</li>
+            <li>✦ 未來要做 AI 員工時，不用從零開始</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ HOW — 三步驟 ═══════════ -->
+    <section id="how" class="section">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">🚀 完成盈利增長計劃後，怎麼開始？</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">三步驟<br>把報告變成落地成果</h2>
+        </div>
+        <div class="how-grid" data-reveal style="margin-top:var(--s8)">
+          <div class="how-step">
+            <div class="how-step-num">01</div>
+            <div class="how-step-name">Step 1</div>
+            <div class="how-step-title">選出報告中的 AI 優先項</div>
+            <div class="how-step-desc">從盈利增長計劃報告中，找出最適合先落地的 1–3 個任務</div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">02</div>
+            <div class="how-step-name">Step 2</div>
+            <div class="how-step-title">配置 Token 池</div>
+            <div class="how-step-desc">依照預算、急迫性與團隊成熟度，選擇 30、90、180 或 360 Token 方案</div>
+          </div>
+          <div class="how-step">
+            <div class="how-step-num">03</div>
+            <div class="how-step-name">Step 3</div>
+            <div class="how-step-title">每兩週檢查一次落地成果</div>
+            <div class="how-step-desc">每個任務都會進入部署、使用、回饋、迭代。目標不是 demo，而是讓團隊真的開始使用</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section id="faq" class="section section-alt">
+      <div class="container">
+        <div class="text-center" data-reveal>
+          <span class="t-label">❓ 常見問題</span>
+          <h2 class="t-h2" style="margin-top:var(--s2)">關於 Token 套餐</h2>
+        </div>
+        <div class="faq-list" data-reveal style="margin-top:var(--s6)">
+          <details class="faq-item">
+            <summary>Q1：Token 是工程時數嗎？</summary>
+            <div class="faq-body">不是。Token 是 AI 落地任務的部署額度。它包含需求釐清、流程盤點、設計、建置、測試、訓練與迭代，不單純等於工程時數。</div>
+          </details>
+          <details class="faq-item">
+            <summary>Q2：可以還沒做盈利增長計劃就買 Token 嗎？</summary>
+            <div class="faq-body">可以討論，但不建議直接開始。因為 Token 最有效的使用方式，是先知道企業的增長優先順序，再決定 AI 要落在哪裡。<br><a href="index.html#cta">→ 先預約盈利增長計劃 20 分鐘診斷</a></div>
+          </details>
+          <details class="faq-item">
+            <summary>Q3：我不知道要買哪個方案怎麼辦？</summary>
+            <div class="faq-body">如果剛開始接觸 AI，建議從 <strong style="color:var(--gold)">30 Token 老闆 AI 助理啟動包</strong>開始。如果公司已有明確高頻任務，建議從 <strong style="color:var(--gold)">90 Token AI Skill 技能包</strong>開始。</div>
+          </details>
+          <details class="faq-item">
+            <summary>Q4：Token 可以用在品牌故事或資本策略嗎？</summary>
+            <div class="faq-body">本頁是 AI 落地版。未來可以擴充成三方共同 Token，讓 Token 用於資本策略、品牌故事與 AI 落地的整合任務。</div>
+          </details>
+          <details class="faq-item">
+            <summary>Q5：做完 AI Skill 後，為什麼還需要企業知識庫？</summary>
+            <div class="faq-body">AI Skill 可以解決單一任務。企業知識庫則是把公司資料、經驗、流程與判斷標準整理成長期資產。如果未來要做 AI 員工，企業知識庫會是重要基礎。</div>
+          </details>
+          <details class="faq-item">
+            <summary>Q6：AI 員工會取代員工嗎？</summary>
+            <div class="faq-body">我們的設計方向不是一開始就取代員工，而是先承擔重複、耗時、容易漏掉的工作，讓員工可以處理更高價值的判斷與溝通。</div>
+          </details>
+        </div>
+        <div class="text-center" style="margin-top:var(--s6)">
+          <a href="index.html#cta" class="btn btn-outline btn-md">還沒做盈利增長計劃？先預約診斷 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ FINAL CTA ═══════════ -->
+    <section id="cta" class="section-cta">
+      <div class="container">
+        <div class="cta-inner" data-reveal>
+          <span class="t-label">🚀 把它做出來</span>
+          <h2 class="t-h1" style="margin-top:var(--s2);font-size:clamp(2rem,5vw,3.5rem)">你已經知道公司下一步該怎麼走<br><span class="text-gold">現在，把它做出來</span></h2>
+          <p style="margin-top:var(--s4);margin-bottom:var(--s2);font-size:1.05rem;color:var(--white);line-height:2;letter-spacing:0.05em">從一個老闆每天會用的小 APP 開始<br>再一步步變成企業知識庫與 AI 員工</p>
+          <div class="cta-buttons" style="margin-top:var(--s5)">
+            <a href="mailto:contact@classic-ai.com?subject=開通 Token 池" class="btn btn-gold btn-lg">開通 Token 池</a>
+            <a href="mailto:contact@classic-ai.com?subject=預約 Token 配置會議" class="btn btn-outline btn-lg">預約 Token 配置會議</a>
+          </div>
+          <p class="t-note" style="margin-top:var(--s4)">Token 套餐建議搭配 <a href="index.html#cta" style="color:var(--gold);text-decoration:underline">盈利增長計劃報告</a> 使用，確保 AI 落地任務對應企業真正的增長優先順序</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">經典企業<span>AI加速器</span></span>
+      <span class="footer-copy">© 2026 Classic AI Accelerator. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.querySelector('.nav-mobile');
+    hamburger.addEventListener('click', function () {
+      const isOpen = mobileMenu.classList.toggle('is-open');
+      hamburger.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+      mobileMenu.setAttribute('aria-hidden', !isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('is-open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-visible'));
+    }
+
+    if ('IntersectionObserver' in window) {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const spyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle('nav-link--active',
+                link.getAttribute('href') === '#' + entry.target.id);
+            });
+          }
+        });
+      }, { threshold: 0.25, rootMargin: '-64px 0px -50% 0px' });
+      sections.forEach(s => spyObserver.observe(s));
+    }
+  </script>
+</body>
+</html>
