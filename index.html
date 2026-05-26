@@ -111,34 +111,64 @@
     min-height:100vh; display:flex; align-items:center;
     background:var(--bg);
     padding:112px 0 80px; overflow:hidden; border-bottom:1px solid var(--gold);
+    --hero-map-x:0px; --hero-map-y:0px; --hero-map-scale:1.06;
+    --hero-map-opacity:.34; --hero-city-y:0px; --hero-city-scale:1.08; --hero-city-opacity:.2;
+    --hero-orbit-x:0px; --hero-orbit-y:0px; --hero-orbit-rotate:0deg; --hero-orbit-scale:1;
+    --hero-orbit-opacity:.58; --hero-streak-x:0px; --hero-streak-opacity:.72;
+    --hero-title-y:0px; --hero-title-opacity:1;
+    --hero-sub-y:0px; --hero-sub-opacity:1;
+    --hero-cta-y:0px; --hero-cta-opacity:1;
+    --hero-micro-y:0px; --hero-micro-opacity:1;
+    --hero-trust-y:0px; --hero-trust-opacity:1;
+  }
+  .hero-sticky{
+    position:relative; width:100%;
   }
   .hero .wrap{width:100%; position:relative; z-index:1}
   .hero .visual-layer::after{
     background:
-      radial-gradient(circle at 72% 38%,rgba(212,175,55,.18),transparent 34%),
-      linear-gradient(90deg,var(--bg) 0%,rgba(20,20,20,.96) 34%,rgba(20,20,20,.74) 100%);
+      radial-gradient(circle at 72% 38%,rgba(212,175,55,.22),transparent 32%),
+      linear-gradient(90deg,var(--bg) 0%,rgba(20,20,20,.98) 35%,rgba(20,20,20,.7) 100%);
   }
   .hero-map{
-    position:absolute; right:-10vw; top:2vh; width:min(72vw,1080px); height:104%;
-    object-fit:cover; opacity:.42; filter:saturate(.86) contrast(1.12);
-    transform:translate3d(0,0,0) scale(1.05);
+    position:absolute; right:-16vw; top:-8vh; width:min(82vw,1220px); height:118%;
+    object-fit:cover; opacity:var(--hero-map-opacity); filter:saturate(.82) contrast(1.14);
+    transform:translate3d(var(--hero-map-x),var(--hero-map-y),0) scale(var(--hero-map-scale));
+    will-change:transform;
   }
   .hero-city{
-    position:absolute; right:0; bottom:-12vh; width:min(52vw,760px); height:52%;
-    object-fit:cover; opacity:.12; filter:grayscale(1) contrast(1.18);
-    mix-blend-mode:screen; transform:translate3d(0,0,0) scale(1.08);
+    position:absolute; right:-4vw; bottom:-18vh; width:min(62vw,900px); height:62%;
+    object-fit:cover; opacity:var(--hero-city-opacity); filter:grayscale(1) contrast(1.22);
+    mix-blend-mode:screen; transform:translate3d(0,var(--hero-city-y),0) scale(var(--hero-city-scale));
+    will-change:transform;
   }
   .hero-orbit{
-    position:absolute; right:8vw; top:22vh; width:min(30vw,440px); aspect-ratio:1;
-    border:1px solid rgba(212,175,55,.34); border-radius:50%; opacity:.44;
-    transform:translate3d(0,0,0);
+    position:absolute; right:9vw; top:18vh; width:min(34vw,500px); aspect-ratio:1;
+    border:1px solid rgba(212,175,55,.42); border-radius:50%; opacity:var(--hero-orbit-opacity);
+    transform:translate3d(var(--hero-orbit-x),var(--hero-orbit-y),0) rotate(var(--hero-orbit-rotate)) scale(var(--hero-orbit-scale));
+    will-change:transform;
   }
   .hero-orbit::before,.hero-orbit::after{
     content:""; position:absolute; inset:13%; border:1px solid rgba(212,175,55,.18); border-radius:50%;
   }
   .hero-orbit::after{inset:31%; border-color:rgba(245,245,245,.1)}
+  .hero-depth-line{
+    position:absolute; right:-18vw; bottom:18vh; width:58vw; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,175,55,.85),transparent);
+    opacity:var(--hero-streak-opacity); transform:translate3d(var(--hero-streak-x),0,0) rotate(-7deg);
+    box-shadow:0 0 24px rgba(212,175,55,.28);
+    will-change:transform;
+  }
+  .hero-depth-line::before,.hero-depth-line::after{
+    content:""; position:absolute; top:-3px; width:7px; height:7px; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 16px rgba(212,175,55,.78);
+  }
+  .hero-depth-line::before{left:31%}
+  .hero-depth-line::after{right:18%}
   .flip-stage{
     position:relative; min-height:clamp(190px,22vw,280px); margin-bottom:var(--x-3);
+    opacity:var(--hero-title-opacity); transform:translate3d(0,var(--hero-title-y),0);
+    will-change:opacity,transform;
   }
   .flip-line{
     position:absolute; left:0; right:0; top:0;
@@ -149,14 +179,28 @@
   }
   .flip-line.active{opacity:1}
   .flip-line.out{opacity:0}
-  .flip-dots{display:flex; gap:var(--x-2); margin:0 0 var(--x-4)}
+  .flip-dots{
+    display:flex; gap:var(--x-2); margin:0 0 var(--x-4);
+    opacity:var(--hero-title-opacity); transform:translate3d(0,var(--hero-title-y),0);
+    will-change:opacity,transform;
+  }
   .flip-dots span{width:48px; height:1px; background:var(--muted); transition:background .3s ease}
   .flip-dots span.on{background:var(--gold)}
-  .hero-sub{max-width:760px; color:var(--fg); font-size:clamp(18px,1.8vw,24px); margin-bottom:var(--x-4)}
-  .hero-cta-row{display:flex; gap:var(--x-2); flex-wrap:wrap; align-items:center}
+  .hero-sub{
+    max-width:760px; color:var(--fg); font-size:clamp(18px,1.8vw,24px); margin-bottom:var(--x-4);
+    opacity:var(--hero-sub-opacity); transform:translate3d(0,var(--hero-sub-y),0); will-change:opacity,transform;
+  }
+  .hero-cta-row{
+    display:flex; gap:var(--x-2); flex-wrap:wrap; align-items:center;
+    opacity:var(--hero-cta-opacity); transform:translate3d(0,var(--hero-cta-y),0); will-change:opacity,transform;
+  }
+  .hero .micro{
+    opacity:var(--hero-micro-opacity); transform:translate3d(0,var(--hero-micro-y),0); will-change:opacity,transform;
+  }
   .trust-strip{
     margin-top:var(--x-8); padding-top:var(--x-3); border-top:1px solid var(--gold);
     display:grid; grid-template-columns:1.2fr repeat(3,1fr); gap:var(--x-4); align-items:start;
+    opacity:var(--hero-trust-opacity); transform:translate3d(0,var(--hero-trust-y),0); will-change:opacity,transform;
   }
   .trust-strip .ts-label{color:var(--muted); font-size:14px; max-width:220px; line-height:1.6}
   .ts-stat{display:flex; flex-direction:column}
@@ -192,6 +236,54 @@
   /* THE LIE */
   .lie h2{max-width:880px}
   .lie .body{margin-top:var(--x-4); color:var(--fg); font-size:18px; max-width:800px}
+  .lie-story{
+    min-height:165vh; padding:0; overflow:visible;
+    --story-map-opacity:.08; --story-map-y:80px; --story-map-scale:1.04;
+    --story-city-opacity:0; --story-city-y:160px;
+    --story-orbit-opacity:0; --story-orbit-y:120px; --story-orbit-rotate:0deg;
+    --story-streak-opacity:0; --story-streak-x:180px;
+  }
+  .band.lie-story.has-visual{overflow:visible}
+  .lie-story-sticky{
+    position:sticky; top:0; min-height:100vh; display:flex; align-items:center;
+    padding:clamp(80px,10vw,128px) 0; overflow:hidden;
+  }
+  .lie-story .wrap{position:relative; z-index:1}
+  .story-map{
+    position:absolute; right:-18vw; top:-10vh; width:min(86vw,1260px); height:122%;
+    object-fit:cover; opacity:var(--story-map-opacity); filter:saturate(.82) contrast(1.12);
+    transform:translate3d(0,var(--story-map-y),0) scale(var(--story-map-scale));
+    will-change:opacity,transform;
+  }
+  .story-city{
+    position:absolute; right:-8vw; bottom:-20vh; width:min(64vw,920px); height:62%;
+    object-fit:cover; opacity:var(--story-city-opacity); filter:grayscale(1) contrast(1.2);
+    mix-blend-mode:screen; transform:translate3d(0,var(--story-city-y),0) scale(1.12);
+    will-change:opacity,transform;
+  }
+  .story-orbit{
+    position:absolute; right:8vw; top:19vh; width:min(34vw,500px); aspect-ratio:1;
+    border:1px solid rgba(212,175,55,.38); border-radius:50%; opacity:var(--story-orbit-opacity);
+    transform:translate3d(0,var(--story-orbit-y),0) rotate(var(--story-orbit-rotate));
+    will-change:opacity,transform;
+  }
+  .story-orbit::before,.story-orbit::after{
+    content:""; position:absolute; inset:14%; border:1px solid rgba(212,175,55,.16); border-radius:50%;
+  }
+  .story-orbit::after{inset:34%; border-color:rgba(245,245,245,.1)}
+  .story-depth-line{
+    position:absolute; right:-16vw; bottom:20vh; width:58vw; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,175,55,.82),transparent);
+    opacity:var(--story-streak-opacity); transform:translate3d(var(--story-streak-x),0,0) rotate(-7deg);
+    box-shadow:0 0 24px rgba(212,175,55,.24); will-change:opacity,transform;
+  }
+  .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{
+    opacity:0; transform:translate3d(0,28px,0); will-change:opacity,transform;
+  }
+  .lie-story .eyebrow{opacity:.42; transform:translate3d(0,10px,0)}
+  .lie-story h2{opacity:.28; transform:translate3d(0,18px,0)}
+  .lie-line:first-child{opacity:.16; transform:translate3d(0,18px,0)}
+  .lie-line{display:block}
   .pull{
     margin-top:var(--x-6); padding:var(--x-3) 0 var(--x-3) var(--x-4); border-left:1px solid var(--gold);
     background:transparent; border-radius:0;
@@ -305,18 +397,38 @@
     .nav-in{padding:14px 20px}
     .brand{font-size:13px; letter-spacing:.1em}
     .mobile-menu{padding-left:20px; padding-right:20px}
-    .hero{padding-top:104px}
     h2{letter-spacing:.02em}
-    .hero-map{right:-42vw; width:132vw; opacity:.24}
-    .hero-city,.hero-orbit{display:none}
+    .hero-map{right:-50vw; width:144vw; opacity:.2; transform:none}
+    .hero-city,.hero-orbit,.hero-depth-line{display:none}
   }
   @media(max-width:880px){
+    .hero{
+      min-height:100vh; overflow:hidden;
+      --hero-map-opacity:.2; --hero-title-y:0px; --hero-title-opacity:1;
+      --hero-sub-y:0px; --hero-sub-opacity:1; --hero-cta-y:0px; --hero-cta-opacity:1;
+      --hero-micro-y:0px; --hero-micro-opacity:1; --hero-trust-y:0px; --hero-trust-opacity:1;
+    }
+    .hero-sticky{position:relative; min-height:100vh; padding:104px 0 80px}
     .parallax-asset,.stock-atmosphere{width:100%; height:100%; opacity:.16}
     .visual-layer::after{background:rgba(20,20,20,.82)}
+    .lie-story{min-height:auto; padding:clamp(80px,10vw,128px) 0; overflow:hidden}
+    .lie-story-sticky{position:relative; min-height:auto; padding:0}
+    .story-map{right:-50vw; width:144vw; opacity:.16; transform:none}
+    .story-city,.story-orbit,.story-depth-line{display:none}
+    .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{opacity:1; transform:none}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit{transition:none!important; transform:none!important}
+    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit,.hero-depth-line,.story-map,.story-city,.story-orbit,.story-depth-line,.lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{transition:none!important; transform:none!important}
+    .hero{
+      min-height:100vh; --hero-map-opacity:.28; --hero-city-opacity:.14; --hero-orbit-opacity:.35;
+      --hero-streak-opacity:.45; --hero-title-y:0px; --hero-title-opacity:1; --hero-sub-y:0px; --hero-sub-opacity:1;
+      --hero-cta-y:0px; --hero-cta-opacity:1; --hero-micro-y:0px; --hero-micro-opacity:1; --hero-trust-y:0px; --hero-trust-opacity:1;
+    }
+    .hero-sticky{position:relative}
+    .lie-story{min-height:auto; padding:clamp(80px,10vw,128px) 0; overflow:hidden}
+    .lie-story-sticky{position:relative; min-height:auto; padding:0}
+    .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{opacity:1}
   }
 </style>
 </head>
@@ -348,49 +460,60 @@
 
 <!-- HERO -->
 <header class="hero has-visual">
-  <div class="visual-layer hero-visual" aria-hidden="true">
-    <img class="hero-map" src="img/generated/asset-system-map.jpg" alt="" decoding="async">
-    <img class="hero-city" src="img/stock/business-silhouette-city.jpg" alt="" decoding="async">
-    <span class="hero-orbit"></span>
-  </div>
-  <div class="wrap">
-    <div class="flip-stage" id="flipStage">
-      <div class="flip-line active">拚了一輩子,<br>別只留下一家<br><span class="gold">「沒有你就轉不動」</span>的公司。</div>
-      <div class="flip-line">如果明天有人想買你的公司<br>你,<span class="gold">開得了價嗎?</span></div>
-      <div class="flip-line">別再把公司做大。<br>要把公司,做到<span class="gold">「有人想買」</span>。</div>
+  <div class="hero-sticky">
+    <div class="visual-layer hero-visual" aria-hidden="true">
+      <img class="hero-map" src="img/generated/asset-system-map.jpg" alt="" decoding="async">
+      <img class="hero-city" src="img/stock/business-silhouette-city.jpg" alt="" decoding="async">
+      <span class="hero-orbit"></span>
+      <span class="hero-depth-line"></span>
     </div>
-    <div class="flip-dots" id="flipDots"><span class="on"></span><span></span><span></span></div>
+    <div class="wrap">
+      <div class="flip-stage" id="flipStage">
+        <div class="flip-line active">拚了一輩子,<br>別只留下一家<br><span class="gold">「沒有你就轉不動」</span>的公司。</div>
+        <div class="flip-line">如果明天有人想買你的公司<br>你,<span class="gold">開得了價嗎?</span></div>
+        <div class="flip-line">別再把公司做大。<br>要把公司,做到<span class="gold">「有人想買」</span>。</div>
+      </div>
+      <div class="flip-dots" id="flipDots"><span class="on"></span><span></span><span></span></div>
 
-    <p class="hero-sub">我們陪台灣的中小企業主,把公司從「靠老闆撐著的一份工作」,變成「有人搶著用好價錢接手的資產」——並給你一張按部就班的藍圖,一路走到你漂亮交棒的那一天。</p>
+      <p class="hero-sub">我們陪台灣的中小企業主,把公司從「靠老闆撐著的一份工作」,變成「有人搶著用好價錢接手的資產」——並給你一張按部就班的藍圖,一路走到你漂亮交棒的那一天。</p>
 
-    <div class="hero-cta-row">
-      <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener">預約免費策略診斷</a>
-      <a href="#road" class="btn ghost">先看看資本化藍圖</a>
-    </div>
-    <p class="micro">60 分鐘,我們一起看清楚:你的公司現在「值多少」、離「賣得掉」還差哪幾步。不收費、不推銷。</p>
+      <div class="hero-cta-row">
+        <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener">預約免費策略診斷</a>
+        <a href="#road" class="btn ghost">先看看資本化藍圖</a>
+      </div>
+      <p class="micro">60 分鐘,我們一起看清楚:你的公司現在「值多少」、離「賣得掉」還差哪幾步。不收費、不推銷。</p>
 
-    <div class="trust-strip">
-      <div class="ts-label">資本市場 × AI 工程 × 媒體故事<br>三位顧問,一條龍</div>
-      <div class="ts-stat"><b data-count="20" data-suffix=" 倍">0 倍</b><small>協助客戶營收成長</small></div>
-      <div class="ts-stat"><b data-count="5" data-suffix=" 倍">0 倍</b><small>公司估值提升</small></div>
-      <div class="ts-stat"><b data-count="300" data-suffix=" 萬">0 萬</b><small>國家級創業競賽獎金</small></div>
+      <div class="trust-strip">
+        <div class="ts-label">資本市場 × AI 工程 × 媒體故事<br>三位顧問,一條龍</div>
+        <div class="ts-stat"><b data-count="20" data-suffix=" 倍">0 倍</b><small>協助客戶營收成長</small></div>
+        <div class="ts-stat"><b data-count="5" data-suffix=" 倍">0 倍</b><small>公司估值提升</small></div>
+        <div class="ts-stat"><b data-count="300" data-suffix=" 萬">0 萬</b><small>國家級創業競賽獎金</small></div>
+      </div>
     </div>
   </div>
 </header>
 
 <!-- THE LIE -->
-<section class="band lie" id="lie">
-  <div class="wrap reveal">
-    <div class="eyebrow">先說一句沒人敢說的真話</div>
-    <h2>你以為你「擁有」一家公司。<br>其實,你只是擁有一份<span class="gold">永遠離不開的工作</span>。</h2>
-    <div class="body">
-      你不敢放長假,因為一週不在公司就出事。<br>
-      你不敢生病,因為很多事只有你會、只有你能拍板。<br>
-      你的營收年年成長,但你越來越累、越來越被綁住。<br>
-      這不是你不夠努力——剛好相反,是你太努力了,把自己變成公司裡「最貴、最不能少」的那個員工。<br>
-      真相很殘忍:一家「離不開老闆」的公司,在買家眼裡,幾乎不值錢。
+<section class="band lie lie-story has-visual" id="lie">
+  <div class="lie-story-sticky">
+    <div class="visual-layer" aria-hidden="true">
+      <img class="story-map" src="img/generated/asset-system-map.jpg" alt="" loading="lazy" decoding="async">
+      <img class="story-city" src="img/stock/business-silhouette-city.jpg" alt="" loading="lazy" decoding="async">
+      <span class="story-orbit"></span>
+      <span class="story-depth-line"></span>
     </div>
-    <div class="pull">能放手的公司,才是資產。離不開你的,只是一座高薪打造的牢籠。</div>
+    <div class="wrap">
+      <div class="eyebrow">先說一句沒人敢說的真話</div>
+      <h2>你以為你「擁有」一家公司。<br>其實,你只是擁有一份<span class="gold">永遠離不開的工作</span>。</h2>
+      <div class="body">
+        <span class="lie-line">你不敢放長假,因為一週不在公司就出事。</span>
+        <span class="lie-line">你不敢生病,因為很多事只有你會、只有你能拍板。</span>
+        <span class="lie-line">你的營收年年成長,但你越來越累、越來越被綁住。</span>
+        <span class="lie-line">這不是你不夠努力——剛好相反,是你太努力了,把自己變成公司裡「最貴、最不能少」的那個員工。</span>
+        <span class="lie-line">真相很殘忍:一家「離不開老闆」的公司,在買家眼裡,幾乎不值錢。</span>
+      </div>
+      <div class="pull">能放手的公司,才是資產。離不開你的,只是一座高薪打造的牢籠。</div>
+    </div>
   </div>
 </section>
 
@@ -701,35 +824,150 @@
   }
 
   // scroll-linked visual stories
+  function initHeroScrollStory(){
+    const hero=document.querySelector('.hero');
+    if(!hero) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const desktop=matchMedia('(min-width: 881px)');
+    let ticking=false;
+
+    const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+    const segment=(progress,start,end)=>{
+      if(progress<=start) return 0;
+      if(progress>=end) return 1;
+      const t=(progress-start)/(end-start);
+      return t*t*(3-2*t);
+    };
+    const update=()=>{
+      ticking=false;
+      if(!desktop.matches){
+        hero.style.removeProperty('--hero-map-x');
+        hero.style.removeProperty('--hero-map-y');
+        hero.style.removeProperty('--hero-map-scale');
+        hero.style.removeProperty('--hero-city-y');
+        hero.style.removeProperty('--hero-city-scale');
+        hero.style.removeProperty('--hero-orbit-x');
+        hero.style.removeProperty('--hero-orbit-y');
+        hero.style.removeProperty('--hero-orbit-rotate');
+        hero.style.removeProperty('--hero-orbit-scale');
+        hero.style.removeProperty('--hero-streak-x');
+        hero.style.removeProperty('--hero-map-opacity');
+        hero.style.removeProperty('--hero-city-opacity');
+        hero.style.removeProperty('--hero-orbit-opacity');
+        hero.style.removeProperty('--hero-streak-opacity');
+        return;
+      }
+
+      const rect=hero.getBoundingClientRect();
+      const progress=clamp((0-rect.top)/Math.max(hero.offsetHeight,innerHeight),0,1);
+      const ease=progress*progress*(3-2*progress);
+
+      hero.style.setProperty('--hero-map-x',`${ease*42}px`);
+      hero.style.setProperty('--hero-map-y',`${ease*-46}px`);
+      hero.style.setProperty('--hero-map-scale',`${1.06+ease*.06}`);
+      hero.style.setProperty('--hero-city-y',`${ease*-128}px`);
+      hero.style.setProperty('--hero-city-scale',`${1.08+ease*.12}`);
+      hero.style.setProperty('--hero-orbit-x',`${ease*-84}px`);
+      hero.style.setProperty('--hero-orbit-y',`${ease*-164}px`);
+      hero.style.setProperty('--hero-orbit-rotate',`${ease*32}deg`);
+      hero.style.setProperty('--hero-orbit-scale',`${1-ease*.08}`);
+      hero.style.setProperty('--hero-streak-x',`${ease*-220}px`);
+    };
+
+    const requestUpdate=()=>{
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(update);
+    };
+
+    update();
+    addEventListener('scroll',requestUpdate,{passive:true});
+    addEventListener('resize',requestUpdate);
+    desktop.addEventListener?.('change',requestUpdate);
+  }
+  initHeroScrollStory();
+
+  function initLieScrollStory(){
+    const story=document.querySelector('.lie-story');
+    if(!story || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const desktop=matchMedia('(min-width: 881px)');
+    const eyebrow=story.querySelector('.eyebrow');
+    const title=story.querySelector('h2');
+    const lines=[...story.querySelectorAll('.lie-line')];
+    const pull=story.querySelector('.pull');
+    const animated=[eyebrow,title,...lines,pull].filter(Boolean);
+    let ticking=false;
+
+    const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+    const segment=(progress,start,end)=>{
+      if(progress<=start) return 0;
+      if(progress>=end) return 1;
+      const t=(progress-start)/(end-start);
+      return t*t*(3-2*t);
+    };
+    const setReveal=(el,amount,offset=28)=>{
+      el.style.opacity=String(amount);
+      el.style.transform=`translate3d(0,${offset-(amount*offset)}px,0)`;
+    };
+    const revealFrom=(base,amount)=>base+((1-base)*amount);
+    const reset=()=>{
+      animated.forEach(el=>{
+        el.style.opacity='';
+        el.style.transform='';
+      });
+      ['--story-map-opacity','--story-map-y','--story-map-scale','--story-city-opacity','--story-city-y','--story-orbit-opacity','--story-orbit-y','--story-orbit-rotate','--story-streak-opacity','--story-streak-x'].forEach(prop=>story.style.removeProperty(prop));
+    };
+    const update=()=>{
+      ticking=false;
+      if(!desktop.matches){ reset(); return; }
+
+      const rect=story.getBoundingClientRect();
+      const startOffset=innerHeight*1.02;
+      const distance=Math.max(story.offsetHeight-(innerHeight*.08),1);
+      const progress=clamp((startOffset-rect.top)/distance,0,1);
+
+      setReveal(eyebrow,revealFrom(.42,segment(progress,0,.14)),10);
+      setReveal(title,revealFrom(.28,segment(progress,.02,.18)),18);
+      lines.forEach((line,index)=>{
+        const start=.12+(index*.105);
+        const base=index===0 ? .16 : 0;
+        setReveal(line,revealFrom(base,segment(progress,start,start+.09)),18);
+      });
+      setReveal(pull,segment(progress,.72,.94),24);
+
+      const mapIn=segment(progress,0,.28);
+      const cityIn=segment(progress,.26,.62);
+      const front=segment(progress,.54,.96);
+      story.style.setProperty('--story-map-opacity',`${.1+mapIn*.26}`);
+      story.style.setProperty('--story-map-y',`${90-(progress*180)}px`);
+      story.style.setProperty('--story-map-scale',`${1.03+progress*.11}`);
+      story.style.setProperty('--story-city-opacity',`${cityIn*.22}`);
+      story.style.setProperty('--story-city-y',`${180-(cityIn*280)}px`);
+      story.style.setProperty('--story-orbit-opacity',`${front*.5}`);
+      story.style.setProperty('--story-orbit-y',`${120-(front*250)}px`);
+      story.style.setProperty('--story-orbit-rotate',`${front*42}deg`);
+      story.style.setProperty('--story-streak-opacity',`${front*.72}`);
+      story.style.setProperty('--story-streak-x',`${180-(front*380)}px`);
+    };
+    const requestUpdate=()=>{
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(update);
+    };
+    update();
+    addEventListener('scroll',requestUpdate,{passive:true});
+    addEventListener('resize',requestUpdate);
+    desktop.addEventListener?.('change',requestUpdate);
+  }
+  initLieScrollStory();
+
+  // optional GSAP parallax for lower atmosphere layers
   function initScrollStories(){
     if(!window.gsap || !window.ScrollTrigger) return;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     gsap.registerPlugin(ScrollTrigger);
-
-    const mm=gsap.matchMedia();
-    mm.add('(min-width: 881px)',()=>{
-      const hero=document.querySelector('.hero');
-      const map=document.querySelector('.hero-map');
-      const city=document.querySelector('.hero-city');
-      const orbit=document.querySelector('.hero-orbit');
-      const copy=document.querySelector('.hero .wrap');
-      if(!hero || !map || !city || !orbit || !copy) return;
-
-      gsap.timeline({
-        scrollTrigger:{
-          trigger:hero,
-          start:'top top',
-          end:'bottom top',
-          scrub:true,
-          invalidateOnRefresh:true
-        }
-      })
-      .to(map,{yPercent:-14,xPercent:5,scale:1.14,ease:'none'},0)
-      .to(city,{yPercent:-28,scale:1.18,ease:'none'},0)
-      .to(orbit,{yPercent:-38,rotate:28,scale:.92,ease:'none'},0)
-      .to(copy,{yPercent:-5,ease:'none'},0);
-    });
 
     gsap.utils.toArray('.parallax-asset,.stock-atmosphere').forEach((img)=>{
       const section=img.closest('section');
