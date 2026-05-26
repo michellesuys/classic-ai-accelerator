@@ -232,6 +232,73 @@
   /* reveal */
   .reveal{opacity:0; transition:opacity .25s ease}
   .reveal.in{opacity:1}
+  .section-story .wrap.reveal,
+  .scroll-reveal-section .wrap.reveal{opacity:1}
+  .section-story{
+    min-height:160vh; padding:0; overflow:visible;
+    --section-bg-opacity:.08; --section-bg-y:96px; --section-bg-scale:1.04;
+    --section-orbit-opacity:0; --section-orbit-y:130px; --section-orbit-rotate:0deg;
+    --section-streak-opacity:0; --section-streak-x:190px;
+  }
+  .section-story.has-visual{overflow:visible}
+  .section-story-sticky{
+    position:sticky; top:0; min-height:100vh; display:flex; align-items:center;
+    padding:clamp(80px,10vw,128px) 0; overflow:hidden;
+  }
+  .section-story-sticky .wrap{width:100%; position:relative; z-index:1}
+  .section-story-bg{
+    position:absolute; right:-16vw; top:-12vh; width:min(86vw,1260px); height:124%;
+    object-fit:cover; opacity:var(--section-bg-opacity);
+    filter:saturate(.72) contrast(1.12) sepia(.18);
+    transform:translate3d(0,var(--section-bg-y),0) scale(var(--section-bg-scale));
+    will-change:opacity,transform;
+  }
+  .section-story-orbit{
+    position:absolute; right:7vw; top:18vh; width:min(32vw,480px); aspect-ratio:1;
+    border:1px solid rgba(212,175,55,.34); border-radius:50%;
+    opacity:var(--section-orbit-opacity);
+    transform:translate3d(0,var(--section-orbit-y),0) rotate(var(--section-orbit-rotate));
+    will-change:opacity,transform;
+  }
+  .section-story-orbit::before,.section-story-orbit::after{
+    content:""; position:absolute; inset:16%; border:1px solid rgba(212,175,55,.14); border-radius:50%;
+  }
+  .section-story-orbit::after{inset:38%; border-color:rgba(245,245,245,.09)}
+  .section-story-depth-line{
+    position:absolute; right:-18vw; bottom:20vh; width:58vw; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,175,55,.82),transparent);
+    opacity:var(--section-streak-opacity);
+    transform:translate3d(var(--section-streak-x),0,0) rotate(-7deg);
+    box-shadow:0 0 24px rgba(212,175,55,.24);
+    will-change:opacity,transform;
+  }
+  .section-story .eyebrow,
+  .section-story .chips,
+  .section-story .pull,
+  .section-story .btn,
+  .section-story .card,
+  .section-story .step,
+  .section-story .road-foot,
+  .section-story .fit .yes,
+  .section-story .fit .later,
+  .section-story .qa,
+  .section-story .story-text-line{
+    opacity:0;
+    transform:translate3d(0,28px,0);
+    will-change:opacity,transform;
+  }
+  .section-story h2,
+  .section-story .lead,
+  .section-story .body{opacity:1; transform:none}
+  .story-text-line{display:block}
+  .scroll-reveal-section .eyebrow,
+  .scroll-reveal-section .story-text-line,
+  .scroll-reveal-section .card,
+  .scroll-reveal-section .pull{
+    opacity:0;
+    transform:translate3d(0,28px,0);
+    will-change:opacity,transform;
+  }
 
   /* THE LIE */
   .lie h2{max-width:880px}
@@ -248,7 +315,7 @@
     position:sticky; top:0; min-height:100vh; display:flex; align-items:center;
     padding:clamp(80px,10vw,128px) 0; overflow:hidden;
   }
-  .lie-story .wrap{position:relative; z-index:1}
+  .lie-story .wrap{width:100%; position:relative; z-index:1}
   .story-map{
     position:absolute; right:-18vw; top:-10vh; width:min(86vw,1260px); height:122%;
     object-fit:cover; opacity:var(--story-map-opacity); filter:saturate(.82) contrast(1.12);
@@ -280,9 +347,9 @@
   .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{
     opacity:0; transform:translate3d(0,28px,0); will-change:opacity,transform;
   }
-  .lie-story .eyebrow{opacity:.42; transform:translate3d(0,10px,0)}
-  .lie-story h2{opacity:.28; transform:translate3d(0,18px,0)}
-  .lie-line:first-child{opacity:.16; transform:translate3d(0,18px,0)}
+  .lie-story .eyebrow{opacity:0; transform:translate3d(0,10px,0)}
+  .lie-story h2{opacity:0; transform:translate3d(0,18px,0)}
+  .lie-line:first-child{opacity:0; transform:translate3d(0,18px,0)}
   .lie-line{display:block}
   .pull{
     margin-top:var(--x-6); padding:var(--x-3) 0 var(--x-3) var(--x-4); border-left:1px solid var(--gold);
@@ -416,10 +483,32 @@
     .story-map{right:-50vw; width:144vw; opacity:.16; transform:none}
     .story-city,.story-orbit,.story-depth-line{display:none}
     .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{opacity:1; transform:none}
+    .section-story{min-height:auto; padding:clamp(80px,10vw,128px) 0; overflow:hidden}
+    .section-story-sticky{position:relative; min-height:auto; padding:0; overflow:visible}
+    .section-story-bg{right:-50vw; width:144vw; opacity:.16; transform:none}
+    .section-story-orbit,.section-story-depth-line{display:none}
+    .section-story .eyebrow,
+    .section-story h2,
+    .section-story .lead,
+    .section-story .chips,
+    .section-story .pull,
+    .section-story .btn,
+    .section-story .card,
+    .section-story .step,
+    .section-story .road-foot,
+    .section-story .fit .yes,
+    .section-story .fit .later,
+    .section-story .qa,
+    .section-story .body,
+    .section-story .story-text-line,
+    .scroll-reveal-section .eyebrow,
+    .scroll-reveal-section .story-text-line,
+    .scroll-reveal-section .card,
+    .scroll-reveal-section .pull{opacity:1; transform:none}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit,.hero-depth-line,.story-map,.story-city,.story-orbit,.story-depth-line,.lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{transition:none!important; transform:none!important}
+    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit,.hero-depth-line,.story-map,.story-city,.story-orbit,.story-depth-line,.lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull,.section-story .eyebrow,.section-story h2,.section-story .lead,.section-story .chips,.section-story .pull,.section-story .btn,.section-story .card,.section-story .road-foot,.section-story .fit .yes,.section-story .fit .later,.section-story .qa,.section-story .body,.section-story .story-text-line,.scroll-reveal-section .eyebrow,.scroll-reveal-section .story-text-line,.scroll-reveal-section .card,.scroll-reveal-section .pull{transition:none!important; transform:none!important}
     .hero{
       min-height:100vh; --hero-map-opacity:.28; --hero-city-opacity:.14; --hero-orbit-opacity:.35;
       --hero-streak-opacity:.45; --hero-title-y:0px; --hero-title-opacity:1; --hero-sub-y:0px; --hero-sub-opacity:1;
@@ -429,6 +518,26 @@
     .lie-story{min-height:auto; padding:clamp(80px,10vw,128px) 0; overflow:hidden}
     .lie-story-sticky{position:relative; min-height:auto; padding:0}
     .lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull{opacity:1}
+    .section-story{min-height:auto; padding:clamp(80px,10vw,128px) 0; overflow:hidden}
+    .section-story-sticky{position:relative; min-height:auto; padding:0}
+    .section-story .eyebrow,
+    .section-story h2,
+    .section-story .lead,
+    .section-story .chips,
+    .section-story .pull,
+    .section-story .btn,
+    .section-story .card,
+    .section-story .step,
+    .section-story .road-foot,
+    .section-story .fit .yes,
+    .section-story .fit .later,
+    .section-story .qa,
+    .section-story .body,
+    .section-story .story-text-line,
+    .scroll-reveal-section .eyebrow,
+    .scroll-reveal-section .story-text-line,
+    .scroll-reveal-section .card,
+    .scroll-reveal-section .pull{opacity:1}
   }
 </style>
 </head>
@@ -518,42 +627,50 @@
 </section>
 
 <!-- REFRAME -->
-<section class="band alt has-visual" id="reframe">
-  <div class="visual-layer" aria-hidden="true">
-    <img class="stock-atmosphere" src="img/stock/business-silhouette-city.jpg" alt="" loading="lazy" decoding="async">
-  </div>
-  <div class="wrap reveal">
-    <div class="eyebrow">換一副眼鏡看你的公司</div>
-    <h2>真正會賺的老闆,不只在經營公司。<br>他們在經營一個<span class="gold">會被搶著買的資產</span>。</h2>
-    <p class="lead" style="margin-top:24px">
-      市場上身價最高的公司,往往不是做最大的,而是「最不靠某一個人」的。因為買家買的從來不是你的辛苦,是你交出去之後、它還能穩穩賺錢的那套「系統」。這件事有個正式名字,叫「資本化」——白話講,就是把公司變成三種樣子:
-    </p>
-    <div class="chips">
-      <span class="chip">可預期 — 數字說得清</span>
-      <span class="chip">可複製 — 換人也能轉</span>
-      <span class="chip">可傳承 — 沒有你照樣活</span>
+<section class="band alt has-visual section-story" id="reframe">
+  <div class="section-story-sticky">
+    <div class="visual-layer section-story-visual" aria-hidden="true">
+      <img class="section-story-bg" src="img/stock/business-silhouette-city.jpg" alt="" loading="lazy" decoding="async">
+      <span class="section-story-orbit"></span>
+      <span class="section-story-depth-line"></span>
     </div>
-    <div class="pull" style="margin-top:34px">我們不是教你更拚命。我們是給你一副「買家的眼鏡」,重新看你自己的公司。</div>
+    <div class="wrap reveal">
+      <div class="eyebrow">換一副眼鏡看你的公司</div>
+      <h2>真正會賺的老闆,不只在經營公司。<br>他們在經營一個<span class="gold">會被搶著買的資產</span>。</h2>
+      <p class="lead" style="margin-top:24px">
+        市場上身價最高的公司,往往不是做最大的,而是「最不靠某一個人」的。因為買家買的從來不是你的辛苦,是你交出去之後、它還能穩穩賺錢的那套「系統」。這件事有個正式名字,叫「資本化」——白話講,就是把公司變成三種樣子:
+      </p>
+      <div class="chips">
+        <span class="chip">可預期 — 數字說得清</span>
+        <span class="chip">可複製 — 換人也能轉</span>
+        <span class="chip">可傳承 — 沒有你照樣活</span>
+      </div>
+      <div class="pull" style="margin-top:34px">我們不是教你更拚命。我們是給你一副「買家的眼鏡」,重新看你自己的公司。</div>
+    </div>
   </div>
 </section>
 
 <!-- PROMISE -->
-<section class="band dark has-visual" id="promise">
-  <div class="visual-layer" aria-hidden="true">
-    <img class="stock-atmosphere" src="img/stock/business-handoff-handshake.jpg" alt="" loading="lazy" decoding="async">
-  </div>
-  <div class="wrap reveal" style="text-align:center">
-    <div class="eyebrow clean">想像那一天</div>
-    <h2 style="max-width:880px;margin:0 auto">你親手把公司,交到對的人手上<br><span class="gold">用一個你滿意的數字。</span></h2>
-    <p class="lead" style="margin:26px auto 0">
-      不是被迫收掉,不是賤價脫手,更不是硬塞給沒興趣的下一代。而是你早有準備、從容地,在你想要的時間點,把一家「體質健康、數字漂亮、別人搶著要」的公司,用一個對得起你半輩子心血的價格,交給最適合的買家。從那天起,你的選擇權,終於回到自己手上。
-    </p>
-    <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener" style="margin-top:34px">開始準備你的「那一天」</a>
+<section class="band dark has-visual section-story" id="promise">
+  <div class="section-story-sticky">
+    <div class="visual-layer section-story-visual" aria-hidden="true">
+      <img class="section-story-bg" src="img/stock/business-handoff-handshake.jpg" alt="" loading="lazy" decoding="async">
+      <span class="section-story-orbit"></span>
+      <span class="section-story-depth-line"></span>
+    </div>
+    <div class="wrap reveal" style="text-align:center">
+      <div class="eyebrow clean">想像那一天</div>
+      <h2 style="max-width:880px;margin:0 auto">你親手把公司,交到對的人手上<br><span class="gold">用一個你滿意的數字。</span></h2>
+      <p class="lead" style="margin:26px auto 0">
+        不是被迫收掉,不是賤價脫手,更不是硬塞給沒興趣的下一代。而是你早有準備、從容地,在你想要的時間點,把一家「體質健康、數字漂亮、別人搶著要」的公司,用一個對得起你半輩子心血的價格,交給最適合的買家。從那天起,你的選擇權,終於回到自己手上。
+      </p>
+      <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener" style="margin-top:34px">開始準備你的「那一天」</a>
+    </div>
   </div>
 </section>
 
 <!-- SOLUTION / 3 PILLARS -->
-<section class="band" id="team-intro">
+<section class="band scroll-reveal-section" id="team-intro">
   <div class="wrap reveal">
     <div class="eyebrow">我們是誰</div>
     <h2>把公司變成資產,不是單一招式。<br>我們把三種專業,<span class="gold">綁成一條龍</span>。</h2>
@@ -583,19 +700,26 @@
 </section>
 
 <!-- ROADMAP -->
-<section class="band alt" id="road">
-  <div class="wrap reveal">
-    <div class="eyebrow">獨家方法論</div>
-    <h2>從「不懂資本化」到「漂亮交棒」,<br>我們把路<span class="gold">拆成五步</span>。</h2>
-    <div class="road">
-      <div class="step"><div class="no">01</div><div><span class="stage">診斷</span><h3>你現在值多少?</h3><p>用買家視角體檢:財務、流程、人才依賴度、市場聲量。產出「現況 vs. 落差」報告。</p></div></div>
-      <div class="step"><div class="no">02</div><div><span class="stage">藍圖</span><h3>畫出三年增值路徑</h3><p>三年財務預測 + 三情境推演,訂出每年要長到哪、補哪些洞。這是你的導航地圖。</p></div></div>
-      <div class="step"><div class="no">03</div><div><span class="stage">升級</span><h3>讓公司不靠人</h3><p>AI 與系統導入,把關鍵 know-how 流程化、數據化,降低「離不開老闆」的風險。</p></div></div>
-      <div class="step"><div class="no">04</div><div><span class="stage">增值</span><h3>讓市場看見你</h3><p>故事行銷與媒體露出,建立品牌份量與買家認知,把「無形價值」做成「有價身價」。</p></div></div>
-      <div class="step"><div class="no">05</div><div><span class="stage">交棒</span><h3>在對的時間,賣個好價錢</h3><p>對齊潛在買家、優化交易條件,在你滿意的時間與數字,完成傳承或出售。</p></div></div>
+<section class="band alt has-visual section-story" id="road">
+  <div class="section-story-sticky">
+    <div class="visual-layer section-story-visual" aria-hidden="true">
+      <img class="section-story-bg" src="img/generated/asset-system-map.jpg" alt="" loading="lazy" decoding="async">
+      <span class="section-story-orbit"></span>
+      <span class="section-story-depth-line"></span>
     </div>
-    <p class="road-foot">全程貫穿:每季 / 每半年的策略對齊會議 + 財務目標達成率檢核——確保藍圖不只是掛在牆上。</p>
-    <div style="text-align:center;margin-top:30px"><a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener">預約免費策略診斷,拿到你的第一張藍圖草稿</a></div>
+    <div class="wrap reveal">
+      <div class="eyebrow">獨家方法論</div>
+      <h2>從「不懂資本化」到「漂亮交棒」,<br>我們把路<span class="gold">拆成五步</span>。</h2>
+      <div class="road">
+        <div class="step"><div class="no">01</div><div><span class="stage">診斷</span><h3>你現在值多少?</h3><p>用買家視角體檢:財務、流程、人才依賴度、市場聲量。產出「現況 vs. 落差」報告。</p></div></div>
+        <div class="step"><div class="no">02</div><div><span class="stage">藍圖</span><h3>畫出三年增值路徑</h3><p>三年財務預測 + 三情境推演,訂出每年要長到哪、補哪些洞。這是你的導航地圖。</p></div></div>
+        <div class="step"><div class="no">03</div><div><span class="stage">升級</span><h3>讓公司不靠人</h3><p>AI 與系統導入,把關鍵 know-how 流程化、數據化,降低「離不開老闆」的風險。</p></div></div>
+        <div class="step"><div class="no">04</div><div><span class="stage">增值</span><h3>讓市場看見你</h3><p>故事行銷與媒體露出,建立品牌份量與買家認知,把「無形價值」做成「有價身價」。</p></div></div>
+        <div class="step"><div class="no">05</div><div><span class="stage">交棒</span><h3>在對的時間,賣個好價錢</h3><p>對齊潛在買家、優化交易條件,在你滿意的時間與數字,完成傳承或出售。</p></div></div>
+      </div>
+      <p class="road-foot">全程貫穿:每季 / 每半年的策略對齊會議 + 財務目標達成率檢核——確保藍圖不只是掛在牆上。</p>
+      <div style="text-align:center;margin-top:30px"><a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener">預約免費策略診斷,拿到你的第一張藍圖草稿</a></div>
+    </div>
   </div>
 </section>
 
@@ -717,18 +841,22 @@
 </section>
 
 <!-- FINAL CTA -->
-<section class="band final has-visual" id="diagnosis">
-  <div class="visual-layer" aria-hidden="true">
-    <img class="parallax-asset" src="img/generated/asset-value-meter.jpg" alt="" loading="lazy" decoding="async">
-  </div>
-  <div class="wrap reveal">
-    <div class="eyebrow clean">最後,一句真心話</div>
-    <h2>公司的價值,<br>不是退休那天才結算。<br>它從<span class="gold">今天</span>開始,累積,或流失。</h2>
-    <p class="body">
-      等到想退、想交棒、想賣的那一天才開始準備,往往已經來不及——買家不會等你補課,時間也不會。但如果你從現在開始,把公司一步步變成「可預期、可複製、可傳承」的資產,那一天到來時,你會是有選擇、有底氣、開得了價的那一個。第一步,只需要一場 60 分鐘的對話。
-    </p>
-    <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener" style="font-size:18px;padding:18px 40px">預約免費策略診斷</a>
-    <p class="micro">不收費、不推銷。我們一起看清楚:你的公司現在值多少、離「賣得掉的好價錢」還差哪幾步。</p>
+<section class="band final has-visual section-story" id="diagnosis">
+  <div class="section-story-sticky">
+    <div class="visual-layer section-story-visual" aria-hidden="true">
+      <img class="section-story-bg" src="img/generated/asset-value-meter.jpg" alt="" loading="lazy" decoding="async">
+      <span class="section-story-orbit"></span>
+      <span class="section-story-depth-line"></span>
+    </div>
+    <div class="wrap reveal">
+      <div class="eyebrow clean">最後,一句真心話</div>
+      <h2>公司的價值,<br>不是退休那天才結算。<br>它從<span class="gold">今天</span>開始,累積,或流失。</h2>
+      <p class="body">
+        等到想退、想交棒、想賣的那一天才開始準備,往往已經來不及——買家不會等你補課,時間也不會。但如果你從現在開始,把公司一步步變成「可預期、可複製、可傳承」的資產,那一天到來時,你會是有選擇、有底氣、開得了價的那一個。第一步,只需要一場 60 分鐘的對話。
+      </p>
+      <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener" style="font-size:18px;padding:18px 40px">預約免費策略診斷</a>
+      <p class="micro">不收費、不推銷。我們一起看清楚:你的公司現在值多少、離「賣得掉的好價錢」還差哪幾步。</p>
+    </div>
   </div>
 </section>
 
@@ -923,16 +1051,15 @@
       if(!desktop.matches){ reset(); return; }
 
       const rect=story.getBoundingClientRect();
-      const startOffset=innerHeight*1.02;
+      const startOffset=innerHeight;
       const distance=Math.max(story.offsetHeight-(innerHeight*.08),1);
       const progress=clamp((startOffset-rect.top)/distance,0,1);
 
-      setReveal(eyebrow,revealFrom(.42,segment(progress,0,.14)),10);
-      setReveal(title,revealFrom(.28,segment(progress,.02,.18)),18);
+      setReveal(eyebrow,segment(progress,0,.14),10);
+      setReveal(title,segment(progress,.02,.18),18);
       lines.forEach((line,index)=>{
-        const start=.12+(index*.105);
-        const base=index===0 ? .16 : 0;
-        setReveal(line,revealFrom(base,segment(progress,start,start+.09)),18);
+        const start=.22+(index*.095);
+        setReveal(line,segment(progress,start,start+.09),18);
       });
       setReveal(pull,segment(progress,.72,.94),24);
 
@@ -961,6 +1088,197 @@
     desktop.addEventListener?.('change',requestUpdate);
   }
   initLieScrollStory();
+
+  function initSectionScrollStories(){
+    const stories=[...document.querySelectorAll('.section-story')];
+    if(!stories.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const desktop=matchMedia('(min-width: 881px)');
+    let ticking=false;
+
+    const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+    const segment=(progress,start,end)=>{
+      if(progress<=start) return 0;
+      if(progress>=end) return 1;
+      const t=(progress-start)/(end-start);
+      return t*t*(3-2*t);
+    };
+    const setReveal=(el,amount,offset=28)=>{
+      el.style.opacity=String(amount);
+      el.style.transform=`translate3d(0,${offset-(amount*offset)}px,0)`;
+    };
+    const splitPlainText=(text)=>{
+      const compact=text.replace(/\s+/g,' ').trim();
+      if(!compact) return [];
+      return compact
+        .split(/(?<=[。！？:：])\s*/)
+        .map(line=>line.trim())
+        .filter(Boolean);
+    };
+    const prepareTextLines=(story)=>{
+      story.querySelectorAll('h2').forEach(title=>{
+        if(title.dataset.storyLines==='ready') return;
+        const parts=title.innerHTML.split(/<br\s*\/?>/i).map(part=>part.trim()).filter(Boolean);
+        title.innerHTML=parts.map(part=>`<span class="story-text-line">${part}</span>`).join('');
+        title.dataset.storyLines='ready';
+      });
+      story.querySelectorAll('.lead,.body').forEach(block=>{
+        if(block.dataset.storyLines==='ready') return;
+        const lines=splitPlainText(block.textContent);
+        block.innerHTML=lines.map(line=>`<span class="story-text-line">${line}</span>`).join('');
+        block.dataset.storyLines='ready';
+      });
+    };
+    stories.forEach(prepareTextLines);
+    const getItems=(story)=>{
+      const leading=[
+        story.querySelector('.eyebrow'),
+        ...story.querySelectorAll('h2 .story-text-line'),
+        ...story.querySelectorAll('.lead .story-text-line'),
+        story.querySelector('.chips')
+      ].filter(Boolean);
+      const repeated=[
+        ...story.querySelectorAll('.step'),
+        ...story.querySelectorAll('.card'),
+        ...story.querySelectorAll('.fit .yes,.fit .later'),
+        ...story.querySelectorAll('.qa')
+      ];
+      const ending=[
+        ...story.querySelectorAll('.road-foot'),
+        ...story.querySelectorAll('.pull'),
+        ...story.querySelectorAll('.body .story-text-line'),
+        ...story.querySelectorAll('.btn')
+      ];
+      return [...leading,...repeated,...ending].filter((el,index,arr)=>arr.indexOf(el)===index);
+    };
+    const reset=()=>{
+      stories.forEach(story=>{
+        getItems(story).forEach(el=>{
+          el.style.opacity='';
+          el.style.transform='';
+        });
+        ['--section-bg-opacity','--section-bg-y','--section-bg-scale','--section-orbit-opacity','--section-orbit-y','--section-orbit-rotate','--section-streak-opacity','--section-streak-x'].forEach(prop=>story.style.removeProperty(prop));
+      });
+    };
+    const update=()=>{
+      ticking=false;
+      if(!desktop.matches){ reset(); return; }
+
+      stories.forEach(story=>{
+        const rect=story.getBoundingClientRect();
+        const distance=Math.max(story.offsetHeight-(innerHeight*.08),1);
+        const progress=clamp((innerHeight-rect.top)/distance,0,1);
+        const items=getItems(story);
+        items.forEach((el,index)=>{
+          const start=Math.min(.78,index*.085);
+          const end=Math.min(.96,start+.15);
+          setReveal(el,segment(progress,start,end),index<2 ? 18 : 28);
+        });
+
+        const bgIn=segment(progress,0,.3);
+        const frontIn=segment(progress,.42,.92);
+        story.style.setProperty('--section-bg-opacity',`${.08+bgIn*.22}`);
+        story.style.setProperty('--section-bg-y',`${96-(progress*170)}px`);
+        story.style.setProperty('--section-bg-scale',`${1.04+progress*.09}`);
+        story.style.setProperty('--section-orbit-opacity',`${frontIn*.46}`);
+        story.style.setProperty('--section-orbit-y',`${130-(frontIn*240)}px`);
+        story.style.setProperty('--section-orbit-rotate',`${frontIn*38}deg`);
+        story.style.setProperty('--section-streak-opacity',`${frontIn*.68}`);
+        story.style.setProperty('--section-streak-x',`${190-(frontIn*360)}px`);
+      });
+    };
+    const requestUpdate=()=>{
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(update);
+    };
+
+    update();
+    addEventListener('scroll',requestUpdate,{passive:true});
+    addEventListener('resize',requestUpdate);
+    desktop.addEventListener?.('change',requestUpdate);
+  }
+  initSectionScrollStories();
+
+  function initScrollRevealSections(){
+    const sections=[...document.querySelectorAll('.scroll-reveal-section')];
+    if(!sections.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const desktop=matchMedia('(min-width: 881px)');
+    let ticking=false;
+
+    const clamp=(value,min,max)=>Math.min(max,Math.max(min,value));
+    const segment=(progress,start,end)=>{
+      if(progress<=start) return 0;
+      if(progress>=end) return 1;
+      const t=(progress-start)/(end-start);
+      return t*t*(3-2*t);
+    };
+    const setReveal=(el,amount,offset=28)=>{
+      el.style.opacity=String(amount);
+      el.style.transform=`translate3d(0,${offset-(amount*offset)}px,0)`;
+    };
+    const splitPlainText=(text)=>{
+      const compact=text.replace(/\s+/g,' ').trim();
+      if(!compact) return [];
+      return compact
+        .split(/(?<=[。！？:：])\s*/)
+        .map(line=>line.trim())
+        .filter(Boolean);
+    };
+    const prepareTextLines=(section)=>{
+      section.querySelectorAll('h2').forEach(title=>{
+        if(title.dataset.storyLines==='ready') return;
+        const parts=title.innerHTML.split(/<br\s*\/?>/i).map(part=>part.trim()).filter(Boolean);
+        title.innerHTML=parts.map(part=>`<span class="story-text-line">${part}</span>`).join('');
+        title.dataset.storyLines='ready';
+      });
+      section.querySelectorAll('.lead').forEach(block=>{
+        if(block.dataset.storyLines==='ready') return;
+        const lines=splitPlainText(block.textContent);
+        block.innerHTML=lines.map(line=>`<span class="story-text-line">${line}</span>`).join('');
+        block.dataset.storyLines='ready';
+      });
+    };
+    sections.forEach(prepareTextLines);
+    const getItems=(section)=>[
+      section.querySelector('.eyebrow'),
+      ...section.querySelectorAll('h2 .story-text-line'),
+      ...section.querySelectorAll('.lead .story-text-line'),
+      ...section.querySelectorAll('.card'),
+      ...section.querySelectorAll('.pull')
+    ].filter(Boolean);
+    const reset=()=>{
+      sections.forEach(section=>{
+        getItems(section).forEach(el=>{
+          el.style.opacity='';
+          el.style.transform='';
+        });
+      });
+    };
+    const update=()=>{
+      ticking=false;
+      if(!desktop.matches){ reset(); return; }
+      sections.forEach(section=>{
+        const rect=section.getBoundingClientRect();
+        const distance=Math.max(section.offsetHeight+(innerHeight*.1),1);
+        const progress=clamp((innerHeight-rect.top)/distance,0,1);
+        getItems(section).forEach((el,index)=>{
+          const start=Math.min(.72,index*.075);
+          const end=Math.min(.96,start+.15);
+          setReveal(el,segment(progress,start,end),index<3 ? 18 : 28);
+        });
+      });
+    };
+    const requestUpdate=()=>{
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(update);
+    };
+    update();
+    addEventListener('scroll',requestUpdate,{passive:true});
+    addEventListener('resize',requestUpdate);
+    desktop.addEventListener?.('change',requestUpdate);
+  }
+  initScrollRevealSections();
 
   // optional GSAP parallax for lower atmosphere layers
   function initScrollStories(){
