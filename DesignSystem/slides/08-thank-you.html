@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<title>Thank You / Q&A</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{min-height:100vh;display:flex;align-items:center;justify-content:center}
+  .stage{display:flex;align-items:center;justify-content:center}
+  .wrap{display:flex;flex-direction:column;align-items:center;gap:56px;text-align:center}
+  .pretitle{font-family:'Montserrat',sans-serif;font-weight:400;font-size:18px;letter-spacing:0.5em;color:var(--gold);display:flex;align-items:center;gap:18px}
+  .pretitle::before,.pretitle::after{content:'';width:56px;height:1px;background:var(--gold)}
+  .title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:240px;letter-spacing:0.18em;line-height:0.95;color:var(--gold);margin:0}
+  .subline{display:flex;align-items:center;gap:18px;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:26px;letter-spacing:0.18em;color:var(--fg)}
+  .subline span.dot{width:6px;height:6px;background:var(--gold);display:inline-block}
+  .contact{display:flex;align-items:center;gap:48px;margin-top:24px}
+  .qr{width:140px;height:140px;background:var(--fg);border-radius:2px;display:grid;grid-template-columns:repeat(11,1fr);grid-template-rows:repeat(11,1fr);gap:1px;padding:8px;box-sizing:border-box}
+  .qr .c{background:#141414}
+  .qr .e{background:transparent}
+  .info{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;font-family:'Noto Sans TC',sans-serif;color:var(--fg)}
+  .info .n{font-weight:500;font-size:24px;letter-spacing:0.12em}
+  .info .e{font-family:'Montserrat',sans-serif;font-weight:400;font-size:15px;letter-spacing:0.22em;color:var(--muted)}
+  .corner{position:absolute;right:5%;bottom:5%;display:flex;align-items:center;gap:10px;font-family:'Noto Sans TC',sans-serif;font-size:14px;letter-spacing:0.18em;color:var(--muted)}
+  .corner::before{content:'';width:6px;height:6px;background:var(--gold)}
+</style></head>
+<body>
+<section class="stage" data-screen-label="08 Thank You">
+  <div class="wrap">
+    <div class="pretitle">END OF KEYNOTE</div>
+    <h1 class="title">Q&amp;A</h1>
+    <div class="subline">THANK YOU <span class="dot"></span> 感謝聆聽</div>
+    <div class="contact">
+      <div class="qr" id="qr"></div>
+      <div class="info">
+        <div class="n">張育成　Yu-Cheng Chang</div>
+        <div class="e">YC@DECISIVE-BUSINESS.AI</div>
+        <div class="e">LINKEDIN /IN/YCCHANG</div>
+      </div>
+    </div>
+  </div>
+  <div class="corner">決勝！未來商務</div>
+</section>
+<script>
+  // deterministic pseudo-QR pattern (decorative)
+  const grid=document.getElementById('qr');
+  const seed=[
+    1,1,1,1,1,1,1,0,1,1,1,
+    1,0,0,0,0,0,1,0,1,0,0,
+    1,0,1,1,1,0,1,1,1,0,1,
+    1,0,1,1,1,0,1,0,0,1,1,
+    1,0,1,1,1,0,1,1,1,0,1,
+    1,0,0,0,0,0,1,0,1,1,0,
+    1,1,1,1,1,1,1,0,1,0,1,
+    0,0,0,0,0,0,0,1,0,1,1,
+    1,1,0,1,1,1,1,0,1,0,1,
+    0,1,1,0,1,0,1,1,0,1,0,
+    1,0,1,1,1,0,1,0,1,0,1
+  ];
+  seed.forEach(v=>{const d=document.createElement('div');d.className=v?'c':'e';grid.appendChild(d);});
+</script>
+</body></html>

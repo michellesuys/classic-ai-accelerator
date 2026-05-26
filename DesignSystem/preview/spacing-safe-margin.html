@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Safe margin</title><link rel="stylesheet" href="_card.css"></head><body>
+<div class="card">
+  <div class="label">Safe margin · 5% on every edge · nothing crosses</div>
+  <div style="position:relative;height:200px;background:#0a0a0a;border:1px solid #2a2a2a">
+    <!-- safe area outline -->
+    <div style="position:absolute;left:5%;top:5%;right:5%;bottom:5%;border:1px dashed #D4AF37"></div>
+    <!-- content sample -->
+    <div style="position:absolute;left:5%;top:5%;font-family:'Noto Sans TC',sans-serif;font-weight:700;color:#D4AF37;font-size:22px;letter-spacing:0.16em">CHAPTER 01</div>
+    <div style="position:absolute;left:5%;top:50%;transform:translateY(-50%);font-family:'Noto Sans TC',sans-serif;color:#F5F5F5;font-size:32px;font-weight:500;letter-spacing:0.12em">沉浸與聚焦</div>
+    <div style="position:absolute;right:5%;bottom:5%;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.22em;color:#8A8A8A">決勝！未來商務</div>
+    <!-- corner ticks -->
+    <div style="position:absolute;left:5%;top:5%;width:8px;height:1px;background:#D4AF37;transform:translate(-8px,0)"></div>
+    <div style="position:absolute;left:5%;top:5%;width:1px;height:8px;background:#D4AF37;transform:translate(0,-8px)"></div>
+    <div style="position:absolute;right:5%;bottom:5%;width:8px;height:1px;background:#D4AF37;transform:translate(8px,0)"></div>
+    <div style="position:absolute;right:5%;bottom:5%;width:1px;height:8px;background:#D4AF37;transform:translate(0,8px)"></div>
+  </div>
+  <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.22em;color:#8A8A8A">DASHED LINE = SAFE BOUNDARY · CORNER LOGO STAYS INSIDE</div>
+</div>
+</body></html>

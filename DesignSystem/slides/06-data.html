@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<title>Data · 企業 AI 採用率</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body{min-height:100vh;display:flex;align-items:center;justify-content:center}
+  .stage{padding:8% 7% 7%;display:grid;grid-template-columns:1fr 1.1fr;gap:96px;align-items:center}
+  .eyebrow{font-family:'Montserrat',sans-serif;font-weight:400;font-size:18px;letter-spacing:0.4em;color:var(--gold);display:flex;align-items:center;gap:16px;margin-bottom:36px}
+  .eyebrow::before{content:'';width:48px;height:1px;background:var(--gold)}
+  .h2{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:56px;letter-spacing:0.12em;color:var(--fg);margin:0 0 36px;line-height:1.3}
+  .h2 .gold{color:var(--gold);font-weight:700}
+  .body{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:22px;letter-spacing:0.05em;color:var(--muted);line-height:1.9;margin:0 0 24px;max-width:560px}
+  .source{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:15px;letter-spacing:0.16em;color:var(--muted)}
+
+  .chart{display:flex;align-items:flex-end;gap:36px;height:520px;padding:0 8px;border-bottom:1px solid #2a2a2a}
+  .bar{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:16px;position:relative}
+  .bar .fill{width:100%;background:var(--muted);position:relative}
+  .bar .yr{font-family:'Montserrat',sans-serif;font-size:18px;letter-spacing:0.22em;color:var(--muted)}
+  .bar.hero .fill{background:var(--gold)}
+  .bar.hero .yr{color:var(--gold)}
+  .bar .val{position:absolute;top:-44px;left:50%;transform:translateX(-50%);font-family:'Montserrat',sans-serif;font-weight:700;font-size:32px;letter-spacing:0.1em;color:var(--gold);opacity:0;white-space:nowrap}
+  .bar.hero .val{opacity:1}
+
+  .corner{position:absolute;right:5%;bottom:5%;display:flex;align-items:center;gap:10px;font-family:'Noto Sans TC',sans-serif;font-size:14px;letter-spacing:0.18em;color:var(--muted)}
+  .corner::before{content:'';width:6px;height:6px;background:var(--gold)}
+  .pgnum{position:absolute;left:5%;bottom:5%;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:0.22em;color:var(--muted)}
+</style></head>
+<body>
+<section class="stage" data-screen-label="06 Data">
+  <div>
+    <div class="eyebrow">CHAPTER 02 · DATA</div>
+    <h2 class="h2">五年內，企業 AI 滲透率<br>將跨過 <span class="gold">68%</span> 臨界點。</h2>
+    <p class="body">2026 是企業 AI 從「實驗室」轉向「生產線」的關鍵年。具備自主決策能力的智慧代理人，將首次在中大型企業的核心流程中部署。</p>
+    <div class="source">資料來源 · 經典企業 AI 加速器研究部 · 2026 Q1</div>
+  </div>
+  <div>
+    <div class="chart">
+      <div class="bar"><div class="fill" style="height:18%"></div><div class="yr">2022</div></div>
+      <div class="bar"><div class="fill" style="height:28%"></div><div class="yr">2023</div></div>
+      <div class="bar"><div class="fill" style="height:38%"></div><div class="yr">2024</div></div>
+      <div class="bar"><div class="fill" style="height:50%"></div><div class="yr">2025</div></div>
+      <div class="bar hero"><div class="fill" style="height:84%"><div class="val">68%</div></div><div class="yr">2026</div></div>
+    </div>
+  </div>
+  <div class="pgnum">11 / 24</div>
+  <div class="corner">決勝！未來商務</div>
+</section>
+</body></html>

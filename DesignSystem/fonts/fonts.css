@@ -1,0 +1,10 @@
+/* ─────────────────────────────────────────────────────────────
+   Brand fonts — both loaded from Google Fonts CDN.
+   Chinese : Noto Sans TC  (思源黑體繁中)
+   Latin   : Montserrat
+   No local .ttf/.otf are required, but if you want to ship the
+   deck offline, drop the static files into ./assets and replace
+   the @import with @font-face src: url('./assets/...').
+   ───────────────────────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');

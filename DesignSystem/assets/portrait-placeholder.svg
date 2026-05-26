@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="bw" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2a2a"></stop>
+      <stop offset="60%" stop-color="#0a0a0a"></stop>
+      <stop offset="100%" stop-color="#141414"></stop>
+    </linearGradient>
+    <radialGradient id="light" cx="55%" cy="32%" r="55%">
+      <stop offset="0%" stop-color="#e6e6e6" stop-opacity="0.55"></stop>
+      <stop offset="55%" stop-color="#e6e6e6" stop-opacity="0.05"></stop>
+      <stop offset="100%" stop-color="#e6e6e6" stop-opacity="0"></stop>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="500" fill="url(#bw)"></rect>
+  <rect width="400" height="500" fill="url(#light)"></rect>
+  
+  <g fill="#0a0a0a">
+    <ellipse cx="210" cy="200" rx="78" ry="92"></ellipse>
+    <path d="M90,500 C90,360 150,300 210,300 C270,300 330,360 330,500 Z"></path>
+  </g>
+  
+  <g fill="#bdbdbd" opacity="0.35">
+    <ellipse cx="180" cy="190" rx="22" ry="38"></ellipse>
+    <ellipse cx="160" cy="350" rx="40" ry="80"></ellipse>
+  </g>
+  <text x="370" y="485" font-family="Montserrat,sans-serif" font-size="10" letter-spacing="3" fill="#8A8A8A" text-anchor="end">PORTRAIT · B&amp;W · PLACEHOLDER</text>
+</svg>

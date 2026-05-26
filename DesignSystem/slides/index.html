@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8">
+<title>決勝！未來商務 · Sample Deck</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  html,body{background:#000;}
+  deck-stage{ --w:1920px; --h:1080px; }
+  section{
+    width:1920px;height:1080px;background:var(--bg);position:relative;overflow:hidden;
+    font-family:'Noto Sans TC','Montserrat',sans-serif;color:var(--fg);
+  }
+  /* shared corner stamp */
+  .corner{position:absolute;right:5%;bottom:5%;display:flex;align-items:center;gap:10px;font-family:'Noto Sans TC',sans-serif;font-size:14px;letter-spacing:0.18em;color:var(--muted);white-space:nowrap}
+  .corner::before{content:'';width:6px;height:6px;background:var(--gold)}
+  .pgnum{position:absolute;left:5%;bottom:5%;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:0.22em;color:var(--muted)}
+  .eyebrow{font-family:'Montserrat',sans-serif;font-weight:400;font-size:18px;letter-spacing:0.4em;color:var(--gold);display:flex;align-items:center;gap:16px}
+  .eyebrow::before{content:'';width:48px;height:1px;background:var(--gold)}
+  .eyebrow.center::after{content:'';width:48px;height:1px;background:var(--gold)}
+
+  /* 01 Cover */
+  #s-cover{display:flex;align-items:center;justify-content:center;flex-direction:column}
+  #s-cover .tag{font-family:'Montserrat',sans-serif;font-weight:400;font-size:18px;letter-spacing:0.4em;color:var(--muted);margin-bottom:64px;display:flex;align-items:center;gap:14px}
+  #s-cover .tag::before,#s-cover .tag::after{content:'';width:48px;height:1px;background:var(--gold)}
+  #s-cover .title-zh{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:128px;letter-spacing:0.16em;color:var(--gold);line-height:1.05;margin:0;text-align:center}
+  #s-cover .title-zh .bang{color:var(--fg)}
+  #s-cover .title-en{font-family:'Montserrat',sans-serif;font-weight:300;font-size:22px;letter-spacing:0.42em;color:var(--fg);margin-top:48px}
+  #s-cover .meta{position:absolute;left:5%;bottom:5%;display:flex;flex-direction:column;gap:6px;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:0.22em;color:var(--muted)}
+  #s-cover .meta .gold-line{width:42px;height:1px;background:var(--gold);margin-bottom:10px}
+
+  /* 02 Chapter */
+  #s-chapter{display:flex;align-items:center;padding-left:12%}
+  #s-chapter .num{font-family:'Montserrat',sans-serif;font-weight:300;font-size:520px;line-height:0.85;letter-spacing:-0.02em;color:var(--gold);opacity:0.12;position:absolute;left:4%;top:8%}
+  #s-chapter .title{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:160px;letter-spacing:0.20em;color:var(--fg);line-height:1.1;margin:24px 0 32px}
+  #s-chapter .sub{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:30px;letter-spacing:0.18em;color:var(--muted);max-width:1000px;line-height:1.6}
+
+  /* 03 Speaker */
+  #s-speaker{display:grid;grid-template-columns:40% 60%}
+  #s-speaker .portrait{position:relative;height:100%;background:#0a0a0a;overflow:hidden}
+  #s-speaker .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+  #s-speaker .portrait::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,transparent 75%,rgba(20,20,20,0.55))}
+  #s-speaker .right{display:flex;flex-direction:column;justify-content:center;padding:0 12% 0 8%;gap:32px}
+  #s-speaker .name-zh{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:112px;letter-spacing:0.14em;color:var(--gold);line-height:1;margin:0}
+  #s-speaker .name-en{font-family:'Montserrat',sans-serif;font-weight:300;font-size:32px;letter-spacing:0.32em;color:var(--fg);margin-top:-8px}
+  #s-speaker .rule{width:96px;height:1px;background:var(--gold)}
+  #s-speaker .role{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:32px;letter-spacing:0.12em;color:var(--fg);line-height:1.55}
+  #s-speaker .bio{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:24px;letter-spacing:0.06em;color:var(--muted);line-height:1.85;margin:0}
+
+  /* 04 Three columns */
+  #s-three{padding:8% 7% 7%;display:flex;flex-direction:column;gap:64px}
+  #s-three h2{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:64px;letter-spacing:0.12em;color:var(--fg);margin:32px 0 0;line-height:1.25;max-width:1500px}
+  #s-three h2 .gold{color:var(--gold);font-weight:700}
+  #s-three .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:64px}
+  #s-three .col{display:flex;flex-direction:column;gap:24px}
+  #s-three .col .rule{width:64px;height:1px;background:var(--gold)}
+  #s-three .col .nm{font-family:'Montserrat',sans-serif;font-size:14px;letter-spacing:0.32em;color:var(--gold)}
+  #s-three .col h3{font-family:'Noto Sans TC',sans-serif;font-weight:700;font-size:44px;letter-spacing:0.14em;color:var(--fg);margin:0;line-height:1.2}
+  #s-three .col p{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:24px;letter-spacing:0.04em;color:var(--muted);line-height:1.85;margin:0}
+
+  /* 05 Data */
+  #s-data{padding:8% 7% 7%;display:grid;grid-template-columns:1fr 1.1fr;gap:96px;align-items:center}
+  #s-data h2{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:56px;letter-spacing:0.12em;color:var(--fg);margin:36px 0;line-height:1.3}
+  #s-data h2 .gold{color:var(--gold);font-weight:700}
+  #s-data .body{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:24px;letter-spacing:0.05em;color:var(--muted);line-height:1.9;margin:0 0 28px;max-width:620px}
+  #s-data .source{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.16em;color:var(--muted)}
+  #s-data .chart{display:flex;align-items:flex-end;gap:36px;height:560px;padding:0 8px;border-bottom:1px solid #2a2a2a}
+  #s-data .bar{flex:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:16px;position:relative}
+  #s-data .bar .fill{width:100%;background:var(--muted);position:relative}
+  #s-data .bar .yr{font-family:'Montserrat',sans-serif;font-size:20px;letter-spacing:0.22em;color:var(--muted)}
+  #s-data .bar.hero .fill{background:var(--gold)}
+  #s-data .bar.hero .yr{color:var(--gold)}
+  #s-data .bar .val{position:absolute;top:-52px;left:50%;transform:translateX(-50%);font-family:'Montserrat',sans-serif;font-weight:700;font-size:38px;letter-spacing:0.1em;color:var(--gold);opacity:0;white-space:nowrap}
+  #s-data .bar.hero .val{opacity:1}
+
+  /* 06 Big Number */
+  #s-bignum{display:flex;align-items:center;justify-content:center}
+  #s-bignum .wrap{display:flex;flex-direction:column;align-items:center;gap:48px;text-align:center}
+  #s-bignum .big{font-family:'Montserrat',sans-serif;font-weight:700;font-size:520px;line-height:0.85;letter-spacing:-0.04em;color:var(--gold);margin:0}
+  #s-bignum .big sup{font-size:160px;font-weight:300;letter-spacing:0;color:var(--fg);vertical-align:super;margin-left:8px}
+  #s-bignum .cap{font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:36px;letter-spacing:0.16em;color:var(--fg);max-width:1100px;line-height:1.5}
+  #s-bignum .source{font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:16px;letter-spacing:0.18em;color:var(--muted)}
+
+  /* 07 Quote */
+  #s-quote{display:flex;align-items:center;justify-content:center}
+  #s-quote .ghost{position:absolute;font-family:Georgia,'Noto Serif TC',serif;font-size:1400px;line-height:0.7;color:var(--muted);opacity:0.18;top:-18%;left:50%;transform:translateX(-50%);user-select:none}
+  #s-quote .frame{position:relative;z-index:1;max-width:1380px;padding:0 8%;display:flex;flex-direction:column;align-items:center;gap:64px}
+  #s-quote .quote{font-family:'Noto Sans TC',sans-serif;font-style:italic;font-weight:400;font-size:68px;letter-spacing:0.10em;color:var(--fg);line-height:1.55;text-align:center;margin:0;text-wrap:balance}
+  #s-quote .cite{align-self:flex-end;display:flex;align-items:center;gap:18px;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:24px;letter-spacing:0.18em;color:var(--muted)}
+  #s-quote .cite::before{content:'';width:42px;height:1px;background:var(--gold)}
+
+  /* 08 Thank You */
+  #s-thanks{display:flex;align-items:center;justify-content:center}
+  #s-thanks .wrap{display:flex;flex-direction:column;align-items:center;gap:56px;text-align:center}
+  #s-thanks .pretitle{font-family:'Montserrat',sans-serif;font-weight:400;font-size:18px;letter-spacing:0.5em;color:var(--gold);display:flex;align-items:center;gap:18px}
+  #s-thanks .pretitle::before,#s-thanks .pretitle::after{content:'';width:56px;height:1px;background:var(--gold)}
+  #s-thanks .title{font-family:'Montserrat',sans-serif;font-weight:700;font-size:240px;letter-spacing:0.18em;line-height:0.95;color:var(--gold);margin:0}
+  #s-thanks .subline{display:flex;align-items:center;gap:18px;font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:30px;letter-spacing:0.18em;color:var(--fg)}
+  #s-thanks .subline .dot{width:6px;height:6px;background:var(--gold);display:inline-block}
+  #s-thanks .contact{display:flex;align-items:center;gap:48px;margin-top:24px}
+  #s-thanks .qr{width:160px;height:160px;background:var(--fg);border-radius:2px;display:grid;grid-template-columns:repeat(11,1fr);grid-template-rows:repeat(11,1fr);gap:1px;padding:8px;box-sizing:border-box}
+  #s-thanks .qr .c{background:#141414}
+  #s-thanks .qr .e{background:transparent}
+  #s-thanks .info{display:flex;flex-direction:column;gap:8px;align-items:flex-start;text-align:left;font-family:'Noto Sans TC',sans-serif;color:var(--fg)}
+  #s-thanks .info .n{font-weight:500;font-size:26px;letter-spacing:0.12em}
+  #s-thanks .info .e{font-family:'Montserrat',sans-serif;font-weight:400;font-size:16px;letter-spacing:0.22em;color:var(--muted)}
+</style>
+</head>
+<body>
+<deck-stage>
+
+  <!-- 01 COVER -->
+  <section id="s-cover" data-screen-label="01 Cover">
+    <div class="tag">KEYNOTE · 2026</div>
+    <h1 class="title-zh">決勝<span class="bang">！</span>未來商務</h1>
+    <div class="title-en">DECISIVE · FUTURE · BUSINESS</div>
+    <div class="meta">
+      <div class="gold-line"></div>
+      <div>2026 / 06 / 12</div>
+      <div>TAIPEI · GRAND HYATT</div>
+    </div>
+    <div class="corner">經典企業 AI 加速器</div>
+  </section>
+
+  <!-- 02 CHAPTER -->
+  <section id="s-chapter" data-screen-label="02 Chapter">
+    <div class="num">01</div>
+    <div style="position:relative;z-index:1">
+      <div class="eyebrow">CHAPTER 01</div>
+      <h1 class="title">沉浸與聚焦</h1>
+      <div class="sub">利用深色背景與高對比元素，創造一個隔絕干擾的視覺環境。</div>
+    </div>
+    <div class="pgnum">02 / 24</div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 03 SPEAKER -->
+  <section id="s-speaker" data-screen-label="03 Speaker">
+    <div class="portrait"><img src="../assets/portrait-placeholder.svg" alt="speaker"></div>
+    <div class="right">
+      <div class="eyebrow">KEYNOTE SPEAKER</div>
+      <h1 class="name-zh">張育成</h1>
+      <div class="name-en">YU-CHENG CHANG</div>
+      <div class="rule"></div>
+      <div class="role">經典企業 AI 加速器 · 首席策略顧問</div>
+      <p class="bio">深耕企業 AI 導入十年，協助 80+ 家上市公司完成商業模式重構。<br>研究領域涵蓋大型語言模型治理、決策自動化、組織演化。</p>
+    </div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 04 THREE COLUMNS -->
+  <section id="s-three" data-screen-label="04 Three Principles">
+    <div>
+      <div class="eyebrow">DESIGN MANIFESTO</div>
+      <h2>三大<span class="gold">核心理念</span>，環繞同一個目的：<br>讓每一句話、每一個畫面都擁有重量。</h2>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <div class="nm">01</div><div class="rule"></div>
+        <h3>沉浸與聚焦</h3>
+        <p>深色背景與高對比元素，創造隔絕干擾的視覺環境，引導聽眾將注意力完全集中於內容與講者。</p>
+      </div>
+      <div class="col">
+        <div class="nm">02</div><div class="rule"></div>
+        <h3>權威與價值</h3>
+        <p>透過精緻的黑金配色與穩重版面，傳達內容的含金量、講者的專業性，以及為聽眾創造的非凡價值。</p>
+      </div>
+      <div class="col">
+        <div class="nm">03</div><div class="rule"></div>
+        <h3>簡潔與力量</h3>
+        <p>奉行「少即是多」原則。透過大量的留白，讓每一個文字、每一張圖表都充滿視覺力量。</p>
+      </div>
+    </div>
+    <div class="pgnum">05 / 24</div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 05 DATA -->
+  <section id="s-data" data-screen-label="05 Data">
+    <div>
+      <div class="eyebrow">CHAPTER 02 · DATA</div>
+      <h2>五年內，企業 AI 滲透率<br>將跨過 <span class="gold">68%</span> 臨界點。</h2>
+      <p class="body">2026 是企業 AI 從「實驗室」轉向「生產線」的關鍵年。具備自主決策能力的智慧代理人，將首次在中大型企業的核心流程中部署。</p>
+      <div class="source">資料來源 · 經典企業 AI 加速器研究部 · 2026 Q1</div>
+    </div>
+    <div>
+      <div class="chart">
+        <div class="bar"><div class="fill" style="height:18%"></div><div class="yr">2022</div></div>
+        <div class="bar"><div class="fill" style="height:28%"></div><div class="yr">2023</div></div>
+        <div class="bar"><div class="fill" style="height:38%"></div><div class="yr">2024</div></div>
+        <div class="bar"><div class="fill" style="height:50%"></div><div class="yr">2025</div></div>
+        <div class="bar hero"><div class="fill" style="height:84%"><div class="val">68%</div></div><div class="yr">2026</div></div>
+      </div>
+    </div>
+    <div class="pgnum">11 / 24</div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 06 BIG NUMBER -->
+  <section id="s-bignum" data-screen-label="06 Big Number">
+    <div class="wrap">
+      <div class="eyebrow center">THE FIGURE THAT MATTERS</div>
+      <div class="big">312<sup>%</sup></div>
+      <div class="cap">具備 AI 戰略部署的企業，在五年內的營收成長中位數。</div>
+      <div class="source" style="font-family:'Noto Sans TC',sans-serif;font-weight:300;font-size:15px;letter-spacing:0.18em;color:var(--muted)">資料來源 · 經典企業 AI 加速器 · 2026 Q1 研究報告</div>
+    </div>
+    <div class="pgnum">15 / 24</div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 07 QUOTE -->
+  <section id="s-quote" data-screen-label="07 Quote">
+    <div class="ghost">“</div>
+    <div class="frame">
+      <p class="quote">秩序感來自於看不見的規則 — 在留白裡，每一個決定都成為宣言。</p>
+      <div class="cite">設計風格索引 · Part 3.1</div>
+    </div>
+    <div class="pgnum">19 / 24</div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+  <!-- 08 THANK YOU -->
+  <section id="s-thanks" data-screen-label="08 Thank You">
+    <div class="wrap">
+      <div class="pretitle">END OF KEYNOTE</div>
+      <h1 class="title">Q&amp;A</h1>
+      <div class="subline">THANK YOU <span class="dot"></span> 感謝聆聽</div>
+      <div class="contact">
+        <div class="qr" id="qr"></div>
+        <div class="info">
+          <div class="n">張育成　Yu-Cheng Chang</div>
+          <div class="e">YC@DECISIVE-BUSINESS.AI</div>
+          <div class="e">LINKEDIN / IN / YCCHANG</div>
+        </div>
+      </div>
+    </div>
+    <div class="corner">決勝！未來商務</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script>
+  // decorative pseudo-QR
+  const grid = document.getElementById('qr');
+  if (grid) {
+    const seed=[1,1,1,1,1,1,1,0,1,1,1,1,0,0,0,0,0,1,0,1,0,0,1,0,1,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,0,0,1,1,1,0,1,1,1,0,1,1,1,0,1,1,0,0,0,0,0,1,0,1,1,0,1,1,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1,1,1,1,0,1,0,1,0,1,1,0,1,0,1,1,0,1,0];
+    seed.forEach(v=>{const d=document.createElement('div');d.className=v?'c':'e';grid.appendChild(d);});
+  }
+</script>
+</body></html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#141414"></rect>
+  <line x1="40" y1="40" x2="160" y2="40" stroke="#D4AF37" stroke-width="1"></line>
+  <line x1="40" y1="160" x2="160" y2="160" stroke="#D4AF37" stroke-width="1"></line>
+  <g font-family="&#39;Noto Sans TC&#39;,&#39;PingFang TC&#39;,&#39;Microsoft JhengHei&#39;,sans-serif" font-weight="700" fill="#D4AF37" text-anchor="middle">
+    <text x="100" y="118" font-size="78" letter-spacing="2">決</text>
+  </g>
+</svg>
