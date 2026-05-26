@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="經典企業 AI 加速器協助台灣中小企業主，透過資本化顧問、AI 技術導入與故事行銷，把公司整理成可預期、可複製、可傳承的高價值資產。">
-<meta property="og:title" content="經典企業 AI 加速器">
+<meta name="description" content="經典企業AI加速器協助台灣中小企業主，透過資本化顧問、AI 技術導入與故事行銷，把公司整理成可預期、可複製、可傳承的高價值資產。">
+<meta property="og:title" content="經典企業AI加速器">
 <meta property="og:description" content="把公司從離不開老闆的營運體，整理成有人願意承接、估價與傳承的資產。">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#141414">
-<title>經典企業 AI 加速器 — 把公司變成有人搶著買的資產</title>
+<title>經典企業AI加速器 — 把公司變成有人搶著買的資產</title>
 <style>
   @import url('DesignSystem/fonts/fonts.css');
   :root{
@@ -45,10 +45,14 @@
     display:flex; align-items:center; gap:var(--x-2);
   }
   .eyebrow::before{content:""; width:48px; height:1px; background:var(--gold); display:inline-block}
+  .eyebrow.clean{
+    display:inline-block; gap:0;
+  }
+  .eyebrow.clean::before{display:none}
   h1,h2,h3,.brand,.btn,.ts-stat b,.case .big,.step .no{font-family:var(--latin)}
   h2{
-    font-size:clamp(30px,4.2vw,56px); line-height:1.22; font-weight:700;
-    letter-spacing:.12em; color:var(--fg);
+    font-size:clamp(30px,3.4vw,46px); line-height:1.28; font-weight:700;
+    letter-spacing:.04em; color:var(--fg);
   }
   h3{font-size:22px; font-weight:500; letter-spacing:.1em}
   p.lead{color:var(--fg); font-size:clamp(18px,1.7vw,24px); max-width:816px}
@@ -76,6 +80,8 @@
   .nav-links{display:flex; gap:26px; align-items:center}
   .nav-links a{color:var(--muted); text-decoration:none; font-size:14px; transition:color .25s ease}
   .nav-links a:hover{color:var(--gold)}
+  .nav-links a.nav-cta{color:var(--bg)}
+  .nav-links a.nav-cta:hover{color:var(--bg)}
   .nav-cta{padding:10px 20px; font-size:14px}
   .menu-toggle{
     display:none; background:transparent; color:var(--fg); border:1px solid var(--gold);
@@ -112,8 +118,8 @@
   }
   .flip-line{
     position:absolute; left:0; right:0; top:0;
-    font-family:var(--latin); font-size:clamp(36px,5.4vw,74px); font-weight:700; line-height:1.18;
-    letter-spacing:.06em; opacity:0;
+    font-family:var(--latin); font-size:clamp(36px,4.8vw,66px); font-weight:700; line-height:1.18;
+    letter-spacing:.02em; opacity:0;
     transition:opacity .3s ease;
     pointer-events:none; max-width:980px;
   }
@@ -193,7 +199,7 @@
     display:flex; align-items:flex-end; justify-content:center; color:var(--muted); font-size:13px; position:relative; overflow:hidden}
   .person .ph img{
     width:100%; height:100%; object-fit:contain; object-position:center bottom;
-    filter:grayscale(1) contrast(1.08); opacity:.96;
+    opacity:.96;
   }
   .person .ph::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(20,20,20,.04),rgba(20,20,20,.18)); pointer-events:none}
   .person .role{color:var(--gold); font-size:13px; letter-spacing:.18em; font-weight:500; margin-bottom:4px}
@@ -259,6 +265,7 @@
     .brand{font-size:13px; letter-spacing:.1em}
     .mobile-menu{padding-left:20px; padding-right:20px}
     .hero{padding-top:104px}
+    h2{letter-spacing:.02em}
   }
 </style>
 </head>
@@ -267,7 +274,7 @@
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-in">
-    <div class="brand">經典企業 <span class="dot">×</span> AI 加速器</div>
+    <div class="brand">經典企業AI加速器</div>
     <div class="nav-links">
       <a href="#lie">我們解決什麼</a>
       <a href="#road">資本化藍圖</a>
@@ -292,13 +299,13 @@
 <header class="hero">
   <div class="wrap">
     <div class="flip-stage" id="flipStage">
-      <div class="flip-line active">拚了一輩子,別只留下一家<span class="gold">「沒有你就轉不動」</span>的公司。</div>
-      <div class="flip-line">如果明天有人想買你的公司——你,<span class="gold">開得了價嗎?</span></div>
-      <div class="flip-line">別再把公司做大。要把公司,做到<span class="gold">「有人想買」</span>。</div>
+      <div class="flip-line active">拚了一輩子,<br>別只留下一家<br><span class="gold">「沒有你就轉不動」</span>的公司。</div>
+      <div class="flip-line">如果明天有人想買你的公司<br>你,<span class="gold">開得了價嗎?</span></div>
+      <div class="flip-line">別再把公司做大。<br>要把公司,做到<span class="gold">「有人想買」</span>。</div>
     </div>
     <div class="flip-dots" id="flipDots"><span class="on"></span><span></span><span></span></div>
 
-    <p class="hero-sub">我們陪台灣的中小企業主,把公司從「靠老闆撐著的一份工作」,變成「有人搶著用好價錢接手的資產」——並給你一張按部就班的藍圖,一路走到你含笑交棒的那一天。</p>
+    <p class="hero-sub">我們陪台灣的中小企業主,把公司從「靠老闆撐著的一份工作」,變成「有人搶著用好價錢接手的資產」——並給你一張按部就班的藍圖,一路走到你漂亮交棒的那一天。</p>
 
     <div class="hero-cta-row">
       <a href="https://eric-13.youcanbook.me/" class="btn" target="_blank" rel="noopener">預約免費策略診斷</a>
@@ -335,7 +342,7 @@
 <section class="band alt" id="reframe">
   <div class="wrap reveal">
     <div class="eyebrow">換一副眼鏡看你的公司</div>
-    <h2>真正會賺的老闆,早就不只在「經營公司」——<br>他們在經營一個<span class="gold">會被搶著買的資產</span>。</h2>
+    <h2>真正會賺的老闆,不只在經營公司。<br>他們在經營一個<span class="gold">會被搶著買的資產</span>。</h2>
     <p class="lead" style="margin-top:24px">
       市場上身價最高的公司,往往不是做最大的,而是「最不靠某一個人」的。因為買家買的從來不是你的辛苦,是你交出去之後、它還能穩穩賺錢的那套「系統」。這件事有個正式名字,叫「資本化」——白話講,就是把公司變成三種樣子:
     </p>
@@ -351,8 +358,8 @@
 <!-- PROMISE -->
 <section class="band dark" id="promise">
   <div class="wrap reveal" style="text-align:center">
-    <div class="eyebrow" style="display:inline-block">想像那一天</div>
-    <h2 style="max-width:880px;margin:0 auto">你親手把公司,交到對的人手上——<br><span class="gold">用一個你滿意的數字。</span></h2>
+    <div class="eyebrow clean">想像那一天</div>
+    <h2 style="max-width:880px;margin:0 auto">你親手把公司,交到對的人手上<br><span class="gold">用一個你滿意的數字。</span></h2>
     <p class="lead" style="margin:26px auto 0">
       不是被迫收掉,不是賤價脫手,更不是硬塞給沒興趣的下一代。而是你早有準備、從容地,在你想要的時間點,把一家「體質健康、數字漂亮、別人搶著要」的公司,用一個對得起你半輩子心血的價格,交給最適合的買家。從那天起,你的選擇權,終於回到自己手上。
     </p>
@@ -364,7 +371,7 @@
 <section class="band" id="team-intro">
   <div class="wrap reveal">
     <div class="eyebrow">我們是誰</div>
-    <h2>把公司變成資產,從來不是單一招式。<br>所以我們,把三種專業<span class="gold">綁成一條龍</span>。</h2>
+    <h2>把公司變成資產,不是單一招式。<br>我們把三種專業,<span class="gold">綁成一條龍</span>。</h2>
     <p class="lead" style="margin-top:22px">「可預期、可複製、可傳承」聽起來簡單,做起來牽涉三件完全不同的事:錢要說得清、人要換得掉、市場要看得見你。這就是為什麼,我們三個人,把各自最強的專業湊成同一張藍圖。</p>
     <div class="grid3">
       <div class="card">
@@ -394,7 +401,7 @@
 <section class="band alt" id="road">
   <div class="wrap reveal">
     <div class="eyebrow">獨家方法論</div>
-    <h2>從「不懂資本化」到「漂亮交棒」,<br>我們把路,<span class="gold">拆成五步</span>。</h2>
+    <h2>從「不懂資本化」到「漂亮交棒」,<br>我們把路<span class="gold">拆成五步</span>。</h2>
     <div class="road">
       <div class="step"><div class="no">01</div><div><span class="stage">診斷</span><h3>你現在值多少?</h3><p>用買家視角體檢:財務、流程、人才依賴度、市場聲量。產出「現況 vs. 落差」報告。</p></div></div>
       <div class="step"><div class="no">02</div><div><span class="stage">藍圖</span><h3>畫出三年增值路徑</h3><p>三年財務預測 + 三情境推演,訂出每年要長到哪、補哪些洞。這是你的導航地圖。</p></div></div>
@@ -411,7 +418,7 @@
 <section class="band" id="team">
   <div class="wrap reveal">
     <div class="eyebrow">為什麼是我們</div>
-    <h2>這張藍圖,不是 PPT 上的理論。<br>是我們三個人,在戰場上<span class="gold">真刀真槍打出來的數字</span>。</h2>
+    <h2>這不是 PPT 理論。<br>是三位顧問打出來的<span class="gold">實戰數字</span>。</h2>
     <div class="grid3">
       <div class="card person">
         <div class="ph"><img src="img/eric.png" alt="Eric Huang"></div>
@@ -442,7 +449,7 @@
 <section class="band alt" id="cases">
   <div class="wrap reveal">
     <div class="eyebrow">真實案例(匿名)</div>
-    <h2>他們也曾卡在「離不開、說不清、賣不掉」。<br>看看地圖,把他們<span class="gold">帶去了哪</span>。</h2>
+    <h2>他們曾卡在:<span class="gold">離不開、說不清、賣不掉</span>。<br>看看這張地圖,把他們帶去了哪。</h2>
     <div class="grid3">
       <div class="card case">
         <div class="kicker">驗屋科技公司</div>
@@ -483,7 +490,7 @@
 <section class="band" id="fit">
   <div class="wrap reveal">
     <div class="eyebrow">我們和誰一起走</div>
-    <h2>我們只與<span class="gold">「認真想做出改變」</span>的企業主合作。</h2>
+    <h2>我們只與<br><span class="gold">「認真想做出改變」</span>的企業主合作。</h2>
     <p class="lead" style="margin-top:20px">這不是因為架子大,而是因為把公司變成資產這條路,需要你一起走完。我們選擇把全部的力氣,留給真正準備好的人——所以也希望,那個人是你。</p>
     <div class="fit">
       <div class="yes">
@@ -512,7 +519,7 @@
 <section class="band alt" id="faq">
   <div class="wrap reveal">
     <div class="eyebrow">常見疑慮</div>
-    <h2>在你按下預約之前,<br>你大概在想這些──</h2>
+    <h2>在你按下預約之前,<br>你大概在想這些...</h2>
     <div class="faq" id="faqList">
       <div class="qa"><button>我又還沒打算賣公司,現在做這個會不會太早?</button><div class="ans"><p>越早規劃,選擇權越多。而且資本化最好的地方在於:<b>就算最後你不賣,公司也會更賺、更輕鬆、更值錢。</b>這是一筆穩賺的準備。</p></div></div>
       <div class="qa"><button>我公司規模還不夠大,夠格嗎?</button><div class="ans"><p>老實說,資本化這件事不挑營收規模——但我們的經驗是,<b>年營收落在 1,000 萬到 3 億之間的企業主,跟我們合作的槓桿效益最高。</b>這個階段,你的公司已經有體質,卻還沒被好好「定價」過,正是動手最划算的時候。</p></div></div>
@@ -527,8 +534,8 @@
 <!-- FINAL CTA -->
 <section class="band final" id="diagnosis">
   <div class="wrap reveal">
-    <div class="eyebrow" style="display:inline-block">最後,一句真心話</div>
-    <h2>公司的價值,不會在你退休那天才結算。<br>它從<span class="gold">今天</span>、你做的每個決定,就開始累積——或流失。</h2>
+    <div class="eyebrow clean">最後,一句真心話</div>
+    <h2>公司的價值,<br>不是退休那天才結算。<br>它從<span class="gold">今天</span>開始,累積,或流失。</h2>
     <p class="body">
       等到想退、想交棒、想賣的那一天才開始準備,往往已經來不及——買家不會等你補課,時間也不會。但如果你從現在開始,把公司一步步變成「可預期、可複製、可傳承」的資產,那一天到來時,你會是有選擇、有底氣、開得了價的那一個。第一步,只需要一場 60 分鐘的對話。
     </p>
@@ -540,12 +547,12 @@
 <footer>
   <div class="wrap foot-in">
     <div>
-      <div class="brand" style="margin-bottom:10px">經典企業 <span class="dot">×</span> AI 加速器</div>
+      <div class="brand" style="margin-bottom:10px">經典企業AI加速器</div>
       <div class="mission">讓更多台灣的中小企業主,從「被公司困住」,走到「有選擇、能交棒、賣得了好價錢」。</div>
     </div>
     <div style="text-align:right">
       <div>資本市場 × AI 工程 × 媒體故事</div>
-      <div style="margin-top:8px;color:var(--muted)">© 2026 經典企業 AI 加速器</div>
+      <div style="margin-top:8px;color:var(--muted)">© 2026 經典企業AI加速器</div>
     </div>
   </div>
 </footer>
