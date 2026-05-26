@@ -112,7 +112,31 @@
     background:var(--bg);
     padding:112px 0 80px; overflow:hidden; border-bottom:1px solid var(--gold);
   }
-  .hero .wrap{width:100%}
+  .hero .wrap{width:100%; position:relative; z-index:1}
+  .hero .visual-layer::after{
+    background:
+      radial-gradient(circle at 72% 38%,rgba(212,175,55,.18),transparent 34%),
+      linear-gradient(90deg,var(--bg) 0%,rgba(20,20,20,.96) 34%,rgba(20,20,20,.74) 100%);
+  }
+  .hero-map{
+    position:absolute; right:-10vw; top:2vh; width:min(72vw,1080px); height:104%;
+    object-fit:cover; opacity:.42; filter:saturate(.86) contrast(1.12);
+    transform:translate3d(0,0,0) scale(1.05);
+  }
+  .hero-city{
+    position:absolute; right:0; bottom:-12vh; width:min(52vw,760px); height:52%;
+    object-fit:cover; opacity:.12; filter:grayscale(1) contrast(1.18);
+    mix-blend-mode:screen; transform:translate3d(0,0,0) scale(1.08);
+  }
+  .hero-orbit{
+    position:absolute; right:8vw; top:22vh; width:min(30vw,440px); aspect-ratio:1;
+    border:1px solid rgba(212,175,55,.34); border-radius:50%; opacity:.44;
+    transform:translate3d(0,0,0);
+  }
+  .hero-orbit::before,.hero-orbit::after{
+    content:""; position:absolute; inset:13%; border:1px solid rgba(212,175,55,.18); border-radius:50%;
+  }
+  .hero-orbit::after{inset:31%; border-color:rgba(245,245,245,.1)}
   .flip-stage{
     position:relative; min-height:clamp(190px,22vw,280px); margin-bottom:var(--x-3);
   }
@@ -143,6 +167,23 @@
   /* generic section spacing */
   .band{padding:clamp(80px,10vw,128px) 0; border-bottom:1px solid rgba(212,175,55,.38)}
   .band.alt,.band.dark{background:var(--bg)}
+
+  /* atmosphere visuals */
+  .visual-layer{
+    position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;
+  }
+  .visual-layer::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg,var(--bg) 0%,rgba(20,20,20,.86) 34%,rgba(20,20,20,.58) 100%);
+  }
+  .parallax-asset,.stock-atmosphere{
+    position:absolute; inset:auto 0 0 auto; width:min(58vw,820px); height:115%;
+    object-fit:cover; opacity:.24; filter:saturate(.72) contrast(1.12) sepia(.22);
+    transform:translate3d(0,0,0) scale(1.04);
+  }
+  .stock-atmosphere{mix-blend-mode:screen}
+  .band.has-visual{overflow:hidden}
+  .band.has-visual>.wrap{position:relative; z-index:1}
 
   /* reveal */
   .reveal{opacity:0; transition:opacity .25s ease}
@@ -266,6 +307,16 @@
     .mobile-menu{padding-left:20px; padding-right:20px}
     .hero{padding-top:104px}
     h2{letter-spacing:.02em}
+    .hero-map{right:-42vw; width:132vw; opacity:.24}
+    .hero-city,.hero-orbit{display:none}
+  }
+  @media(max-width:880px){
+    .parallax-asset,.stock-atmosphere{width:100%; height:100%; opacity:.16}
+    .visual-layer::after{background:rgba(20,20,20,.82)}
+  }
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit{transition:none!important; transform:none!important}
   }
 </style>
 </head>
@@ -296,7 +347,12 @@
 </nav>
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero has-visual">
+  <div class="visual-layer hero-visual" aria-hidden="true">
+    <img class="hero-map" src="img/generated/asset-system-map.jpg" alt="" decoding="async">
+    <img class="hero-city" src="img/stock/business-silhouette-city.jpg" alt="" decoding="async">
+    <span class="hero-orbit"></span>
+  </div>
   <div class="wrap">
     <div class="flip-stage" id="flipStage">
       <div class="flip-line active">拚了一輩子,<br>別只留下一家<br><span class="gold">「沒有你就轉不動」</span>的公司。</div>
@@ -339,7 +395,10 @@
 </section>
 
 <!-- REFRAME -->
-<section class="band alt" id="reframe">
+<section class="band alt has-visual" id="reframe">
+  <div class="visual-layer" aria-hidden="true">
+    <img class="stock-atmosphere" src="img/stock/business-silhouette-city.jpg" alt="" loading="lazy" decoding="async">
+  </div>
   <div class="wrap reveal">
     <div class="eyebrow">換一副眼鏡看你的公司</div>
     <h2>真正會賺的老闆,不只在經營公司。<br>他們在經營一個<span class="gold">會被搶著買的資產</span>。</h2>
@@ -356,7 +415,10 @@
 </section>
 
 <!-- PROMISE -->
-<section class="band dark" id="promise">
+<section class="band dark has-visual" id="promise">
+  <div class="visual-layer" aria-hidden="true">
+    <img class="stock-atmosphere" src="img/stock/business-handoff-handshake.jpg" alt="" loading="lazy" decoding="async">
+  </div>
   <div class="wrap reveal" style="text-align:center">
     <div class="eyebrow clean">想像那一天</div>
     <h2 style="max-width:880px;margin:0 auto">你親手把公司,交到對的人手上<br><span class="gold">用一個你滿意的數字。</span></h2>
@@ -532,7 +594,10 @@
 </section>
 
 <!-- FINAL CTA -->
-<section class="band final" id="diagnosis">
+<section class="band final has-visual" id="diagnosis">
+  <div class="visual-layer" aria-hidden="true">
+    <img class="parallax-asset" src="img/generated/asset-value-meter.jpg" alt="" loading="lazy" decoding="async">
+  </div>
   <div class="wrap reveal">
     <div class="eyebrow clean">最後,一句真心話</div>
     <h2>公司的價值,<br>不是退休那天才結算。<br>它從<span class="gold">今天</span>開始,累積,或流失。</h2>
@@ -557,6 +622,8 @@
   </div>
 </footer>
 
+<script src="vendor/gsap/gsap.min.js"></script>
+<script src="vendor/gsap/ScrollTrigger.min.js"></script>
 <script>
   // nav shadow on scroll
   const nav=document.getElementById('nav');
@@ -632,6 +699,62 @@
       }
     });
   }
+
+  // scroll-linked visual stories
+  function initScrollStories(){
+    if(!window.gsap || !window.ScrollTrigger) return;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm=gsap.matchMedia();
+    mm.add('(min-width: 881px)',()=>{
+      const hero=document.querySelector('.hero');
+      const map=document.querySelector('.hero-map');
+      const city=document.querySelector('.hero-city');
+      const orbit=document.querySelector('.hero-orbit');
+      const copy=document.querySelector('.hero .wrap');
+      if(!hero || !map || !city || !orbit || !copy) return;
+
+      gsap.timeline({
+        scrollTrigger:{
+          trigger:hero,
+          start:'top top',
+          end:'bottom top',
+          scrub:true,
+          invalidateOnRefresh:true
+        }
+      })
+      .to(map,{yPercent:-14,xPercent:5,scale:1.14,ease:'none'},0)
+      .to(city,{yPercent:-28,scale:1.18,ease:'none'},0)
+      .to(orbit,{yPercent:-38,rotate:28,scale:.92,ease:'none'},0)
+      .to(copy,{yPercent:-5,ease:'none'},0);
+    });
+
+    gsap.utils.toArray('.parallax-asset,.stock-atmosphere').forEach((img)=>{
+      const section=img.closest('section');
+      if(!section) return;
+      gsap.to(img,{
+        yPercent:-12,
+        scale:1.1,
+        ease:'none',
+        scrollTrigger:{
+          trigger:section,
+          start:'top bottom',
+          end:'bottom top',
+          scrub:true
+        }
+      });
+    });
+
+    const refresh=()=>ScrollTrigger.refresh();
+    document.querySelectorAll('.visual-layer img').forEach(img=>{
+      if(img.complete) return;
+      img.addEventListener('load',refresh,{once:true});
+    });
+    refresh();
+  }
+  initScrollStories();
 </script>
 </body>
 </html>
