@@ -294,7 +294,12 @@
   .scroll-reveal-section .eyebrow,
   .scroll-reveal-section .story-text-line,
   .scroll-reveal-section .card,
-  .scroll-reveal-section .pull{
+  .scroll-reveal-section .pull,
+  .scroll-reveal-section .fit .yes,
+  .scroll-reveal-section .fit .later,
+  .scroll-reveal-section .qa,
+  .scroll-reveal-section .road-foot,
+  .scroll-reveal-section .btn{
     opacity:0;
     transform:translate3d(0,28px,0);
     will-change:opacity,transform;
@@ -504,11 +509,16 @@
     .scroll-reveal-section .eyebrow,
     .scroll-reveal-section .story-text-line,
     .scroll-reveal-section .card,
-    .scroll-reveal-section .pull{opacity:1; transform:none}
+    .scroll-reveal-section .pull,
+    .scroll-reveal-section .fit .yes,
+    .scroll-reveal-section .fit .later,
+    .scroll-reveal-section .qa,
+    .scroll-reveal-section .road-foot,
+    .scroll-reveal-section .btn{opacity:1; transform:none}
   }
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
-    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit,.hero-depth-line,.story-map,.story-city,.story-orbit,.story-depth-line,.lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull,.section-story .eyebrow,.section-story h2,.section-story .lead,.section-story .chips,.section-story .pull,.section-story .btn,.section-story .card,.section-story .road-foot,.section-story .fit .yes,.section-story .fit .later,.section-story .qa,.section-story .body,.section-story .story-text-line,.scroll-reveal-section .eyebrow,.scroll-reveal-section .story-text-line,.scroll-reveal-section .card,.scroll-reveal-section .pull{transition:none!important; transform:none!important}
+    .reveal,.step,.parallax-asset,.stock-atmosphere,.hero-map,.hero-city,.hero-orbit,.hero-depth-line,.story-map,.story-city,.story-orbit,.story-depth-line,.lie-story .eyebrow,.lie-story h2,.lie-line,.lie-story .pull,.section-story .eyebrow,.section-story h2,.section-story .lead,.section-story .chips,.section-story .pull,.section-story .btn,.section-story .card,.section-story .road-foot,.section-story .fit .yes,.section-story .fit .later,.section-story .qa,.section-story .body,.section-story .story-text-line,.scroll-reveal-section .eyebrow,.scroll-reveal-section .story-text-line,.scroll-reveal-section .card,.scroll-reveal-section .pull,.scroll-reveal-section .fit .yes,.scroll-reveal-section .fit .later,.scroll-reveal-section .qa,.scroll-reveal-section .road-foot,.scroll-reveal-section .btn{transition:none!important; transform:none!important}
     .hero{
       min-height:100vh; --hero-map-opacity:.28; --hero-city-opacity:.14; --hero-orbit-opacity:.35;
       --hero-streak-opacity:.45; --hero-title-y:0px; --hero-title-opacity:1; --hero-sub-y:0px; --hero-sub-opacity:1;
@@ -537,7 +547,12 @@
     .scroll-reveal-section .eyebrow,
     .scroll-reveal-section .story-text-line,
     .scroll-reveal-section .card,
-    .scroll-reveal-section .pull{opacity:1}
+    .scroll-reveal-section .pull,
+    .scroll-reveal-section .fit .yes,
+    .scroll-reveal-section .fit .later,
+    .scroll-reveal-section .qa,
+    .scroll-reveal-section .road-foot,
+    .scroll-reveal-section .btn{opacity:1}
   }
 </style>
 </head>
@@ -724,7 +739,7 @@
 </section>
 
 <!-- TEAM -->
-<section class="band" id="team">
+<section class="band scroll-reveal-section" id="team">
   <div class="wrap reveal">
     <div class="eyebrow">為什麼是我們</div>
     <h2>這不是 PPT 理論。<br>是三位顧問打出來的<span class="gold">實戰數字</span>。</h2>
@@ -755,7 +770,7 @@
 </section>
 
 <!-- CASES -->
-<section class="band alt" id="cases">
+<section class="band alt scroll-reveal-section" id="cases">
   <div class="wrap reveal">
     <div class="eyebrow">真實案例(匿名)</div>
     <h2>他們曾卡在:<span class="gold">離不開、說不清、賣不掉</span>。<br>看看這張地圖,把他們帶去了哪。</h2>
@@ -796,7 +811,7 @@
 </section>
 
 <!-- FIT -->
-<section class="band" id="fit">
+<section class="band scroll-reveal-section" id="fit">
   <div class="wrap reveal">
     <div class="eyebrow">我們和誰一起走</div>
     <h2>我們只與<br><span class="gold">「認真想做出改變」</span>的企業主合作。</h2>
@@ -825,7 +840,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="band alt" id="faq">
+<section class="band alt scroll-reveal-section" id="faq">
   <div class="wrap reveal">
     <div class="eyebrow">常見疑慮</div>
     <h2>在你按下預約之前,<br>你大概在想這些...</h2>
@@ -1058,8 +1073,8 @@
       setReveal(eyebrow,segment(progress,0,.14),10);
       setReveal(title,segment(progress,.02,.18),18);
       lines.forEach((line,index)=>{
-        const start=.22+(index*.095);
-        setReveal(line,segment(progress,start,start+.09),18);
+        const start=.22+(index*.11);
+        setReveal(line,segment(progress,start,start+.105),18);
       });
       setReveal(pull,segment(progress,.72,.94),24);
 
@@ -1169,8 +1184,8 @@
         const progress=clamp((innerHeight-rect.top)/distance,0,1);
         const items=getItems(story);
         items.forEach((el,index)=>{
-          const start=Math.min(.78,index*.085);
-          const end=Math.min(.96,start+.15);
+          const start=Math.min(.78,index*.098);
+          const end=Math.min(.96,start+.174);
           setReveal(el,segment(progress,start,end),index<2 ? 18 : 28);
         });
 
@@ -1244,7 +1259,11 @@
       ...section.querySelectorAll('h2 .story-text-line'),
       ...section.querySelectorAll('.lead .story-text-line'),
       ...section.querySelectorAll('.card'),
-      ...section.querySelectorAll('.pull')
+      ...section.querySelectorAll('.fit .yes,.fit .later'),
+      ...section.querySelectorAll('.qa'),
+      ...section.querySelectorAll('.road-foot'),
+      ...section.querySelectorAll('.pull'),
+      ...section.querySelectorAll('.btn')
     ].filter(Boolean);
     const reset=()=>{
       sections.forEach(section=>{
@@ -1262,8 +1281,8 @@
         const distance=Math.max(section.offsetHeight+(innerHeight*.1),1);
         const progress=clamp((innerHeight-rect.top)/distance,0,1);
         getItems(section).forEach((el,index)=>{
-          const start=Math.min(.72,index*.075);
-          const end=Math.min(.96,start+.15);
+          const start=Math.min(.72,index*.087);
+          const end=Math.min(.96,start+.174);
           setReveal(el,segment(progress,start,end),index<3 ? 18 : 28);
         });
       });
