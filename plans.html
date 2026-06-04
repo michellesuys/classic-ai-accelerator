@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Token 方案 — 15 / 30 / 50 Token 三套方案，選擇後直接前往刷卡頁完成購買。">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#141414">
+  <title>Token 方案｜經典企業AI加速器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       DESIGN TOKENS  —  沿用 tokens.html 品牌樣式
+       ============================================================ */
+    :root {
+      --black:#141414; --gold:#D4AF37; --gold-bright:#E8C94A;
+      --gold-dim:rgba(212,175,55,0.12); --gold-line:rgba(212,175,55,0.22);
+      --white:#F5F5F5; --gray:#8A8A8A;
+      --bg-base:#141414; --bg-card:#1E1E1E;
+      --text-inv:#141414;
+      --border:rgba(255,255,255,0.07);
+      --shadow-gold:0 4px 40px rgba(212,175,55,0.15);
+      --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:40px; --s6:48px; --s8:64px; --s10:80px; --s12:96px;
+      --r-sm:4px; --r-md:8px; --r-lg:12px;
+      --font-cn:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif;
+      --font-en:'Montserrat','Inter',sans-serif;
+      --t-base:280ms ease;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background-color:var(--bg-base);background-image:radial-gradient(circle,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:28px 28px;color:var(--white);font-family:var(--font-cn);font-size:18px;line-height:1.8;letter-spacing:0.04em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* TYPOGRAPHY */
+    .t-h1{font-family:var(--font-cn);font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);color:var(--gold);letter-spacing:0.12em;line-height:1.25}
+    .t-label{font-family:var(--font-en);font-size:0.8rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);display:block}
+    .t-note{font-size:0.9rem;font-weight:300;color:var(--gray);letter-spacing:0.04em}
+
+    /* LAYOUT */
+    .container{max-width:1200px;margin:0 auto;padding:0 var(--s3)}
+    .page{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:var(--s12) 0}
+    .plans-header{text-align:center;margin-bottom:var(--s8)}
+    .plans-header .t-label{margin-bottom:var(--s3)}
+    .plans-header .t-note{margin-top:var(--s3)}
+
+    /* BUTTON  —  沿用 tokens.html .btn / .btn-md / .btn-gold */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s1);font-family:var(--font-cn);font-weight:700;letter-spacing:0.08em;border-radius:var(--r-md);cursor:pointer;text-decoration:none;border:1px solid transparent;transition:all var(--t-base);white-space:nowrap}
+    .btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .btn-md{padding:14px 32px;font-size:0.95rem}
+    .btn-gold{background:var(--gold);color:var(--text-inv);border-color:var(--gold)}
+    .btn-gold:hover{background:var(--gold-bright);border-color:var(--gold-bright);transform:translateY(-2px);box-shadow:var(--shadow-gold)}
+
+    /* PLAN CARDS  —  3 個方案（最精簡：Token 數 + 總價 + 按鈕） */
+    .plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);max-width:980px;margin:0 auto}
+    .plan-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6) var(--s4);display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform var(--t-base),border-color var(--t-base)}
+    .plan-card:hover{transform:translateY(-4px);border-color:var(--gold-line)}
+    .plan-token{font-family:var(--font-en);font-size:3rem;font-weight:800;color:var(--gold);line-height:1;letter-spacing:-0.02em}
+    .plan-token-label{font-size:0.7rem;color:var(--gray);letter-spacing:0.18em;text-transform:uppercase;margin-top:var(--s1)}
+    .plan-price-original{font-family:var(--font-en);font-size:1.05rem;font-weight:500;color:var(--gray);text-decoration:line-through;letter-spacing:0.02em;margin-top:var(--s3)}
+    .plan-discount-badge{display:inline-block;font-family:var(--font-cn);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-line);border-radius:999px;padding:5px 14px;margin:10px 0}
+    .plan-price-final{font-family:var(--font-en);font-size:1.9rem;font-weight:800;color:var(--gold);letter-spacing:0.01em;line-height:1.1;margin-bottom:var(--s5)}
+    .plan-cta{margin-top:auto;width:100%}
+    .plan-cta .btn{width:100%}
+
+    @media(max-width:768px){
+      .plans-grid{grid-template-columns:1fr;max-width:420px}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+      <header class="plans-header">
+        <span class="t-label">Token 方案</span>
+        <h1 class="t-h1">選擇你的 Token 方案</h1>
+        <p class="t-note">選擇方案後，點擊按鈕前往刷卡頁完成購買。</p>
+      </header>
+
+      <section class="plans-grid">
+        <!-- 方案 1 ─ 15 Token -->
+        <article class="plan-card">
+          <div class="plan-token">15</div>
+          <div class="plan-token-label">Token</div>
+          <div class="plan-price-original">NT$90,000</div>
+          <div class="plan-discount-badge">當天下單 20% OFF</div>
+          <div class="plan-price-final">NT$72,000</div>
+          <div class="plan-cta">
+            <!-- 15 Token 刷卡連結（PAYUNi） -->
+            <a href="https://api.payuni.com.tw/api/uop/receive_info/2/1/RICH1769665458/gud2MfXvMubcOKKZQc4YZ" class="btn btn-gold btn-md">立即刷卡購買 →</a>
+          </div>
+        </article>
+
+        <!-- 方案 2 ─ 30 Token -->
+        <article class="plan-card">
+          <div class="plan-token">35</div>
+          <div class="plan-token-label">Token</div>
+          <div class="plan-price-original">NT$210,000</div>
+          <div class="plan-discount-badge">當天下單 20% OFF</div>
+          <div class="plan-price-final">NT$168,000</div>
+          <div class="plan-cta">
+            <!-- 30 Token 刷卡連結（PAYUNi） -->
+            <a href="https://api.payuni.com.tw/api/uop/receive_info/2/1/RICH1769665458/jTGGUJe39FPDoqoAptAoX" class="btn btn-gold btn-md">立即刷卡購買 →</a>
+          </div>
+        </article>
+
+        <!-- 方案 3 ─ 50 Token -->
+        <article class="plan-card">
+          <div class="plan-token">50</div>
+          <div class="plan-token-label">Token</div>
+          <div class="plan-price-original">NT$300,000</div>
+          <div class="plan-discount-badge">當天下單 20% OFF</div>
+          <div class="plan-price-final">NT$240,000</div>
+          <div class="plan-cta">
+            <!-- 50 Token 刷卡連結（PAYUNi） -->
+            <a href="https://api.payuni.com.tw/api/uop/receive_info/2/1/RICH1769665458/kfGU47sixkJIlfxlu7xVU" class="btn btn-gold btn-md">立即刷卡購買 →</a>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
