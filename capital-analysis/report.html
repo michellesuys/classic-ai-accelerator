@@ -1,0 +1,1472 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F4EB">
+<title>資本化成熟度測驗｜經典企業 AI 加速器</title>
+<style>
+  /* ============================================================
+     CONFIG — 改文案、改連結都在 <script> 區塊最上方的 CONFIG 物件
+     ============================================================ */
+
+  :root {
+    --cream: #F8F4EB;
+    --cream-2: #F2EBDC;
+    --white: #FFFFFF;
+    --ink: #1A2332;
+    --ink-2: #3A4250;
+    --muted: #7A6F60;
+    --line: #E5DCC8;
+    --accent: #B8662F;
+    --accent-hover: #9E5424;
+    --accent-soft: #F5E6D3;
+    --danger: #A8321E;
+    --danger-soft: #F4D9D2;
+    --tier-red: #B83A2E;
+    --tier-orange: #D17B2F;
+    --tier-yellow: #C9A02E;
+    --tier-green: #5A8A4F;
+    --tier-blue: #3A6B9B;
+    --tier-purple: #6B4E8E;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --shadow-sm: 0 1px 2px rgba(26,35,50,.04), 0 2px 8px rgba(26,35,50,.04);
+    --shadow-md: 0 4px 12px rgba(26,35,50,.06), 0 12px 28px rgba(26,35,50,.08);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Noto Sans TC", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "PingFang TC", "Microsoft JhengHei", Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+  .brand-sub {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .brand-title {
+    font-family: "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+    font-size: clamp(22px, 4vw, 28px);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .brand-dot {
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ====== Typography ====== */
+  .eyebrow {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-family: "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+    font-size: clamp(32px, 6.5vw, 48px);
+    line-height: 1.25;
+    margin: 0 0 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  h2 {
+    font-family: "Noto Serif TC", "Source Han Serif TC", "Songti TC", serif;
+    font-size: clamp(22px, 4.5vw, 28px);
+    line-height: 1.35;
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .lead {
+    font-size: clamp(16px, 2.4vw, 18px);
+    color: var(--ink-2);
+    line-height: 1.7;
+    margin: 0 0 28px;
+  }
+
+  /* ====== Buttons ====== */
+  .btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: 999px;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    transition: transform .12s ease, background .15s ease, box-shadow .15s ease, color .15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.06), var(--shadow-sm);
+  }
+  .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-primary:disabled {
+    background: var(--line);
+    color: var(--muted);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink-2);
+    padding: 12px 18px;
+  }
+  .btn-ghost:hover { color: var(--ink); }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    padding: 14px 24px;
+  }
+  .btn-outline:hover { background: var(--ink); color: var(--cream); }
+
+  /* ====== Intro screen ====== */
+  #screen-intro .intro-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+  }
+  .intro-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding: 18px 0;
+    margin: 20px 0 28px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  .intro-meta strong { color: var(--ink); font-weight: 600; }
+  .intro-meta-item { display: flex; align-items: center; gap: 6px; }
+
+  .dim-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 28px;
+  }
+  .dim-list li {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--line);
+    font-size: 15px;
+    color: var(--ink-2);
+  }
+  .dim-list li:last-child { border-bottom: none; }
+  .dim-list .dim-tag {
+    flex: 0 0 auto;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: "JetBrains Mono", "SF Mono", Menlo, monospace;
+    min-width: 30px;
+  }
+  .dim-list .dim-name { color: var(--ink); font-weight: 600; min-width: 130px; }
+  .dim-list .dim-desc { color: var(--muted); }
+
+  /* ====== Quiz screen ====== */
+  .progress {
+    margin-bottom: 32px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+  }
+  .progress-meta .q-dim { color: var(--accent); font-weight: 700; }
+  .progress-bar {
+    height: 4px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width .4s cubic-bezier(.2,.7,.3,1);
+  }
+
+  .question-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    animation: slideIn .35s cubic-bezier(.2,.7,.3,1);
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .question-text {
+    font-family: "Noto Serif TC", "Source Han Serif TC", serif;
+    font-size: clamp(20px, 3.6vw, 26px);
+    line-height: 1.45;
+    margin: 0 0 28px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    background: var(--cream);
+    border: 1.5px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease, transform .12s ease;
+    text-align: left;
+    font: inherit;
+    color: var(--ink-2);
+    width: 100%;
+  }
+  .option:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .option.is-selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+  .option-letter {
+    flex: 0 0 28px;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 2px;
+    transition: all .15s ease;
+  }
+  .option.is-selected .option-letter {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .option-text {
+    flex: 1;
+    font-size: 15.5px;
+    line-height: 1.55;
+  }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+  }
+
+  /* ====== Result screen ====== */
+  .redline-banner {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 16px 20px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    font-size: 14.5px;
+    line-height: 1.6;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .redline-banner .icon {
+    flex: 0 0 24px;
+    width: 24px; height: 24px;
+    background: var(--tier-red);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 1px;
+  }
+  .redline-banner strong { color: #fff; }
+  .redline-banner ul { margin: 6px 0 0; padding-left: 18px; }
+  .redline-banner li { margin-bottom: 2px; }
+
+  .result-hero {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--line);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .score-label {
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .score-ring {
+    position: relative;
+    width: 200px; height: 200px;
+    margin: 0 auto 20px;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring .score-num {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Noto Serif TC", serif;
+  }
+  .score-num .num {
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .score-num .denom {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-family: "Noto Sans TC", sans-serif;
+  }
+  .tier-name {
+    font-family: "Noto Serif TC", serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 8px 0 8px;
+  }
+  .tier-message {
+    font-size: 16px;
+    color: var(--ink-2);
+    margin: 0 0 28px;
+    line-height: 1.6;
+  }
+  .cta-primary {
+    width: 100%;
+    max-width: 360px;
+    padding: 18px 24px;
+    font-size: 17px;
+  }
+
+  /* ====== Radar section ====== */
+  .section-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-title h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 22px;
+    margin: 0;
+    font-weight: 700;
+  }
+  .section-title .section-sub {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .radar-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 0 -8px 24px;
+  }
+  .radar-wrap svg {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+  }
+  .dim-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .dim-bar {
+    display: grid;
+    grid-template-columns: 110px 1fr 50px;
+    align-items: center;
+    gap: 14px;
+    font-size: 14.5px;
+  }
+  .dim-bar .dim-bar-name { color: var(--ink); font-weight: 600; }
+  .dim-bar .dim-bar-track {
+    height: 8px;
+    background: var(--cream-2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .dim-bar .dim-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+    transition: width .8s cubic-bezier(.2,.7,.3,1);
+  }
+  .dim-bar .dim-bar-score {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  /* ====== Advice section ====== */
+  .advice-list { display: flex; flex-direction: column; gap: 18px; }
+  .advice-item {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 18px;
+  }
+  .advice-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .advice-dim-name { font-weight: 700; color: var(--ink); font-size: 16px; }
+  .advice-dim-score {
+    font-family: "JetBrains Mono", "SF Mono", monospace;
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .advice-next {
+    font-size: 15px;
+    color: var(--ink-2);
+    margin: 4px 0 4px;
+    line-height: 1.6;
+  }
+  .advice-next strong { color: var(--ink); font-weight: 600; }
+  .advice-step {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ====== Final CTA ====== */
+  .final-cta {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .final-cta h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 24px;
+    margin: 0 0 12px;
+    color: #fff;
+  }
+  .final-cta p {
+    font-size: 15px;
+    color: rgba(248,244,235,.7);
+    margin: 0 0 24px;
+    line-height: 1.6;
+  }
+  .final-cta .btn-primary {
+    background: var(--accent);
+  }
+  .final-cta .btn-primary:hover { background: #d27a3a; }
+
+  .secondary-cta {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .secondary-cta a {
+    color: var(--ink-2);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--line);
+    font-size: 14.5px;
+    cursor: pointer;
+  }
+  .secondary-cta a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+  /* ====== Modal ====== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26,35,50,.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1000;
+    animation: fadeIn .2s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    max-width: 460px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0,0,0,.3);
+    animation: slideUp .25s cubic-bezier(.2,.7,.3,1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .modal h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 22px;
+    margin: 0 0 8px;
+  }
+  .modal p {
+    font-size: 14.5px;
+    color: var(--muted);
+    margin: 0 0 24px;
+    line-height: 1.6;
+  }
+  .field {
+    margin-bottom: 16px;
+  }
+  .field label {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-2);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .field input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--line);
+    border-radius: var(--radius-sm);
+    font: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--cream);
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--white);
+  }
+  .modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .modal-actions .btn { flex: 1; }
+  .field-error {
+    font-size: 12px;
+    color: var(--danger);
+    margin-top: 4px;
+    min-height: 16px;
+  }
+
+  /* ====== Footer ====== */
+  footer {
+    text-align: center;
+    padding: 40px 20px 20px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ====== Print ====== */
+  @media print {
+    /* 強制印出背景色（不然進度條、tier 色塊等都不見）*/
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body { background: #fff; }
+    .container { padding: 20px; max-width: 100%; }
+    #screen-intro, #screen-quiz, .quiz-nav, .final-cta, .secondary-cta,
+    .modal-backdrop, footer .no-print, .print-hide, .pdf-download-card { display: none !important; }
+    .result-hero, .section-card { box-shadow: none; page-break-inside: avoid; }
+    .redline-banner { background: #fff; color: var(--ink); border: 2px solid var(--tier-red); }
+    .redline-banner .icon { background: var(--tier-red); }
+    .brand { margin-bottom: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 20px 16px 60px; }
+    #screen-intro .intro-card, .question-card, .result-hero, .section-card { padding: 24px 18px; }
+    .option { padding: 14px 16px; gap: 12px; }
+    .option-text { font-size: 15px; }
+    .dim-bar { grid-template-columns: 86px 1fr 42px; gap: 10px; font-size: 13.5px; }
+    .score-ring { width: 180px; height: 180px; }
+    .score-num .num { font-size: 56px; }
+  }
+
+  /* ====== report.html 專用：只顯示結果頁，藏掉 intro / quiz / email modal ====== */
+  #screen-intro, #screen-quiz { display: none !important; }
+  #modal-email-wrap { display: none !important; }
+
+  /* PDF 下載大按鈕（取代原本灰色小連結）*/
+  .pdf-download-card {
+    background: var(--white);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .pdf-download-card h3 {
+    font-family: "Noto Serif TC", serif;
+    font-size: 20px;
+    margin: 0 0 8px;
+    color: var(--ink);
+  }
+  .pdf-download-card p {
+    font-size: 14px;
+    color: var(--muted);
+    margin: 0 0 20px;
+    line-height: 1.6;
+  }
+  .pdf-download-card .btn {
+    width: 100%;
+    max-width: 360px;
+    padding: 18px 24px;
+    font-size: 17px;
+    background: var(--accent);
+  }
+  .pdf-download-card .btn:hover { background: var(--accent-hover); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header class="brand">
+    <div class="brand-title">資本化成熟度診斷</div>
+    <div class="brand-sub">
+      <span class="brand-dot"></span>
+      <span>經典企業 AI 加速器</span>
+    </div>
+  </header>
+
+  <!-- ========================= INTRO ========================= -->
+  <section id="screen-intro">
+    <div class="eyebrow">3 分鐘 · 12 題 · 免費</div>
+    <h1>你的公司，現在「賣得掉」嗎？</h1>
+    <p class="lead">
+      用 12 題，從買家的視角，幫你檢視公司在五大維度上的資本化成熟度，
+      算出 0–100 的「可賣度分數」，並指出最該補強的兩個缺口。
+    </p>
+
+    <div class="intro-card">
+      <h2>這份測驗會告訴你</h2>
+      <ul class="dim-list">
+        <li>
+          <span class="dim-tag">D1</span>
+          <span class="dim-name">財務體質</span>
+          <span class="dim-desc">數字會不會說話、經不經得起盡調</span>
+        </li>
+        <li>
+          <span class="dim-tag">D2</span>
+          <span class="dim-name">成長路徑</span>
+          <span class="dim-desc">未來三年看得到、講得出</span>
+        </li>
+        <li>
+          <span class="dim-tag">D3</span>
+          <span class="dim-name">營運獨立</span>
+          <span class="dim-desc">沒有你，公司還能不能轉</span>
+        </li>
+        <li>
+          <span class="dim-tag">D4</span>
+          <span class="dim-name">品牌聲量</span>
+          <span class="dim-desc">買家進來會不會眼睛一亮</span>
+        </li>
+        <li>
+          <span class="dim-tag">D5</span>
+          <span class="dim-name">交棒準備</span>
+          <span class="dim-desc">法務股權乾淨、有沒有時間表</span>
+        </li>
+      </ul>
+
+      <div class="intro-meta">
+        <div class="intro-meta-item"><strong>📋</strong> 12 道題目</div>
+        <div class="intro-meta-item"><strong>⏱</strong> 約 3 分鐘</div>
+        <div class="intro-meta-item"><strong>📊</strong> 五維度雷達圖</div>
+        <div class="intro-meta-item"><strong>🔒</strong> 結果不外流</div>
+      </div>
+
+      <button id="btn-start" class="btn btn-primary" style="width:100%; padding:18px 24px; font-size:17px;">
+        開始測驗 →
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================= QUIZ ========================= -->
+  <section id="screen-quiz" hidden>
+    <div class="progress">
+      <div class="progress-meta">
+        <span>Q<span id="q-num">1</span> / 12 · 維度 <span class="q-dim" id="q-dim">D1</span></span>
+        <span id="q-dim-name">財務體質與透明度</span>
+      </div>
+      <div class="progress-bar"><div class="progress-bar-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="question-card" id="question-card">
+      <h2 class="question-text" id="q-text"></h2>
+      <div class="options" id="q-options"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button id="btn-prev" class="btn btn-ghost" hidden>← 上一題</button>
+      <span></span>
+      <button id="btn-next" class="btn btn-primary" disabled>下一題 →</button>
+    </div>
+  </section>
+
+  <!-- ========================= RESULT ========================= -->
+  <section id="screen-result" hidden>
+    <div id="redline-banner-wrap"></div>
+
+    <div class="result-hero">
+      <div class="score-label">你的資本化成熟度</div>
+      <div class="score-ring">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#E5DCC8" stroke-width="10"/>
+          <circle id="score-arc" cx="100" cy="100" r="90" fill="none" stroke="#B8662F" stroke-width="10"
+                  stroke-linecap="round"
+                  stroke-dasharray="565.48" stroke-dashoffset="565.48"
+                  style="transition: stroke-dashoffset 1.2s cubic-bezier(.2,.7,.3,1);"/>
+        </svg>
+        <div class="score-num">
+          <div class="num" id="score-num">0</div>
+          <div class="denom">/ 100</div>
+        </div>
+      </div>
+      <div class="tier-name" id="tier-name">—</div>
+      <p class="tier-message" id="tier-message">—</p>
+      <a id="btn-cta-primary" href="#" target="_blank" rel="noopener" class="btn btn-primary cta-primary">
+        預約 60 分鐘免費策略診斷 →
+      </a>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <h3>五大維度體檢</h3>
+        <span class="section-sub">RADAR</span>
+      </div>
+      <div class="radar-wrap" id="radar-wrap"></div>
+      <div class="dim-bars" id="dim-bars"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">
+        <h3>你最弱的兩個維度</h3>
+        <span class="section-sub">NEXT STEPS</span>
+      </div>
+      <div class="advice-list" id="advice-list"></div>
+    </div>
+
+    <div class="final-cta print-hide">
+      <h3>把這份報告變成行動</h3>
+      <p>60 分鐘策略診斷，由顧問逐項拆解你的紅線與缺口，給出可執行的下一步。</p>
+      <a id="btn-cta-final" href="#" target="_blank" rel="noopener" class="btn btn-primary" style="background: var(--accent);">
+        預約策略診斷 →
+      </a>
+    </div>
+
+    <div class="pdf-download-card print-hide">
+      <h3>📄 下載你的完整 PDF 報告</h3>
+      <p>包含完整測驗結果、五維雷達圖、建議與紅線分析<br>點下方按鈕，瀏覽器會跳出列印視窗，選「另存為 PDF」即可</p>
+      <button id="btn-download-pdf" class="btn btn-primary">下載 PDF 報告 →</button>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 經典企業 AI 加速器 · 資本化成熟度測驗 v1</span>
+  </footer>
+</div>
+
+<!-- ========================= EMAIL MODAL ========================= -->
+<div id="modal-email-wrap" hidden></div>
+
+<script>
+/* ============================================================
+   CONFIG — 上線前改這裡
+   ============================================================ */
+const CONFIG = {
+  // 預約策略診斷 CTA 連結
+  bookingUrl: "https://classic-ai-accelerator-booking.zeabur.app/",
+
+  // n8n webhook endpoint，收完整測驗資料寫進 Google Sheets
+  formspreeUrl: "https://yiseadata-automation-n8n.zeabur.app/webhook/quiz-web-lead",
+
+  // 結果頁分享文案（給 LINE / 社群分享用，目前未使用，預留）
+  shareTitle: "我剛測完資本化成熟度",
+};
+
+/* ============================================================
+   DATA
+   ============================================================ */
+const DIMENSIONS = {
+  D1: { name: "財務體質與透明度", short: "財務體質", blueprint: "STEP 1 診斷的根基", weight: 0.25 },
+  D2: { name: "三年成長路徑清晰度", short: "成長路徑", blueprint: "STEP 2 藍圖", weight: 0.20 },
+  D3: { name: "營運獨立於老闆",     short: "營運獨立", blueprint: "STEP 3 升級", weight: 0.25 },
+  D4: { name: "市場與品牌聲量",     short: "品牌聲量", blueprint: "STEP 4 增值", weight: 0.15 },
+  D5: { name: "交棒 / 交易準備度",  short: "交棒準備", blueprint: "STEP 5 交棒", weight: 0.15 },
+};
+
+const QUESTIONS = [
+  { id: 1, dim: "D1", text: "你公司的財務報表，最像下面哪一種？",
+    options: [
+      "都在老闆腦袋裡 / 隨手記在記事本",
+      "內部 Excel，自己或會計小姐做的",
+      "記帳事務所代記，月結看得到損益",
+      "會計師簽證的財報，但只給銀行看",
+      "經得起買家盡調（PE / 投行）的審計報表",
+    ]},
+  { id: 2, dim: "D1", text: "現在叫你回答「上個月毛利率、淨利率、現金水位」，幾秒鐘？",
+    options: [
+      "答不出來",
+      "要打電話問會計，當天才回得出來",
+      "翻一下手機報表，5 分鐘",
+      "30 秒內，口袋裡的數字",
+      "而且能立刻拆給你看是哪幾條產品線 / 客戶貢獻的",
+    ]},
+  { id: 3, dim: "D1", redLine: true, text: "老闆的個人開支與公司營業開支，有沒有分清楚？",
+    options: [
+      "沒分，都從公司帳走，方便",
+      "大致有分，但車、餐費還是混著走",
+      "有分開帳戶，個人費用基本不進公司",
+      "帳戶分開，且每月都對帳",
+      "連薪資、董事酬勞、股東往來都拆得清清楚楚",
+    ]},
+  { id: 4, dim: "D2", text: "「未來 3 年公司要長到哪、怎麼長」，現在你手上有沒有？",
+    options: [
+      "沒想過那麼遠",
+      "心裡有底，但沒寫下來",
+      "有一頁 PPT 或一張紙寫過",
+      "有完整的 3 年財務預測，每年數字都很具體",
+      "有 3 年財測 + 三情境（保守 / 基準 / 積極）+ 季度檢核機制",
+    ]},
+  { id: 5, dim: "D2", text: "你最大的單一客戶（或單一通路）佔營收的比例？",
+    options: [
+      "超過 70%",
+      "50–70%",
+      "30–50%",
+      "15–30%",
+      "低於 15%，且前五大客戶沒有單一超過 25%",
+    ]},
+  { id: 6, dim: "D3", redLine: true, text: "如果你明天起人間蒸發兩週，不接電話也不回 LINE，公司會怎樣？",
+    options: [
+      "一週內就會停擺、現場會亂",
+      "撐得過兩週，但會錯失生意 / 出大包",
+      "兩週內正常運作，回來再補一些決策",
+      "一個月內公司運作如常",
+      "三個月以上完全沒差，因為早就不靠我了",
+    ]},
+  { id: 7, dim: "D3", text: "關鍵流程（生產、業務、客服）有沒有 SOP 文件？新人三個月內能不能上手？",
+    options: [
+      "沒有 SOP，全靠老人口傳",
+      "有零散的 SOP，但沒人在看",
+      "主要流程有寫，但新人還是要老人帶半年",
+      "有 SOP + 教材，新人 3 個月內可獨立作業",
+      "SOP 已系統化（含 AI / 數位工具輔助），流程數據可追蹤",
+    ]},
+  { id: 8, dim: "D3", text: "大客戶下單時，找的是「公司」還是「你這個人」？",
+    options: [
+      "全部都是衝著我來的，換人就跑",
+      "多數靠我的關係，少數會走公司窗口",
+      "一半一半",
+      "多數走公司窗口，我只處理大案議價",
+      "客戶幾乎不需要找老闆，業務團隊就能成交與維繫",
+    ]},
+  { id: 9, dim: "D4", text: "上個月有沒有「主動找上門」的新客戶 / 通路 / 合作 / 媒體？",
+    options: [
+      "沒有，業績全靠自己跑出去",
+      "偶爾有，多半是老客戶介紹",
+      "每月 1–2 件主動詢問",
+      "每月 3–5 件，且有部分是陌生開發",
+      "每週都有，且能挑客戶做",
+    ]},
+  { id: 10, dim: "D4", text: "用 Google 搜你的公司名，第一頁長什麼樣？",
+    options: [
+      "只搜得到工商登記",
+      "有官網，但內容很舊",
+      "有官網 + 一些社群，內容尚可",
+      "有官網 + 媒體報導 + 案例介紹，買家看了會停留",
+      "第一頁有深度報導、得獎紀錄、影音與多家媒體覆蓋",
+    ]},
+  { id: 11, dim: "D5", redLine: true, text: "公司的股權結構 + 股東協議，目前狀態是？",
+    options: [
+      "從沒處理過 / 正在糾紛中 / 有人頭股東",
+      "股東名單清楚，但沒有書面股東協議",
+      "有簡單的股東協議，但沒談退出條款",
+      "有完整股東協議，含退出、繼承、表決機制",
+      "上述都有 + 已諮詢過併購 / 傳承稅務專業意見",
+    ]},
+  { id: 12, dim: "D5", text: "你心裡有沒有一個「幾年內交棒 / 出售」的時間表？家人或合夥人知道嗎？",
+    options: [
+      "沒想過，先做再說",
+      "心裡有想，但沒跟任何人講",
+      "有大概的時間區間，家人知道但沒細談",
+      "有明確時間表（例如 5 年內），關鍵人都對齊了",
+      "時間表 + 接班候選人 / 潛在買家名單 + 預期估值區間都有了",
+    ]},
+];
+
+const TIERS = [
+  { min: 0,  max: 24,  emoji: "🟥", name: "私人作坊",   color: "var(--tier-red)",
+    message: "目前公司是「一份工作」。要變資產，得從打地基開始。" },
+  { min: 25, max: 39,  emoji: "🟧", name: "鐵皮廠房",   color: "var(--tier-orange)",
+    message: "能營業，但市場上幾乎沒有買家會出手。" },
+  { min: 40, max: 54,  emoji: "🟨", name: "穩健工坊",   color: "var(--tier-yellow)",
+    message: "有買家會看一眼，但會大幅殺價。" },
+  { min: 55, max: 69,  emoji: "🟩", name: "機械化工廠", color: "var(--tier-green)",
+    message: "進入買家口袋名單，價格還有上探空間。" },
+  { min: 70, max: 84,  emoji: "🟦", name: "鑽石原石",   color: "var(--tier-blue)",
+    message: "買家會主動找上門，現在是優化交易條件的階段。" },
+  { min: 85, max: 100, emoji: "🟪", name: "上市級資產", color: "var(--tier-purple)",
+    message: "議價權在你手上。下一步是挑買家，不是找買家。" },
+];
+
+const ADVICE = {
+  D1: {
+    low:  "先把個人帳與公司帳分開、找記帳事務所代記",
+    mid:  "升級到會計師簽證，並建立「3 分鐘財務簡報」習慣",
+    high: "啟動買家視角的盡調包準備",
+  },
+  D2: {
+    low:  "把腦中的 3 年想像寫成一頁 PPT",
+    mid:  "做一份正式 3 年財測 + 三情境",
+    high: "加上季度檢核會議與滾動更新",
+  },
+  D3: {
+    low:  "列出「老闆專屬」事項清單，每月關掉一項",
+    mid:  "把主要流程 SOP 化 + 找接手二把手",
+    high: "啟動 AI / 系統導入，降低人員依賴",
+  },
+  D4: {
+    low:  "把官網更新到 2026 的樣子",
+    mid:  "安排 2–3 篇深度媒體露出 + 案例故事",
+    high: "系統化故事行銷，建立買家認知",
+  },
+  D5: {
+    low:  "先做一次股權與股東協議健檢",
+    mid:  "補上退出條款 + 跟家人對齊時間表",
+    high: "對齊潛在買家名單與預期估值",
+  },
+};
+
+const RED_LINE_LABELS = {
+  3:  "老闆與公司未分離",
+  6:  "老闆消失公司就停",
+  11: "股權未清理",
+};
+
+/* ============================================================
+   STATE
+   ============================================================ */
+const state = {
+  current: 0,                // 0..11
+  answers: new Array(QUESTIONS.length).fill(null),
+};
+
+/* ============================================================
+   QUIZ FLOW
+   ============================================================ */
+const $ = (sel) => document.querySelector(sel);
+
+function showScreen(id) {
+  ["screen-intro", "screen-quiz", "screen-result"].forEach((s) => {
+    document.getElementById(s).hidden = (s !== id);
+  });
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.current];
+  const dim = DIMENSIONS[q.dim];
+  $("#q-num").textContent = state.current + 1;
+  $("#q-dim").textContent = q.dim;
+  $("#q-dim-name").textContent = dim.name;
+  $("#q-text").textContent = q.text;
+
+  const fillPct = ((state.current) / QUESTIONS.length) * 100;
+  $("#progress-fill").style.width = fillPct + "%";
+
+  const optionsEl = $("#q-options");
+  optionsEl.innerHTML = "";
+  const letters = ["A", "B", "C", "D", "E"];
+  const selected = state.answers[state.current];
+  q.options.forEach((text, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option" + (selected === i ? " is-selected" : "");
+    btn.dataset.score = i;
+    btn.innerHTML = `
+      <span class="option-letter">${letters[i]}</span>
+      <span class="option-text"></span>
+    `;
+    btn.querySelector(".option-text").textContent = text;
+    btn.addEventListener("click", () => selectOption(i));
+    optionsEl.appendChild(btn);
+  });
+
+  $("#btn-prev").hidden = state.current === 0;
+  $("#btn-next").disabled = selected === null;
+  $("#btn-next").textContent = state.current === QUESTIONS.length - 1 ? "看結果 →" : "下一題 →";
+
+  // Re-trigger the slide-in animation
+  const card = $("#question-card");
+  card.style.animation = "none";
+  void card.offsetWidth;
+  card.style.animation = "";
+}
+
+function selectOption(i) {
+  state.answers[state.current] = i;
+  // Mark UI immediately
+  document.querySelectorAll(".option").forEach((el, idx) => {
+    el.classList.toggle("is-selected", idx === i);
+  });
+  $("#btn-next").disabled = false;
+  // Auto-advance for snappy UX
+  setTimeout(goNext, 320);
+}
+
+function goNext() {
+  if (state.answers[state.current] === null) return;
+  if (state.current < QUESTIONS.length - 1) {
+    state.current += 1;
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function goPrev() {
+  if (state.current > 0) {
+    state.current -= 1;
+    renderQuestion();
+  }
+}
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+function calculateScore() {
+  const dimRaw = { D1: [], D2: [], D3: [], D4: [], D5: [] };
+  QUESTIONS.forEach((q, idx) => {
+    const a = state.answers[idx];
+    if (a !== null) dimRaw[q.dim].push(a);
+  });
+  const dimScores = {};
+  for (const d of Object.keys(dimRaw)) {
+    const arr = dimRaw[d];
+    dimScores[d] = (arr.reduce((s, v) => s + v, 0) / (arr.length * 4)) * 100;
+  }
+  const weighted = Object.entries(DIMENSIONS)
+    .reduce((s, [d, info]) => s + dimScores[d] * info.weight, 0);
+  const redFlags = QUESTIONS
+    .filter((q) => q.redLine && state.answers[q.id - 1] === 0)
+    .map((q) => q.id);
+  const final = Math.max(0, weighted - 8 * redFlags.length);
+  const tier = TIERS.find((t) => final >= t.min && final <= t.max);
+  const dimRounded = {};
+  for (const d of Object.keys(dimScores)) dimRounded[d] = Math.round(dimScores[d]);
+  return { total: Math.round(final), dimensions: dimRounded, redFlags, tier };
+}
+
+/* ============================================================
+   SVG RADAR
+   ============================================================ */
+function renderRadar(dim) {
+  const cx = 200, cy = 200, R = 130;
+  const dims = ["D1", "D2", "D3", "D4", "D5"];
+  // Start at top, go clockwise
+  const angles = dims.map((_, i) => -Math.PI / 2 + (2 * Math.PI * i) / 5);
+
+  const grids = [0.2, 0.4, 0.6, 0.8, 1.0].map((scale) => {
+    const pts = angles
+      .map((a) => `${(cx + Math.cos(a) * R * scale).toFixed(1)},${(cy + Math.sin(a) * R * scale).toFixed(1)}`)
+      .join(" ");
+    return `<polygon points="${pts}" fill="none" stroke="#E5DCC8" stroke-width="1" />`;
+  }).join("");
+
+  const axes = angles.map((a) =>
+    `<line x1="${cx}" y1="${cy}" x2="${(cx + Math.cos(a) * R).toFixed(1)}" y2="${(cy + Math.sin(a) * R).toFixed(1)}" stroke="#E5DCC8" stroke-width="1" />`
+  ).join("");
+
+  const dataPts = dims.map((d, i) => {
+    const scale = (dim[d] || 0) / 100;
+    return `${(cx + Math.cos(angles[i]) * R * scale).toFixed(1)},${(cy + Math.sin(angles[i]) * R * scale).toFixed(1)}`;
+  }).join(" ");
+
+  const dots = dims.map((d, i) => {
+    const scale = (dim[d] || 0) / 100;
+    const x = cx + Math.cos(angles[i]) * R * scale;
+    const y = cy + Math.sin(angles[i]) * R * scale;
+    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#B8662F" stroke="#fff" stroke-width="2" />`;
+  }).join("");
+
+  const labels = dims.map((d, i) => {
+    const lx = cx + Math.cos(angles[i]) * (R + 36);
+    const ly = cy + Math.sin(angles[i]) * (R + 36);
+    return `
+      <text x="${lx.toFixed(1)}" y="${(ly - 6).toFixed(1)}" text-anchor="middle"
+            font-size="13" font-weight="700" fill="#1A2332"
+            font-family="Noto Sans TC, sans-serif">${d}</text>
+      <text x="${lx.toFixed(1)}" y="${(ly + 10).toFixed(1)}" text-anchor="middle"
+            font-size="11" fill="#7A6F60"
+            font-family="Noto Sans TC, sans-serif">${DIMENSIONS[d].short} ${dim[d]}</text>
+    `;
+  }).join("");
+
+  return `
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="五大維度雷達圖">
+      <g>${grids}</g>
+      <g>${axes}</g>
+      <polygon points="${dataPts}" fill="rgba(184,102,47,.22)" stroke="#B8662F" stroke-width="2.5" stroke-linejoin="round" />
+      ${dots}
+      ${labels}
+    </svg>
+  `;
+}
+
+/* ============================================================
+   RESULT RENDER
+   ============================================================ */
+function showResult() {
+  const result = calculateScore();
+  showScreen("screen-result");
+
+  // Score number animation
+  const numEl = $("#score-num");
+  animateNumber(numEl, 0, result.total, 1200);
+
+  // Score arc
+  const C = 2 * Math.PI * 90;
+  $("#score-arc").setAttribute("stroke-dasharray", C);
+  $("#score-arc").setAttribute("stroke-dashoffset", C);
+  // Trigger animation after a tick
+  requestAnimationFrame(() => {
+    $("#score-arc").style.stroke = getTierCssColor(result.tier);
+    $("#score-arc").setAttribute("stroke-dashoffset", C * (1 - result.total / 100));
+  });
+
+  // Tier
+  $("#tier-name").textContent = `${result.tier.emoji} ${result.tier.name}`;
+  $("#tier-name").style.color = getTierCssColor(result.tier);
+  $("#tier-message").textContent = result.tier.message;
+
+  // Red-line banner
+  const banner = $("#redline-banner-wrap");
+  if (result.redFlags.length > 0) {
+    const items = result.redFlags.map((id) => `<li>${RED_LINE_LABELS[id]}</li>`).join("");
+    banner.innerHTML = `
+      <div class="redline-banner">
+        <span class="icon">!</span>
+        <div>
+          我們在你的回答中看到 <strong>${result.redFlags.length} 個資本化紅線</strong>。
+          這些問題在買家盡調時會直接讓估值打折 30% 以上，甚至破局。建議優先處理：
+          <ul>${items}</ul>
+        </div>
+      </div>
+    `;
+    // Re-word primary CTA to be more direct
+    $("#btn-cta-primary").textContent = "60 分鐘策略診斷：先幫你拆解這幾條紅線 →";
+  } else {
+    banner.innerHTML = "";
+  }
+
+  // Radar
+  $("#radar-wrap").innerHTML = renderRadar(result.dimensions);
+
+  // Dim bars (in order D1..D5)
+  const barsEl = $("#dim-bars");
+  barsEl.innerHTML = ["D1", "D2", "D3", "D4", "D5"].map((d) => `
+    <div class="dim-bar">
+      <div class="dim-bar-name">${d} ${DIMENSIONS[d].short}</div>
+      <div class="dim-bar-track"><div class="dim-bar-fill" style="width:0%"></div></div>
+      <div class="dim-bar-score">${result.dimensions[d]}</div>
+    </div>
+  `).join("");
+  // animate bar widths
+  requestAnimationFrame(() => {
+    barsEl.querySelectorAll(".dim-bar-fill").forEach((fill, idx) => {
+      const d = ["D1", "D2", "D3", "D4", "D5"][idx];
+      fill.style.width = result.dimensions[d] + "%";
+    });
+  });
+
+  // Advice — pick the two weakest dimensions
+  const ranked = Object.entries(result.dimensions).sort((a, b) => a[1] - b[1]);
+  const weakest = ranked.slice(0, 2);
+  const adviceEl = $("#advice-list");
+  adviceEl.innerHTML = weakest.map(([d, score]) => {
+    const bucket = score < 40 ? "low" : score < 70 ? "mid" : "high";
+    return `
+      <div class="advice-item">
+        <div class="advice-head">
+          <span class="advice-dim-name">${d} ${DIMENSIONS[d].name}</span>
+          <span class="advice-dim-score">${score} / 100</span>
+        </div>
+        <p class="advice-next"><strong>下一步：</strong>${ADVICE[d][bucket]}</p>
+        <p class="advice-step">對應藍圖：${DIMENSIONS[d].blueprint}</p>
+      </div>
+    `;
+  }).join("");
+
+  // CTAs
+  $("#btn-cta-primary").href = CONFIG.bookingUrl;
+  $("#btn-cta-final").href = CONFIG.bookingUrl;
+}
+
+function getTierCssColor(tier) {
+  const map = {
+    "私人作坊": "#B83A2E",
+    "鐵皮廠房": "#D17B2F",
+    "穩健工坊": "#C9A02E",
+    "機械化工廠": "#5A8A4F",
+    "鑽石原石": "#3A6B9B",
+    "上市級資產": "#6B4E8E",
+  };
+  return map[tier.name] || "#B8662F";
+}
+
+function animateNumber(el, from, to, duration) {
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(from + (to - from) * eased);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ============================================================
+   EMAIL MODAL
+   ============================================================ */
+function openEmailModal() {
+  const wrap = $("#modal-email-wrap");
+  wrap.hidden = false;
+  wrap.innerHTML = `
+    <div class="modal-backdrop" id="modal-bg">
+      <div class="modal" role="dialog" aria-labelledby="modal-title">
+        <h3 id="modal-title">下載完整《資本化藍圖》白皮書</h3>
+        <p>留下 email，我們會把完整白皮書（含五步藍圖詳解、產業案例、估值對照表）寄給你，並將你目前的測驗結果一起附上。</p>
+        <form id="email-form">
+          <div class="field">
+            <label for="f-name">姓名</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="王先生 / 王小姐">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">
+            <div class="field-error" id="email-error"></div>
+          </div>
+          <div class="field">
+            <label for="f-company">公司（選填）</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder="">
+          </div>
+          <input type="hidden" name="score" id="f-score">
+          <input type="hidden" name="tier" id="f-tier">
+          <input type="hidden" name="redFlags" id="f-redflags">
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" id="btn-modal-cancel">取消</button>
+            <button type="submit" class="btn btn-primary" id="btn-modal-submit">取得 PDF</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  `;
+  const result = calculateScore();
+  $("#f-score").value = result.total;
+  $("#f-tier").value = result.tier.name;
+  $("#f-redflags").value = result.redFlags.map(id => RED_LINE_LABELS[id]).join(", ");
+
+  $("#btn-modal-cancel").addEventListener("click", closeEmailModal);
+  $("#modal-bg").addEventListener("click", (e) => {
+    if (e.target.id === "modal-bg") closeEmailModal();
+  });
+  $("#email-form").addEventListener("submit", handleEmailSubmit);
+}
+function closeEmailModal() {
+  const wrap = $("#modal-email-wrap");
+  wrap.innerHTML = "";
+  wrap.hidden = true;
+}
+async function handleEmailSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById("f-name").value.trim();
+  const email = document.getElementById("f-email").value.trim();
+  const company = document.getElementById("f-company").value.trim();
+  const errEl = $("#email-error");
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = "請輸入有效的 email";
+    return;
+  }
+  errEl.textContent = "";
+
+  const submitBtn = $("#btn-modal-submit");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "處理中…";
+
+  try {
+    if (CONFIG.formspreeUrl) {
+      const result = calculateScore();
+      const fd = new FormData();
+
+      // 基本識別欄
+      fd.append("userId", `web_${Date.now()}`);
+      fd.append("updated_at", new Date().toISOString());
+
+      // 聯絡資料
+      fd.append("姓名", name);
+      fd.append("公司", company);
+      fd.append("email", email);
+
+      // 12 題答案文字
+      for (let i = 0; i < 12; i++) {
+        const score = state.answers[i];
+        fd.append(`q${i + 1}`, QUESTIONS[i].options[score]);
+      }
+
+      // 五維分數
+      for (const d of ["D1", "D2", "D3", "D4", "D5"]) {
+        fd.append(d, String(result.dimensions[d]));
+      }
+
+      // 結果欄
+      fd.append("total", String(result.total));
+      fd.append("tier", result.tier.name);
+      fd.append("redFlags",
+        result.redFlags.length
+          ? result.redFlags.map(id => RED_LINE_LABELS[id]).join("、")
+          : ""
+      );
+
+      const res = await fetch(CONFIG.formspreeUrl, {
+        method: "POST",
+        body: fd,
+      });
+      if (!res.ok) throw new Error("submission failed");
+    }
+    closeEmailModal();
+    // 觸發列印對話框，讓使用者另存為 PDF（用瀏覽器內建列印功能）
+    setTimeout(() => window.print(), 300);
+  } catch (err) {
+    errEl.textContent = "送出失敗，請稍後再試";
+    submitBtn.disabled = false;
+    submitBtn.textContent = "取得 PDF";
+  }
+}
+
+/* ============================================================
+   BIND
+   ============================================================ */
+// report.html: 直接觸發列印，不開 email modal
+$("#btn-download-pdf").addEventListener("click", () => window.print());
+
+// 從 URL 參數讀預先填好的分數（給 LINE bot 帶過來的）
+// 新格式：?r=<6 碼壓縮碼>（隱藏分數）；舊格式：?r=0,2,3,... 明碼（仍相容）
+function decodeScores(code){
+  let v = parseInt(code, 36);
+  if (!Number.isFinite(v) || v < 0) return null;
+  const s = new Array(12);
+  for (let i = 11; i >= 0; i--){ s[i] = v % 5; v = Math.floor(v / 5); }
+  if (v !== 0) return null;               // 超出 12 位視為無效
+  return s;
+}
+(function tryShowResultFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const r = params.get("r");
+  const showFallback = () => {
+    document.body.innerHTML = `
+      <div style="max-width:540px;margin:80px auto;padding:40px 24px;text-align:center;font-family:'Noto Sans TC',sans-serif;color:#1A2332;">
+        <h2 style="font-family:'Noto Serif TC',serif;font-size:24px;margin-bottom:16px;">資料連結錯誤</h2>
+        <p style="color:#7A6F60;line-height:1.7;margin-bottom:28px;">
+          這頁需要從 LINE 官方帳號的「查看 / 下載報告」按鈕進來才能顯示你的結果。<br>
+          如果還沒測過，可以先在 LINE 官方帳號完成測驗。
+        </p>
+        <a href="/capital-analysis" style="display:inline-block;padding:14px 28px;background:#B8662F;color:#fff;text-decoration:none;border-radius:999px;font-weight:600;">前往網頁版測驗 →</a>
+      </div>
+    `;
+  };
+  if (!r) return showFallback();
+  const scores = r.includes(",")
+    ? r.split(",").map(n => parseInt(n, 10))   // 舊格式，向後相容
+    : decodeScores(r);                          // 新格式：6 碼
+  if (!scores || scores.length !== 12) return showFallback();
+  if (!scores.every(n => Number.isInteger(n) && n >= 0 && n <= 4)) return showFallback();
+  state.answers = scores;
+  showResult();
+  try { history.replaceState({}, document.title, window.location.pathname); } catch (e) {}
+})();
+
+// Sanity-check: spec says 12 questions, 3 reds, weights sum 1
+if (QUESTIONS.length !== 12) console.warn("Expected 12 questions, got", QUESTIONS.length);
+const wSum = Object.values(DIMENSIONS).reduce((s, d) => s + d.weight, 0);
+if (Math.abs(wSum - 1) > 0.001) console.warn("Dimension weights don't sum to 1:", wSum);
+</script>
+</body>
+</html>
