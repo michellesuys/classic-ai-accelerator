@@ -1,0 +1,12 @@
+# Zeabur caddy-static: exact-path match only (no wildcards); trailing slash ignored.
+# HTML must revalidate on every visit so a new deploy shows up at "/" immediately.
+/
+  Cache-Control: no-cache
+/index.html
+  Cache-Control: no-cache
+/capital-analysis
+  Cache-Control: no-cache
+/capital-analysis/index.html
+  Cache-Control: no-cache
+/capital-analysis/report.html
+  Cache-Control: no-cache
