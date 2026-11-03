@@ -509,6 +509,55 @@
   .case li{padding:16px 0; border-top:1px solid var(--fg-a1); font-size:15px; line-height:1.85}
   .case li b{display:block; margin-bottom:2px; color:var(--muted); font-size:14px; font-weight:500; letter-spacing:.14em}
   .note{margin-top:clamp(40px,5vw,64px); color:var(--muted); font-size:14px; letter-spacing:.08em}
+  /* testimonials: native scroll-snap carousel, one voice in focus, the next one peeking */
+  .testi{margin-top:clamp(80px,10vw,144px)}
+  .testi-top{display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:clamp(24px,3vw,40px)}
+  .testi-count{font-family:var(--latin); font-size:14px; font-weight:500; letter-spacing:.18em; color:var(--muted)}
+  .testi-count b{color:var(--gold); font-weight:500}
+  .testi-nav{display:flex; gap:12px}
+  .testi-btn{
+    width:56px; height:56px; display:grid; place-items:center; cursor:pointer;
+    background:transparent; color:var(--fg); border:1px solid var(--gold-a3);
+    transition:background .4s ease, color .4s ease, opacity .4s ease;
+  }
+  .testi-btn::before{
+    content:""; width:22px; height:9px; background:currentColor;
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 9' fill='none' stroke='%23000' stroke-width='1.2'%3E%3Cpath d='M0 4.5h21M17 .8l4 3.7-4 3.7'/%3E%3C/svg%3E") center/contain no-repeat;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 9' fill='none' stroke='%23000' stroke-width='1.2'%3E%3Cpath d='M0 4.5h21M17 .8l4 3.7-4 3.7'/%3E%3C/svg%3E") center/contain no-repeat;
+  }
+  .testi-btn.prev::before{rotate:180deg}
+  .testi-btn:hover:not(:disabled){background:var(--gold); color:var(--bg)}
+  .testi-btn:disabled{opacity:.28; cursor:default}
+  .testi-track{
+    display:grid; grid-auto-flow:column; grid-auto-columns:min(80%,920px); gap:clamp(28px,4vw,72px);
+    position:relative; overflow-x:auto; scroll-snap-type:x mandatory; overscroll-behavior-x:contain;
+    scrollbar-width:none; scroll-behavior:smooth;
+  }
+  .testi-track::-webkit-scrollbar{display:none}
+  .t-slide{position:relative; scroll-snap-align:start; padding-top:clamp(60px,5.4vw,84px); border-top:1px solid var(--fg-a2); opacity:.3; transition:opacity .8s var(--ease-out)}
+  .t-slide.is-active,html:not(.js) .t-slide{opacity:1}
+  .t-slide::before{content:""; position:absolute; top:-1px; left:0; right:0; height:1px; background:var(--gold); transform:scaleX(0); transform-origin:0 50%; transition:transform 1.2s var(--ease-out)}
+  .t-slide.is-active::before{transform:none}
+  .testi.playing .t-slide.is-active::before{transform:scaleX(0); animation:testiTimer 9s linear forwards}
+  .testi.paused .t-slide.is-active::before{animation-play-state:paused}
+  @keyframes testiTimer{to{transform:scaleX(1)}}
+  .testi-btn.toggle::before{width:10px; height:12px; background:none; -webkit-mask:none; mask:none; border-left:2px solid currentColor; border-right:2px solid currentColor}
+  .testi.is-held .testi-btn.toggle::before{width:0; height:0; border-style:solid; border-width:6px 0 6px 10px; border-color:transparent transparent transparent currentColor}
+  .t-slide::after{content:"「"; content:"「" / ""; position:absolute; top:clamp(10px,1.4vw,20px); left:-.12em; font-size:clamp(56px,5vw,80px); line-height:1; color:var(--gold)}
+  .t-quote{max-width:40em}
+  .t-quote p{font-size:clamp(17px,1.45vw,21px); line-height:1.95; text-wrap:pretty}
+  .t-quote p+p{margin-top:1em}
+  .t-key{font-style:normal; font-weight:500; color:var(--gold)}
+  .t-who{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; margin-top:clamp(28px,3vw,44px); padding-top:20px; border-top:1px solid var(--fg-a1)}
+  .t-who b{font-family:var(--latin); font-size:clamp(20px,1.8vw,26px); font-weight:500; letter-spacing:.08em}
+  .t-who span{font-size:14px; letter-spacing:.12em; color:var(--muted)}
+  .testi-bar{position:relative; height:1px; margin-top:clamp(32px,4vw,56px); background:var(--fg-a2)}
+  .testi-bar i{position:absolute; left:0; top:0; width:calc(100% / 3); height:1px; background:var(--gold); transform:translateX(calc(var(--i,0) * 100%)); transition:transform .7s var(--ease-out)}
+  @media(max-width:760px){
+    .testi-track{grid-auto-columns:88%}
+    .testi-btn{width:48px; height:48px}
+  }
+  @media(prefers-reduced-motion:reduce){ .testi-track{scroll-behavior:auto} }
   .case-rows{margin-top:clamp(56px,7vw,104px); border-bottom:1px solid var(--fg-a1)}
   .case-rows .case{display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--col-gap); padding:clamp(36px,4.4vw,64px) 0}
   .case-head{grid-column:1/5}
@@ -868,35 +917,43 @@
           <li><b>結果：</b>國家級創業競賽勝出，獎金投入投資與發展。</li>
         </ul>
       </div>
-      <div class="card case" data-r>
-        <div class="case-head">
-        <div class="kicker">傳統藥廠</div>
-        <div class="big"><span data-count="20">20</span><span class="unit"> 倍</span></div>
-        <div class="case-sub">分拆業務營收成長 ・ 公司價值 5 倍</div>
-        </div>
-        <svg class="trail" viewBox="0 0 900 56" preserveAspectRatio="none" aria-hidden="true"><path class="trail-base" d="M0 48H900"/><path class="trail-line" pathLength="1" d="M0 48H286C420 48 470 8 612 8H900"/></svg>
-        <ul>
-          <li><b>卡在：</b>守著穩定但成長有限的本業。</li>
-          <li><b>我們做了：</b>把潛力新創業務分拆，引進策略投資人，單獨加速。</li>
-          <li><b>結果：</b>分拆業務營收 20 倍、公司價值提升 5 倍。</li>
-        </ul>
-      </div>
-      <div class="card case" data-r>
-        <div class="case-head">
-        <div class="kicker">數位行銷公司</div>
-        <div class="big">ARR</div>
-        <div class="case-sub">從一次性專案 → 穩定循環收入</div>
-        </div>
-        <svg class="trail" viewBox="0 0 900 56" preserveAspectRatio="none" aria-hidden="true"><path class="trail-base" d="M0 48H900"/><path class="trail-line" pathLength="1" d="M0 48H286C420 48 470 8 612 8H900"/></svg>
-        <ul>
-          <li><b>卡在：</b>什麼案子都接，做得很忙，卻不值錢。</li>
-          <li><b>我們做了：</b>收斂核心業務，聚焦切入龍頭客戶。</li>
-          <li><b>結果：</b>轉為穩定續約的 ARR，公司估值同步墊高。</li>
-        </ul>
-      </div>
     </div>
     <div class="sec-wide">
       <p class="note" data-r>以上案例已去識別化整理，保留關鍵營運情境與成果數據。</p>
+    </div>
+    <div class="sec-wide testi" data-r role="region" aria-roledescription="carousel" aria-label="客戶證言">
+      <div class="testi-top">
+        <div class="testi-count" aria-hidden="true"><b id="testiCur">01</b> / 03</div>
+        <div class="testi-nav">
+          <button class="testi-btn toggle" type="button" id="testiToggle" aria-label="暫停自動輪播" aria-pressed="false"></button>
+          <button class="testi-btn prev" type="button" id="testiPrev" aria-label="上一則證言"></button>
+          <button class="testi-btn next" type="button" id="testiNext" aria-label="下一則證言"></button>
+        </div>
+      </div>
+      <div class="testi-track" id="testiTrack" tabindex="0">
+        <figure class="t-slide" role="group" aria-roledescription="slide" aria-label="1 / 3">
+          <blockquote class="t-quote">
+            <p>我們是二代接班，又剛好要把原本兩家公司併成一家。企業方向、組織、既有制度全部要一起處理，可是這些事情靠家人自己講，很難客觀。財務和會計也沒有一套系統可以整合，但直接買大型 ERP 又不貼近我們的產業，大家還要重新學。</p>
+            <p>我們碰到問題，但不知道怎麼解決——<em class="t-key">這時候最需要的，是一個可信任、專業的第三方，幫我們把問題真正梳理出來。</em>他們不只是做 AI 優化，而是從公司實際狀況出發做全盤分析；Michel 也很有耐心，一步一步陪我們把流程和現況理清楚。</p>
+          </blockquote>
+          <figcaption class="t-who"><b>怡君</b><span>二代接班・兩家公司整併中</span></figcaption>
+        </figure>
+        <figure class="t-slide" role="group" aria-roledescription="slide" aria-label="2 / 3">
+          <blockquote class="t-quote">
+            <p>我當時正在成立另一家公司，想找外部觀點來看自己的商業模式有沒有盲點。對我來說，這個計畫最大的價值，是<em class="t-key">用一筆可以負擔的費用，一次換到三個不同企業視角來看你的 business model——有點像一張門票。</em></p>
+            <p>以我實際付的價格來看，整體是很超值的。我自己感受最深的是故事行銷：我身邊不少朋友的公司已經過了從 0 到 1 的階段，正想從 1 走到 10，這時候最需要的不是資金或工具，而是讓市場理解自己、把品牌和商業價值放大。</p>
+          </blockquote>
+          <figcaption class="t-who"><b>Kelvin</b><span>正在成立新公司的創業者</span></figcaption>
+        </figure>
+        <figure class="t-slide" role="group" aria-roledescription="slide" aria-label="3 / 3">
+          <blockquote class="t-quote">
+            <p>我以前做手工皮件，什麼都想自己來，總覺得交給別人就做得沒我好，一直不敢放手。這次健檢最大的提醒是：<em class="t-key">一個人能做的事就是有限，公司要長大，不能只靠一個人。</em></p>
+            <p>我不太會講自己的想法，但透過幾次聊天式的對談，他們幫我把從做皮件、教學到想進寵物市場的脈絡整理清楚——原來我不是從零開始，過去的工藝可以直接接到新品牌上。AI 也一樣，本來覺得公司還小用不到，後來才懂有些底子得從頭慢慢累積，不能等公司大了再重來。</p>
+          </blockquote>
+          <figcaption class="t-who"><b>許娜</b><span>手工皮件職人・籌備寵物新品牌</span></figcaption>
+        </figure>
+      </div>
+      <div class="testi-bar" aria-hidden="true"><i></i></div>
     </div>
   </div>
 </section>
@@ -1326,6 +1383,51 @@
       paths.forEach((path,i)=>{ path.style.strokeDashoffset=lens[i]*(1-p); });
       svg.classList.toggle('done',p>.98);
     }};
+  })();
+
+  // testimonials: native scroll-snap does the swiping; JS only syncs arrows, counter and the focused slide
+  (function(){
+    const track=document.getElementById('testiTrack');
+    if(!track) return;
+    const slides=[...track.children], prev=document.getElementById('testiPrev'), next=document.getElementById('testiNext');
+    const cur=document.getElementById('testiCur'), bar=track.parentElement.querySelector('.testi-bar');
+    let idx=0;
+    const setActive=i=>{
+      idx=i;
+      slides.forEach((s,j)=>s.classList.toggle('is-active',j===i));
+      cur.textContent=String(i+1).padStart(2,'0');
+      prev.disabled=i===0; next.disabled=i===slides.length-1;
+      bar.style.setProperty('--i',i);
+    };
+    const go=i=>{ const s=slides[Math.max(0,Math.min(slides.length-1,i))]; track.scrollTo({left:s.offsetLeft}); };
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting) setActive(slides.indexOf(e.target)); }),{root:track,threshold:.6});
+    slides.forEach(s=>io.observe(s));
+    prev.addEventListener('click',()=>go(idx-1));
+    next.addEventListener('click',()=>go(idx+1));
+    // autoplay: when the active slide's gold timer finishes, advance (wrapping to the first)
+    const box=track.parentElement, toggle=document.getElementById('testiToggle');
+    let held=false, hovered=false, focused=false, offscreen=true;
+    const sync=()=>box.classList.toggle('paused',held||hovered||focused||offscreen);
+    box.classList.add('playing');
+    track.addEventListener('animationend',e=>{ if(e.animationName==='testiTimer') go((idx+1)%slides.length); });
+    box.addEventListener('pointerenter',e=>{ if(e.pointerType==='mouse'){ hovered=true; sync(); } });
+    box.addEventListener('pointerleave',e=>{ if(e.pointerType==='mouse'){ hovered=false; sync(); } });
+    // only keyboard focus holds the slide; a mouse click on an arrow shouldn't freeze autoplay
+    box.addEventListener('focusin',e=>{ focused=e.target!==toggle && e.target.matches(':focus-visible'); sync(); });
+    box.addEventListener('focusout',()=>{ focused=false; sync(); });
+    toggle.addEventListener('click',()=>{
+      held=!held; box.classList.toggle('is-held',held);
+      toggle.setAttribute('aria-pressed',String(held));
+      toggle.setAttribute('aria-label',held?'繼續自動輪播':'暫停自動輪播');
+      sync();
+    });
+    new IntersectionObserver(([e])=>{ offscreen=!e.isIntersecting; sync(); },{threshold:.35}).observe(box);
+    sync();
+    track.addEventListener('keydown',e=>{
+      if(e.key==='ArrowRight'){ e.preventDefault(); go(idx+1); }
+      if(e.key==='ArrowLeft'){ e.preventDefault(); go(idx-1); }
+    });
+    setActive(0);
   })();
 
   // one scroll loop: read every rect first, then write (no interleaved layout)
